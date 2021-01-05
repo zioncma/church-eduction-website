@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { Typography, Box } from "@material-ui/core";
 
-export default function Title() {
+export default function Title(props) {
     return (
-        <div>
-            
-        </div>
+        <>
+            <Typography variant={"h1"}>{props.text}</Typography>
+        </>
     )
 }

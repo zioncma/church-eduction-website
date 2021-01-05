@@ -9,21 +9,22 @@ const themeInstance = createMuiTheme({
   //Colors
   palette: {
     primary: {
-      // light: will be calculated from palette.primary.main,
-      main: "#2C2C2C",
+      light: "#353535",
+      main: "#282828",
       // dark: will be calculated from palette.primary.main,
       contrastText: "#FEFEFE",
     },
     secondary: {
-      light: "#DCEAEB",
-      main: "#88BBBC",
+      main: "#8395a7",
       // dark: will be calculated from palette.secondary.main,
       contrastText: "#ffcc00",
     },
     text: {
       primary: "#373737",
-      secondary: "#7E7E7E",
+      white: "#fcfcfc",
+      secondary: "#a1a1a1",
     },
+    logo: "#DACA37"
   },
 });
 
@@ -31,6 +32,14 @@ themeInstance.typography.h1 = {
   fontSize: "1.2rem",
   [themeInstance.breakpoints.up("md")]: {
     fontSize: "2.4rem",
+  },
+  lineHeight: 1.567,
+};
+
+themeInstance.typography.h2 = {
+  fontSize: "1.1rem",
+  [themeInstance.breakpoints.up("md")]: {
+    fontSize: "1.5rem",
   },
   lineHeight: 1.567,
 };

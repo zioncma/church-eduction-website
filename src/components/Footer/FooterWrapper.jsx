@@ -1,5 +1,5 @@
 const style = {
-    borderTop: "1px solid #E7E7E7",
+    // borderTop: "1px solid #E7E7E7",
     textAlign: "center",
     position: "fixed",
     left: "0",

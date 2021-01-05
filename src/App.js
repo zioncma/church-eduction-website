@@ -2,7 +2,6 @@
 import Nav from './components/Nav';
 import Footer from './components/Footer/Footer';
 import Theme from "./components/Theme";
-import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import NavTabs from "./components/NavTabs";
@@ -12,16 +11,17 @@ import GrowthPage from './components/GrowthPage';
 
 function App() {
   //Routing tabs
-  const allTabs = ["/news", "/projects", "/aboutme"];
+  const allTabs = ["/news", "/growth", "/course"];
+
 
   return (
     <Theme>
-      <CssBaseline />
       <BrowserRouter>
+      <CssBaseline />
         <div className="App">
-          <Nav routes={allTabs}>
+          <Nav>
+            
             <Route
-              path="/"
               render={({ location }) => (
                 <>
                   <NavTabs routes={allTabs} value={location.pathname} />
@@ -31,9 +31,9 @@ function App() {
           </Nav>
 
           <Switch>
-            <Route exact path={allTabs[0]} render={() => <NewsFeedPage />} />
-            <Route path={allTabs[1]} render={() => <EducationPage />} />
-            <Route path={allTabs[2]} render={() => <GrowthPage />} />
+            <Route path={allTabs[0]} render={() => <NewsFeedPage />} />
+            <Route path={allTabs[1]} render={() => <GrowthPage />} />
+            <Route path={allTabs[2]} render={() => <EducationPage />} />
           </Switch>
           <Footer />
         </div>
