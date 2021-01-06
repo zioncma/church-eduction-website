@@ -29,7 +29,7 @@ const themeInstance = createMuiTheme({
 });
 
 themeInstance.typography.h1 = {
-  fontSize: "1.2rem",
+  fontSize: "1.9rem",
   [themeInstance.breakpoints.up("md")]: {
     fontSize: "2.4rem",
   },
