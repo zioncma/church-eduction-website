@@ -23,13 +23,13 @@ export default function Share(props) {
         <EmailIcon size={iconSize} round={true} />
       </EmailShareButton>
       <FacebookShareButton quote={text} url={props.url}>
-        <FacebookIcon size={iconSize} round={true} />{" "}
+        <FacebookIcon size={iconSize} round={true} />
       </FacebookShareButton>
       <TwitterShareButton title={text} url={props.url}>
-        <TwitterIcon size={iconSize} round={true} />{" "}
+        <TwitterIcon size={iconSize} round={true} />
       </TwitterShareButton>
       <WhatsappShareButton title={text} url={props.url}>
-        <WhatsappIcon size={iconSize} round={true} />{" "}
+        <WhatsappIcon size={iconSize} round={true} />
       </WhatsappShareButton>
     </div>
   );

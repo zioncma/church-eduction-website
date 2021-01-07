@@ -1,10 +1,12 @@
+const blockHeight = "50px";
+
 const style = {
     // borderTop: "1px solid #E7E7E7",
     textAlign: "center",
     position: "fixed",
     left: "0",
     bottom: "0",
-    // height: blockHeight,
+    height: blockHeight,
     width: "100%",
     backgroundColor: '#1b2024',
     padding: '1rem',
@@ -15,8 +17,9 @@ const style = {
 const phantom = {
   display: 'block',
   padding: '20px',
-//   height: blockHeight,
+  height: blockHeight,
   width: '100%',
+  marginTop: '10px'
 }
 
 function FooterWrapper({ children }) {

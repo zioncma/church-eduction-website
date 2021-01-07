@@ -1,7 +1,6 @@
 //Styles
 import {
   ThemeProvider,
-  makeStyles,
   createMuiTheme,
 } from "@material-ui/core/styles";
 
@@ -43,8 +42,6 @@ themeInstance.typography.h2 = {
   },
   lineHeight: 1.567,
 };
-
-const useStyles = makeStyles((theme) => ({}));
 
 export default function Theme(props) {
   return <ThemeProvider theme={themeInstance}>{props.children}</ThemeProvider>;

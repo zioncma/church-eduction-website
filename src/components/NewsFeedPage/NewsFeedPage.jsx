@@ -3,7 +3,7 @@ import NewsItem from "./NewsItem";
 import Intro from "../Intro";
 import { Box } from "@material-ui/core";
 import { Container, Grid } from "@material-ui/core";
-import { useState } from "react";
+// import { useState } from "react";
 import Filter from "./Filter";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -12,10 +12,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
 }));
-
-function NewsFrame(props) {
-  return <Box>{props.children}</Box>;
-}
 
 export default function NewsFeedPage(props) {
   const classes = useStyles();
@@ -40,7 +36,8 @@ export default function NewsFeedPage(props) {
     },
   ];
 
-  const [state, setstate] = useState("current");
+  // Filter the news feed by terms
+  // const [state, setstate] = useState("current");
 
   const listNews = newsList.map((news, i) => (
     <Grid key={"news-grid-" + i} item xs={12}>

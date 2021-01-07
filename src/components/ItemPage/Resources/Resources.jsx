@@ -4,7 +4,8 @@ import { Typography, Grid } from "@material-ui/core";
 
 
 export default function Resources(props) {
-  const listFiles = props.files.map((file) => <Grid item><File {...file} /></Grid>);
+  const { files } = props;
+  const listFiles = files ? files.map((file, index) => <Grid item><File {...file} /></Grid>) : "";
 
   return (
     <div>

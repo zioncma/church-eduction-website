@@ -4,7 +4,6 @@ import { Typography, Box, Paper } from '@material-ui/core';
 import moment from 'moment';
 import { makeStyles } from "@material-ui/core/styles";
 import AnnouncementIcon from '@material-ui/icons/Announcement';
-
 export default function NewsItem(props) {
   const news = props;
   const useStyles = makeStyles((theme) => ({

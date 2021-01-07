@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Box } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 export default function Title(props) {
     return (
