@@ -12,7 +12,10 @@ export default function Intro(props) {
   const useStyles = makeStyles((theme) => ({
     intro: {
       maxHeight: "40vh",
-      minHeight: "20vh",
+      minHeight: "calc(260px - 3vw)",
+      // [theme.breakpoints.up('md')]: {
+      //   minHeight: "11vw",
+      // },
       overflow: "hidden",
       backgroundImage: `url(${props.bg ? props.bg : defaultbg})`,
       backgroundPosition: "center",
@@ -21,6 +24,7 @@ export default function Intro(props) {
     },
     text: {
       backgroundColor: "rgba(255, 255, 255, 0.85)",
+      padding: theme.spacing(1),
       paddingLeft: theme.spacing(3),
       marginTop: theme.spacing(5),
       width: "80%",
