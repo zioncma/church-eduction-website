@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/church-eduction-website/static/css/main.45fec198.chunk.css",
-    "main.js": "/church-eduction-website/static/js/main.edcbcd29.chunk.js",
-    "main.js.map": "/church-eduction-website/static/js/main.edcbcd29.chunk.js.map",
+    "main.js": "/church-eduction-website/static/js/main.cc7cc338.chunk.js",
+    "main.js.map": "/church-eduction-website/static/js/main.cc7cc338.chunk.js.map",
     "reactPlayerDailyMotion.js": "/church-eduction-website/static/js/reactPlayerDailyMotion.f634995a.chunk.js",
     "reactPlayerDailyMotion.js.map": "/church-eduction-website/static/js/reactPlayerDailyMotion.f634995a.chunk.js.map",
     "reactPlayerFacebook.js": "/church-eduction-website/static/js/reactPlayerFacebook.2cc386e3.chunk.js",
@@ -49,6 +49,6 @@
     "static/js/runtime-main.3537c80b.js",
     "static/js/14.f1d1a7c8.chunk.js",
     "static/css/main.45fec198.chunk.css",
-    "static/js/main.edcbcd29.chunk.js"
+    "static/js/main.cc7cc338.chunk.js"
   ]
 }
