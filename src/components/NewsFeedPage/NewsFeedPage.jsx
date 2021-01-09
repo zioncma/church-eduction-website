@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewsFeedPage(props) {
   const classes = useStyles();
+  const {title} = props;
 
-  const pageTitle = "最新信仰";
   const pageDescription = "所有主日學相關訊息都在這裏，敬請查閱。";
 
   // Test case
@@ -51,7 +51,7 @@ export default function NewsFeedPage(props) {
 
   return (
     <div>
-      <Intro title={pageTitle} description={pageDescription} />
+      <Intro title={title} description={pageDescription} />
       <Container className={classes.m}>
         <Box display="flex" justifyContent="flex-end">
           <Filter />

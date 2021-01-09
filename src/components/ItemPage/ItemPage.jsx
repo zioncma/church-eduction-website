@@ -44,6 +44,7 @@ export default function ItemPage(props) {
   const classes = useStyles();
   const shareUrl = window.location.href;
   const { id } = useParams();
+  console.log('current param - id: ' + id);
   const { isLoading } = useContext(AppContext);
 
   const LoadedContent = () => {

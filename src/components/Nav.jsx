@@ -38,8 +38,8 @@ export default function Nav(props) {
     <>
       <AppBar position="static">
         <Toolbar disableGutters>
-          <Box className={classes.singleLineContainer} minWidth={300}>
-            <Box maxWidth={38} mx={3}>
+          <Box className={classes.singleLineContainer} minWidth={290}>
+            <Box maxWidth={38} mx={2}>
               <img
                 className={classes.image}
                 src={logo}
@@ -53,9 +53,9 @@ export default function Nav(props) {
               noWrap
               className={`${classes.navTitleFont} ${classes.logoColor}`}
             >
-              /
+              -
             </Typography>
-            <Typography noWrap>主日學</Typography>
+            <Typography noWrap>基教部</Typography>
           </Box>
           <Box style={{ flex: 1 }} />{props.children}
           {/* <IconButton

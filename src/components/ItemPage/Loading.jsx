@@ -17,11 +17,13 @@ export default function Loading(props) {
       if (url.includes("course")) {
         // import module for side effects
         const { courses } = await import("../../data/courses");
-        return (items = courses);
+        items = courses;
       } else if (url.includes("growth")) {
         const { growths } = await import("../../data/growths");
-        return (items = growths);
+        items = growths;
       }
+
+      return items;
     })().then((items) => {
       //Find data for this component
       const item = items.find(({ itemId }) => itemId === id);

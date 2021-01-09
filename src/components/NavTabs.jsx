@@ -5,15 +5,14 @@ import { makeStyles } from "@material-ui/core/styles";
 export default function NavTabs(props) {
   const useStyles = makeStyles((theme) => ({
     text: {
-      fontSize: '1.1rem',
+      fontSize: "1.1rem",
     },
   }));
   const classes = useStyles();
 
-  const allTabs = props.routes;
+  const { labels, routes } = props;
   //find which tab should be the active tab
-  const currentTab = allTabs.find((tabValue) => props.value.includes(tabValue));
-
+  const currentTab = routes.find((tabValue) => props.value.includes(tabValue));
 
   const a11yProps = (index) => {
     return {
@@ -26,12 +25,20 @@ export default function NavTabs(props) {
     <Tabs
       value={currentTab}
       variant="scrollable"
-      scrollButtons="auto"
+      scrollButtons="on"
       aria-label="scrollable auto tabs"
     >
-      <Tab label="最新信仰" value={allTabs[0]} component={Link} to={allTabs[0]} {...a11yProps(0)} className={classes.text} />
-      <Tab label="信仰成長路" value={allTabs[1]} component={Link} to={allTabs[1]} {...a11yProps(1)} className={classes.text} />
-      <Tab label="成人主日学" value={allTabs[2]} component={Link} to={allTabs[2]} {...a11yProps(2)} className={classes.text} />
+      {routes.map((route, index) => (
+        <Tab
+          label={labels[index]}
+          value={route}
+          component={Link}
+          to={route}
+          {...a11yProps(index)}
+          className={classes.text}
+          key={"tab-" + index}
+        />
+      ))}
     </Tabs>
   );
 }

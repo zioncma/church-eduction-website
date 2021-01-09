@@ -41,17 +41,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-Card.propTypes = {
+CustomCard.propTypes = {
   date: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  itemId: PropTypes.string.isRequired,
   description: PropTypes.string,
   bg: PropTypes.string,
 };
 
+CustomCard.defaultProps = {
+  date: new Date(),
+  title: "N/A",
+  bg: defaultCard
+}
+
 export default function CustomCard(props) {
   const classes = useStyles();
-  const { date, title, id, description, bg } = props;
+  const { date, title, itemId, description, bg } = props;
   const { url } = useRouteMatch();
   const { updateIsLoading } = useContext(AppContext);
 
@@ -69,7 +75,7 @@ export default function CustomCard(props) {
           </Typography>
           <CardMedia
             className={classes.media}
-            image={bg ? bg : defaultCard}
+            image={bg}
             cover={true}
             title={title}
           />
@@ -99,7 +105,7 @@ export default function CustomCard(props) {
             color="primary"
             className={classes.button}
             component={Link}
-            to={`${url}/${id}`}
+            to={`${url}/${itemId}`}
             onClick={handleClick}
           >
             Learn More
