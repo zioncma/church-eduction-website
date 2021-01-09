@@ -4,6 +4,7 @@ import Intro from "../Intro";
 import { Container, Grid, Box } from "@material-ui/core";
 // import { useState } from "react";
 import Filter from "./Filter";
+import MainGridContainer from "../MainGridContainer";
 import { news } from "../../data/news";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -19,28 +20,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewsFeedPage(props) {
   const classes = useStyles();
-  const {title} = props;
+  const { title } = props;
 
   const pageDescription = "所有主日學相關訊息都在這裏，敬請查閱。";
-
-  // Test case
-  // const newsList = [
-  //   {
-  //     title: "some title1",
-  //     content: "some content1",
-  //     date: "12/12/2020",
-  //   },
-  //   {
-  //     title: "some title1",
-  //     content: "some content1",
-  //     date: "12-12-2020",
-  //   },
-  //   {
-  //     title: "some title1",
-  //     content: "some content1",
-  //     date: "12/02/2020",
-  //   },
-  // ];
 
   const newsList = news;
 
@@ -56,14 +38,14 @@ export default function NewsFeedPage(props) {
   return (
     <div>
       <Intro title={title} description={pageDescription} />
-      <Container className={classes.m}>
-        <Box display="flex" justifyContent="flex-end">
-          <Filter />
-        </Box>
-        <Grid container spacing={3}>
-          {listNews}
-        </Grid>
-      </Container>
+      <Box display="flex" justifyContent="flex-end">
+        <Filter />
+      </Box>
+      <MainGridContainer>
+        {/* <Grid container spacing={3}> */}
+        {listNews}
+        {/* </Grid> */}
+      </MainGridContainer>
     </div>
   );
 }
