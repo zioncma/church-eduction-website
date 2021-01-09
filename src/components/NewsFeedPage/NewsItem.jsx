@@ -57,7 +57,7 @@ export default function NewsItem(props) {
         </Grid>
         <Grid item >
           <Typography color={"secondary"}>
-            {moment(date).format("DD/MM/YYYY")}
+            {moment(date, 'MM/DD/YYYY').format("DD/MM/YYYY")}
           </Typography>
         </Grid>
       </Grid>

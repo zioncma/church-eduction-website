@@ -54,12 +54,10 @@
     "gh-pages": "^3.1.0",
     "material-ui-image": "^3.3.1",
     "moment": "^2.29.1",
-    "react-fitted-image": "^1.0.1",
     "react-player": "^2.7.2",
     "react-router-dom": "^5.2.0",
     "react-share": "^4.3.1",
     "react-test-renderer": "^17.0.1",
-    "react-youtube": "^7.13.0"
   },
   "jest": {},
   "homepage": "https://CeruleanW.github.io/church-eduction-website"

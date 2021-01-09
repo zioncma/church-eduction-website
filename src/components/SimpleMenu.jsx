@@ -8,9 +8,9 @@ export default function SimpleMenu(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const anchorRef = React.useRef(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
