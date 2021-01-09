@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//TODO:
+// Margin bottom
+// Date issue
+
 export default function NewsFeedPage(props) {
   const classes = useStyles();
   const {title} = props;
