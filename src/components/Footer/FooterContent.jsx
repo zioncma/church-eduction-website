@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -13,12 +13,10 @@ const useStyles = makeStyles({
 export default function FooterContent() {
   const classes = useStyles();
   return (
-    <footer className={classes.footer}>
-      <Container>
-        <Typography align="center">
+      <Box className={classes.footer} justifyContent={"center"}>
+        <Typography align="center" color={'textSecondary'}>
           Copyright 2021 — Zion Alliance Church. All rights reserved.
         </Typography>
-      </Container>
-    </footer>
+      </Box>
   );
 }

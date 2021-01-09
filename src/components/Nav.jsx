@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
-import { IconButton, Typography, Toolbar, Box } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+import {
+  Typography,
+  Toolbar,
+  Box,
+  Hidden,
+  Collapse,
+  Paper,
+  Menu,
+} from "@material-ui/core";
+
 import logo from "../assets/logo.png";
+import SimpleMenu from "./SimpleMenu";
 
 import { makeStyles } from "@material-ui/core/styles";
 const navTitleFont = "'Exo', sans-serif";
@@ -31,8 +40,8 @@ export default function Nav(props) {
       color: theme.palette.logo,
     },
   }));
-
   const classes = useStyles();
+
 
   return (
     <>
@@ -57,15 +66,13 @@ export default function Nav(props) {
             </Typography>
             <Typography noWrap>基教部</Typography>
           </Box>
-          <Box style={{ flex: 1 }} />{props.children}
-          {/* <IconButton
-            edge="start"
-            className={""}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton> */}
+          <Box style={{ flex: 1 }} />
+          <Hidden xsDown>{props.children}</Hidden>
+          <Hidden smUp>
+            {/* <Collapse in={isMenuOpen}> */}
+              <SimpleMenu />
+            {/* </Collapse> */}
+          </Hidden>
         </Toolbar>
       </AppBar>
     </>

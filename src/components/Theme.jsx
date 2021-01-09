@@ -21,7 +21,7 @@ const themeInstance = createMuiTheme({
     text: {
       primary: "#373737",
       white: "#fcfcfc",
-      secondary: "#a1a1a1",
+      secondary: "#ebebeb",
     },
     logo: "#DACA37"
   },
