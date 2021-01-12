@@ -9,7 +9,8 @@ import {
   Typography,
   Container,
   Grow,
-  Button
+  Button,
+  Link
 } from "@material-ui/core";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 
@@ -108,7 +109,7 @@ export default function Overview() {
         </Typography>
       </Box>
       <Box display={"flex"} justifyContent={"center"} mt={6}>
-        <Button variant="contained" size="large" endIcon={<CloudDownloadIcon />}> 下載課程簡介</Button>
+      <Button variant="contained" size="large" endIcon={<CloudDownloadIcon />} href={"https://drive.google.com/file/d/1LN9OgC8tnLO_T5vhzyNumoEu860TSppl/view?usp=sharing"} target="_blank" rel="noopener"> 下載課程簡介</Button>
       </Box>
     </Container>
   );
