@@ -5,7 +5,7 @@ import { Typography, Grid } from "@material-ui/core";
 
 export default function Resources(props) {
   const { files } = props;
-  const listFiles = files ? files.map((file, index) => <Grid item><File {...file} /></Grid>) : "";
+  const listFiles = files ? files.map((file, index) => <Grid item key={"file-grid-" + index} ><File {...file} /></Grid>) : "";
 
   return (
     <div>

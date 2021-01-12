@@ -11,10 +11,7 @@ import {
 } from "@material-ui/core";
 import { PropTypes } from "prop-types";
 import moment from "moment";
-import {
-  Link,
-  useRouteMatch,
-} from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 // import ItemPage from "../ItemPage";
 import AppContext from "../AppContext";
 
@@ -50,10 +47,11 @@ CustomCard.propTypes = {
 };
 
 CustomCard.defaultProps = {
-  date: new Date(),
-  title: "N/A",
-  bg: defaultCard
-}
+  // date: new Date(),
+  title: "",
+  subtitle: "",
+  bg: defaultCard,
+};
 
 export default function CustomCard(props) {
   const classes = useStyles();
@@ -70,9 +68,11 @@ export default function CustomCard(props) {
     <>
       <Card>
         <Box className={classes.container}>
-          <Typography component="span" className={classes.date}>
-            {moment(date).format("DD/MM/YYYY")}
-          </Typography>
+          {date ? (
+            <Typography component="span" className={classes.date}>
+              {moment(date).format("DD/MM/YYYY")}
+            </Typography>
+          ) : null}
           <CardMedia
             className={classes.media}
             image={bg}

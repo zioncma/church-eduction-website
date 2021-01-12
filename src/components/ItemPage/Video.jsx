@@ -5,7 +5,7 @@ import "./Video.css";
 import VideoSkeleton from "./VideoSkeleton";
 
 Video.propTypes = {
-  id: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
   title: PropTypes.string,
 };
 
@@ -29,7 +29,7 @@ export default function Video(props) {
     <>
     <div className={"player-wrapper"} style={{ display: isReady ? null : 'none' }}>
       <ReactPlayer
-        url={props.id}
+        url={props.link}
         className={"react-player"}
         width="100%"
         height="100%"

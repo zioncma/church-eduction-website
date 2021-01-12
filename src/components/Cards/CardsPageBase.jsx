@@ -7,7 +7,9 @@ import ItemPage from "../ItemPage/ItemPage";
 import { AppContextProvider } from "../AppContext";
 
 export default function CardsPageBase(props) {
-  const { title, description, bg, cardList } = props;
+  const { pageTitle, description, bg, cardList, itemType } = props;
+  const terms = cardList.map( (data) => data.term);
+
   const { path, url } = useRouteMatch();
   // const { id } = useParams();
 
@@ -20,9 +22,12 @@ export default function CardsPageBase(props) {
           </AppContextProvider>
         </Route>
         <Route path={url}>
-          <Intro title={title} description={description} bg={bg} />
+          <Intro title={pageTitle} description={description} bg={bg} />
           <MainGridContainer>
-            <CardGrids cardList={cardList} />
+            {terms.map( (term) => {
+              const items = term[itemType];
+              return (<CardGrids cardList={items} />);
+            })}
           </MainGridContainer>
         </Route>
       </Switch>

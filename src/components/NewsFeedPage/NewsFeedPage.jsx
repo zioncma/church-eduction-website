@@ -18,10 +18,9 @@ const useStyles = makeStyles((theme) => ({
 // Date issue
 
 export default function NewsFeedPage(props) {
-  const classes = useStyles();
-  const { title } = props;
+  const { pageTitle } = props;
 
-  const pageDescription = "所有主日學相關訊息都在這裏，敬請查閱。";
+  const pageDescription = "歡迎來到宣道會錫安堂基教部的網頁。在這裏你可以得到有關主日學的最新消息，下載和重温過去的主日學。如對錫安堂的基督教教育有任何意見，歡迎通過ce@zioncma.ca聯絡我們。";
 
   const newsList = news;
 
@@ -36,7 +35,7 @@ export default function NewsFeedPage(props) {
 
   return (
     <div>
-      <Intro title={title} description={pageDescription} />
+      <Intro title={pageTitle} description={pageDescription} />
       <Box display="flex" justifyContent="flex-end">
         <Filter />
       </Box>
