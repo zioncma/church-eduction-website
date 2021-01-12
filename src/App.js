@@ -20,8 +20,8 @@ function App() {
   const mainPageTitles = ["最新消息", "信仰成長路", "成人主日學"];
   
   //Routing
-  const rootPath = "/church-eduction-website";
-  const allTabs = ["/church-eduction-website/news", "/church-eduction-website/growth", "/church-eduction-website/course"]; //TODO: need to fix later
+  const rootPath = "/";
+  const allTabs = ["/news", "/growth", "/course"]; //TODO: need to fix later
 
   return (
     <Theme>
