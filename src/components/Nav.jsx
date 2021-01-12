@@ -69,9 +69,7 @@ export default function Nav(props) {
           <Box style={{ flex: 1 }} />
           <Hidden xsDown>{props.children}</Hidden>
           <Hidden smUp>
-            {/* <Collapse in={isMenuOpen}> */}
-              <SimpleMenu />
-            {/* </Collapse> */}
+            <SimpleMenu />
           </Hidden>
         </Toolbar>
       </AppBar>

@@ -39,9 +39,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 CustomCard.propTypes = {
-  date: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   itemId: PropTypes.string.isRequired,
+  date: PropTypes.string,
   description: PropTypes.string,
   bg: PropTypes.string,
 };

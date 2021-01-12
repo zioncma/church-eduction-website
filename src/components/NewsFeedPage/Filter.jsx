@@ -24,7 +24,7 @@ export default function Filter(props) {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="simple-select-label">Term</InputLabel>
+        <InputLabel id="simple-select-label" color={'primary'} >Term</InputLabel>
         <Select
           labelId="simple-select-label"
           id="simple-select"

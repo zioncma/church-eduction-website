@@ -27,12 +27,15 @@ export default function Intro(props) {
       padding: theme.spacing(1),
       paddingLeft: theme.spacing(3),
       marginTop: theme.spacing(5),
-      width: "80%",
+      width: "85%",
       [theme.breakpoints.up('sm')]: {
-        width: "55%",
+        width: "65%",
       },
       [theme.breakpoints.up('md')]: {
-        width: "36%",
+        width: "50%",
+      },
+      [theme.breakpoints.up('lg')]: {
+        width: "39%",
       },
     },
   }));

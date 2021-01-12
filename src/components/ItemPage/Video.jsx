@@ -27,17 +27,20 @@ export default function Video(props) {
 
   return (
     <>
-    <div className={"player-wrapper"} style={{ display: isReady ? null : 'none' }}>
-      <ReactPlayer
-        url={props.link}
-        className={"react-player"}
-        width="100%"
-        height="100%"
-        controls
-        onReady={updateIsReady}
-      />
-    </div>
-    {isReady ? null : <VideoSkeleton />}
+      <div
+        className={"player-wrapper"}
+        style={{ display: isReady ? null : "none" }}
+      >
+        <ReactPlayer
+          url={props.link}
+          className={"react-player"}
+          width="100%"
+          height="100%"
+          controls
+          onReady={updateIsReady}
+        />
+      </div>
+      {isReady ? null : <VideoSkeleton />}
     </>
   );
 }

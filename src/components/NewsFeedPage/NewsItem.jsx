@@ -61,15 +61,6 @@ export default function NewsItem(props) {
           </Typography>
         </Grid>
       </Grid>
-
-      {/* <Box display="flex" justifyContent="flex-end" mt={2}>
-        <Typography color={"secondary"}>
-          {moment(date).format("DD/MM/YYYY")}{" "}
-        </Typography>
-      </Box>
-      <Box display="flex" mt={2}>
-        <LinkArea links={links} />
-      </Box> */}
     </Paper>
   );
 }

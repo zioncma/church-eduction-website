@@ -28,7 +28,7 @@ export default function SimpleMenu(props) {
   }
 
   return (
-    <Box mr={5}>
+    <Box>
       <IconButton
         edge="start"
         className={""}
@@ -48,6 +48,7 @@ export default function SimpleMenu(props) {
         role={undefined}
         transition
         disablePortal
+        placement={'top-end'}
       >
         {({ TransitionProps, placement }) => (
           <Grow

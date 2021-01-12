@@ -4,30 +4,29 @@ import CardGrids from "./CardGrids";
 import MainGridContainer from "../MainGridContainer";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 import ItemPage from "../ItemPage/ItemPage";
-import { AppContextProvider } from "../AppContext";
+import Overview from './../Overview';
 
 export default function CardsPageBase(props) {
   const { pageTitle, description, bg, cardList, itemType } = props;
-  const terms = cardList.map( (data) => data.term);
+  const terms = cardList.map((data) => data.term);
+  const renderItems = terms.map((term) => {
+    const items = term[itemType];
+    return <CardGrids cardList={items} />;
+  });
 
   const { path, url } = useRouteMatch();
-  // const { id } = useParams();
 
+  //Temporary: don't display items for growth courses
   return (
     <>
       <Switch>
         <Route path={`${path}/:id`}>
-          <AppContextProvider>
-            <ItemPage />
-          </AppContextProvider>
+          <ItemPage />
         </Route>
         <Route path={url}>
           <Intro title={pageTitle} description={description} bg={bg} />
           <MainGridContainer>
-            {terms.map( (term) => {
-              const items = term[itemType];
-              return (<CardGrids cardList={items} />);
-            })}
+            {itemType == "growthcourse" ? <Overview /> : renderItems} 
           </MainGridContainer>
         </Route>
       </Switch>

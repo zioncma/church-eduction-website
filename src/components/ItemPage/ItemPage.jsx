@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { PropTypes } from "prop-types";
 import {
   Box,
@@ -13,7 +13,7 @@ import Title from "./Title";
 import Share from "./Share";
 import Description from "./Description";
 import Video from "./Video";
-import { useParams, useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 
 // import Loading from "./Loading";
 import loadData from "./loadData";
@@ -34,8 +34,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 ItemPage.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   // id: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
   description: PropTypes.string,
   video: PropTypes.string,
   files: PropTypes.array,
@@ -58,7 +59,7 @@ const LoadedContent = (props) => {
               <Divider classes={{ root: classes.divider }} />
               <Description text={description} />
             </Box>
-            <Video link={video} title={fullTitle} />
+            {video ? <Video link={video} title={fullTitle} /> : null}
             <Divider classes={{ root: classes.divider }} />
             <Resources files={files} />
           </Paper>
@@ -74,19 +75,21 @@ export default function ItemPage(props) {
   const { id } = params; //pure item id
 
   const [isLoading, setIsLoading] = useState(true);
-  const [item, setItem] = useState("");
+  // const [item, setItem] = useState("");
+  const itemRef = useRef("");
 
   useEffect(() => {
     loadData(url, id).then((item) => {
       //close isLoading
+      itemRef.current = item;
       setIsLoading(false);
-      setItem(item);
+      // setItem(item);
     });
   });
 
   return (
     <>
-      {isLoading ? <CircularProgress /> : <LoadedContent shareUrl={shareUrl} item={item} />}
+      {isLoading ? <CircularProgress /> : <LoadedContent shareUrl={shareUrl} item={itemRef.current} />}
     </>
   );
 }

@@ -20,6 +20,7 @@ function App() {
   const mainPageTitles = ["最新消息", "信仰成長路", "成人主日學"];
   
   //Routing
+  const rootPath = "/church-eduction-website";
   const allTabs = ["/church-eduction-website/news", "/church-eduction-website/growth", "/church-eduction-website/course"]; //TODO: need to fix later
 
   return (
@@ -40,7 +41,7 @@ function App() {
           <Switch>
             <Route
               exact
-              path="/church-eduction-website" //TODO: need to fix later
+              path={rootPath}
               render={() => {
                 return <Redirect to={allTabs[0]} />;
               }}
