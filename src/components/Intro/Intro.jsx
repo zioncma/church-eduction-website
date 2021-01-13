@@ -1,6 +1,5 @@
 import React from "react";
 import { Box } from "@material-ui/core";
-// import Image from "material-ui-image";
 import Title from "./Title";
 import Description from "./Description";
 import PropTypes from "prop-types";

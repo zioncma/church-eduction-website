@@ -15,10 +15,8 @@ import Description from "./Description";
 import Video from "./Video";
 import { useRouteMatch } from "react-router-dom";
 
-// import Loading from "./Loading";
 import loadData from "./loadData";
 
-// import Theme from "../Theme";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   container: {
