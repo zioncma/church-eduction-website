@@ -17,9 +17,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
@@ -59,6 +57,5 @@
     "react-share": "^4.3.1",
     "react-test-renderer": "^17.0.1"
   },
-  "jest": {},
-  "homepage": "https://CeruleanW.github.io/church-eduction-website"
+  "jest": {}
 }
