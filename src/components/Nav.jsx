@@ -69,7 +69,7 @@ export default function Nav(props) {
           <Box style={{ flex: 1 }} />
           <Hidden xsDown>{props.children}</Hidden>
           <Hidden smUp>
-            <SimpleMenu />
+            <SimpleMenu routes={props.routes} pageTitles={props.pageTitles}/>
           </Hidden>
         </Toolbar>
       </AppBar>

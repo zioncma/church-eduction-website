@@ -4,7 +4,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
 
 export default function SimpleMenu(props) {
-  const [anchorEl, setAnchorEl] = useState(null);
+  // const [anchorEl, setAnchorEl] = useState(null);
+  const {routes, pageTitles} = props;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const anchorRef = React.useRef(null);
 
@@ -65,9 +66,10 @@ export default function SimpleMenu(props) {
                   id="menu-list-grow"
                   onKeyDown={handleListKeyDown}
                 >
-                  <MenuItem onClick={handleClose} component={Link} to={"/church-eduction-website/news"}>最新消息</MenuItem>
+                  {routes.map( (route, index) => (<MenuItem onClick={handleClose} component={Link} to={route} key={"menu-item-" + index}>{pageTitles[index]}</MenuItem>) )}
+                  {/* <MenuItem onClick={handleClose} component={Link} to={"/church-eduction-website/news"}>最新消息</MenuItem>
                   <MenuItem onClick={handleClose} component={Link} to={"/church-eduction-website/course"}>成人主日學</MenuItem>
-                  <MenuItem onClick={handleClose} component={Link} to={"/church-eduction-website/growth"}>信仰成長路</MenuItem>
+                  <MenuItem onClick={handleClose} component={Link} to={"/church-eduction-website/growth"}>信仰成長路</MenuItem> */}
                 </MenuList>
               </ClickAwayListener>
             </Paper>

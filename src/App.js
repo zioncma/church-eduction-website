@@ -27,7 +27,7 @@ function App() {
       <Router>
         <CssBaseline />
         <div className="App">
-          <Nav>
+          <Nav routes={allTabs} pageTitles={mainPageTitles} >
             <Route
               render={({ location }) => (
                 <>

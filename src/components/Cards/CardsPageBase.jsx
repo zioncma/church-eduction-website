@@ -9,9 +9,9 @@ import Overview from './../Overview';
 export default function CardsPageBase(props) {
   const { pageTitle, description, bg, cardList, itemType } = props;
   const terms = cardList.map((data) => data.term);
-  const renderItems = terms.map((term) => {
+  const renderItems = terms.map((term, index) => {
     const items = term[itemType];
-    return <CardGrids cardList={items} />;
+    return <CardGrids key={"card-grid-" + index} cardList={items} />;
   });
 
   const { path, url } = useRouteMatch();
