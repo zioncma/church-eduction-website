@@ -12,14 +12,28 @@ import {
 import { PropTypes } from "prop-types";
 import moment from "moment";
 import { Link, useRouteMatch } from "react-router-dom";
-// import ItemPage from "../ItemPage";
 import AppContext from "../AppContext";
 
 import defaultCard from "../../assets/defaultCard.jpg"; //Image by <a href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Free-Photos</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Pixabay</a>
 import { makeStyles } from "@material-ui/core/styles";
+
+
+// TODO: I don't know how to set all cards' height to be the same as the longest one, use fixed values temporarily
 const useStyles = makeStyles((theme) => ({
+  root: {
+    height: theme.spacing(43),
+    [theme.breakpoints.up('lg')]: {
+      height: theme.spacing(45),
+    },
+    [theme.breakpoints.up('xl')]: {
+      height: theme.spacing(50),
+    },
+    minHeight: "100%",
+    display: "grid",
+    gridTemplateRows: "auto 1fr auto"
+  },
   media: {
-    height: 160,
+    height: theme.spacing(20),
   },
   date: {
     position: "absolute",
@@ -27,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(2),
     color: theme.palette.text.white,
   },
-  container: {
+  imageContainer: {
     position: "relative",
   },
   descrip: {
@@ -41,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
 CustomCard.propTypes = {
   title: PropTypes.string.isRequired,
   itemId: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
   date: PropTypes.string,
   description: PropTypes.string,
   bg: PropTypes.string,
@@ -55,7 +70,8 @@ CustomCard.defaultProps = {
 
 export default function CustomCard(props) {
   const classes = useStyles();
-  const { date, title, itemId, description, bg } = props;
+  const { date, title, subtitle, itemId, description, bg } = props;
+  const fullTitle = title + (subtitle ? ": " + subtitle : "");
   const { url } = useRouteMatch();
   const { updateIsLoading } = useContext(AppContext);
 
@@ -66,8 +82,8 @@ export default function CustomCard(props) {
 
   return (
     <>
-      <Card>
-        <Box className={classes.container}>
+      <Card className={classes.root}>
+        <Box className={classes.imageContainer}>
           {date ? (
             <Typography component="span" className={classes.date}>
               {moment(date).format("DD/MM/YYYY")}
@@ -77,7 +93,7 @@ export default function CustomCard(props) {
             className={classes.media}
             image={bg}
             cover={true}
-            title={title}
+            title={fullTitle}
           />
         </Box>
         <CardContent>
@@ -87,7 +103,7 @@ export default function CustomCard(props) {
             component="h2"
             className={classes.title}
           >
-            {title}
+            {fullTitle}
           </Typography>
           <Typography
             variant="body2"

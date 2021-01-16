@@ -12,15 +12,11 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-// TODO: Add logic
 export default function Filter(props) {
     const classes = useStyles();
+    const {itemSet} = props;
     
-    const terms = ['2020', '2019', '2018'];
-
-    // const handleChange = (event) => {
-    //   updateTerm(event.target.value);
-    // };
+    // const terms = ['2020', '2019', '2018'];
 
   return (
     <div>
@@ -29,12 +25,11 @@ export default function Filter(props) {
         <Select
           labelId="simple-select-label"
           id="simple-select"
-          value={""}
-        //   onChange={handleChange}
+          defaultValue=""
+          onChange={(e) => props.updateTerm(e.target.value)}
         >
-          <MenuItem key={terms[0]} value={terms[0]}>{terms[0]}</MenuItem>
-          <MenuItem key={terms[1]} value={terms[1]}>{terms[1]}</MenuItem>
-          <MenuItem key={terms[2]} value={terms[2]}>{terms[2]}</MenuItem>
+          {[...itemSet].map( (term, index) => <MenuItem key={"term-" + index} value={term}>{term}</MenuItem> )}
+          <MenuItem key={"none"} value={""}>All</MenuItem>
         </Select>
       </FormControl>
     </div>

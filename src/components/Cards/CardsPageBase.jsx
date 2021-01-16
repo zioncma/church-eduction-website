@@ -8,15 +8,11 @@ import Overview from './../Overview';
 
 export default function CardsPageBase(props) {
   const { pageTitle, description, bg, cardList, itemType } = props;
-  const terms = cardList.map((data) => data.term);
-  const renderItems = terms.map((term, index) => {
-    const items = term[itemType];
-    return <CardGrids key={"card-grid-" + index} cardList={items} />;
-  });
+
 
   const { path, url } = useRouteMatch();
 
-  //Temporary: don't display items for growth courses
+  //Temporary: when itemType === "growthcourse", don't display items for growth courses
   return (
     <>
       <Switch>
@@ -26,7 +22,8 @@ export default function CardsPageBase(props) {
         <Route path={url}>
           <Intro title={pageTitle} description={description} bg={bg} />
           <MainGridContainer>
-            {itemType == "growthcourse" ? <Overview /> : renderItems} 
+            {/* {itemType === "growthcourse" ? <Overview /> : renderItems}  */}
+            {itemType === "growthcourse" ? <Overview /> : <CardGrids cardList={cardList} itemType={itemType}/>} 
           </MainGridContainer>
         </Route>
       </Switch>

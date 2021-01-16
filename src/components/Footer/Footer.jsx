@@ -4,8 +4,9 @@ import { AppBar, Box } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   footer: {
-    marginTop: "calc(5% + 60px)",
+    marginTop: "30px",
     bottom: "0",
+    height: "60px"
   }
 }));
 

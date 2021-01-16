@@ -14,6 +14,7 @@ import NewsFeedPage from "./components/NewsFeedPage";
 import EducationPage from "./components/EducationPage";
 import GrowthPage from "./components/GrowthPage";
 import NoMatchPage from './components/NoMatchPage';
+import "./App.css";
 
 function App() {
   const mainPageTitles = ["最新消息", "信仰成長路", "成人主日學"];
@@ -48,11 +49,10 @@ function App() {
             <Route path={allTabs[0]} render={() => <NewsFeedPage pageTitle={mainPageTitles[0]} />} />
             <Route path={allTabs[1]} render={() => <GrowthPage pageTitle={mainPageTitles[1]} />} />
             <Route path={allTabs[2]} render={() => <EducationPage pageTitle={mainPageTitles[2]} />} />
-            <Route component={NoMatchPage} />
+            <Route path="*" component={NoMatchPage} />
           </Switch>
-
-          <Footer />
         </div>
+          <Footer />
       </Router>
     </Theme>
   );

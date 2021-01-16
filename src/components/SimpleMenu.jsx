@@ -67,9 +67,6 @@ export default function SimpleMenu(props) {
                   onKeyDown={handleListKeyDown}
                 >
                   {routes.map( (route, index) => (<MenuItem onClick={handleClose} component={Link} to={route} key={"menu-item-" + index}>{pageTitles[index]}</MenuItem>) )}
-                  {/* <MenuItem onClick={handleClose} component={Link} to={"/church-eduction-website/news"}>最新消息</MenuItem>
-                  <MenuItem onClick={handleClose} component={Link} to={"/church-eduction-website/course"}>成人主日學</MenuItem>
-                  <MenuItem onClick={handleClose} component={Link} to={"/church-eduction-website/growth"}>信仰成長路</MenuItem> */}
                 </MenuList>
               </ClickAwayListener>
             </Paper>
