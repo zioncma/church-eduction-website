@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     height: theme.spacing(49),
     [theme.breakpoints.up('sm')]: {
-      height: theme.spacing(40),
+      height: theme.spacing(41),
     },
     [theme.breakpoints.up('md')]: {
       height: theme.spacing(43),
