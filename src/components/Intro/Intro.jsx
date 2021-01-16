@@ -12,9 +12,9 @@ export default function Intro(props) {
     intro: {
       maxHeight: "40vh",
       minHeight: "calc(260px - 3vw)",
-      // [theme.breakpoints.up('md')]: {
-      //   minHeight: "11vw",
-      // },
+      [theme.breakpoints.down('md')]: {
+        minHeight: theme.spacing(35),
+      },
       overflow: "hidden",
       backgroundImage: `url(${props.bg ? props.bg : defaultbg})`,
       backgroundPosition: "center",

@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     marginTop: "30px",
     bottom: "0",
-    height: "60px"
+    minHeight: "60px"
   }
 }));
 
