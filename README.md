@@ -1,16 +1,13 @@
 # Church Education Website
 
-This project contains a few web pages for Sunday school.
+This project contains a few web pages for the Sunday school of Zion Alliance Church.
 
 ## Update the data
 
-Go to the root folder, and enter into `/src/data`, edit the JSON files.
-
-`courses.json` - all the course data will be shown in the Education page
-
-`growths.json` - all the data will be shown in the Growth page
-
-`news.json` - all the data will be shown in the News page
+- Go to the root folder, and enter into `/src/data`, edit the JSON files.
+  - `courses.json` - all the course data will be shown in the Education page
+  - `growths.json` - all the data will be shown in the Growth page
+  - `news.json` - all the data will be shown in the News page
 
 
 
