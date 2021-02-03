@@ -11,6 +11,7 @@ export default function NavTabs(props) {
   const classes = useStyles();
 
   const { labels, routes } = props;
+  
   //find which tab should be the active tab
   const currentTab = routes.find((tabValue) => props.value.includes(tabValue));
 
