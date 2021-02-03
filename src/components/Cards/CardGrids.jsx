@@ -42,6 +42,7 @@ export default function CardGrids(props) {
   );
 }
 
+//return a map contains courses for each term, so we can sort courses by the term
 function generateTitleToCoursesMap(terms) {
   let titleMapObject = new Map();
   for (const term of terms) {

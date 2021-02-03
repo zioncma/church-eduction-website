@@ -15,8 +15,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Filter(props) {
     const classes = useStyles();
     const {itemSet} = props;
-    
-    // const terms = ['2020', '2019', '2018'];
 
   return (
     <div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@material-ui/core";
-import Title from "./Title";
-import Description from "./Description";
+// import Title from "./Title";
+// import Description from "./Description";
 import PropTypes from "prop-types";
 // import bg from "../../assets/bg.jpg";
 import defaultbg from "../../assets/defaultBg.jpg";
@@ -23,7 +23,7 @@ export default function Intro(props) {
     },
     text: {
       backgroundColor: "rgba(255, 255, 255, 0.85)",
-      padding: theme.spacing(1),
+      padding: theme.spacing(2),
       paddingLeft: theme.spacing(3),
       marginTop: theme.spacing(5),
       width: "85%",
@@ -43,8 +43,9 @@ export default function Intro(props) {
   return (
     <Box maxWidth={1} className={classes.intro}>
       <Box className={classes.text} >
-        <Title text={props.title} />
-        <Description text={props.description} />
+        {/* <Title text={props.title} />
+        <Description text={props.description} /> */}
+        {props.children}
       </Box>
     </Box>
   );

@@ -2,8 +2,8 @@
   "news": [
     {
       "title": "最新課程",
-      "content": "二零二一年四月至六月份主日學- coming soon",
-      "date": "01/13/2021",
+      "content": "二零二一年冬季主日學已經開始。時間於星期六早上十時於ZOOM上進行。如有興趣，這聯絡基教部。而主日學的視頻也會於上課後的主日下午在錫安堂的YouTube頻度播出。敬請留意。",
+      "date": "01/26/2021",
       "term": "2021",
       "links": [
         {
@@ -11,22 +11,10 @@
           "text": "登記表"
         },
         {
-          "address": "https://docs.google.com/forms/u/0/d/e/1FAIpQLSf4NhOaVChWoJgcTr2MbV0b_tboO8AtEDmv0Fnuq0Fpq5VWWA/closedform",
+          "address": "http://www.zioncma.ca/c/contactus/",
           "text": "回饋意見"
         }
       ]
-    },
-    {
-      "title": "其他消息",
-      "content": "coming soon",
-      "date": "12/22/2020",
-      "term": "2020"
-    },
-    {
-      "title": "其他消息2-for testing",
-      "content": "coming soon",
-      "date": "12/22/2010",
-      "term": "2010"
     }
   ],
   "others": [

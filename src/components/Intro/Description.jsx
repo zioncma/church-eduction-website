@@ -4,7 +4,7 @@ import { Typography } from '@material-ui/core';
 export default function Description(props) {
     return (
         <Typography>
-            {props.text}
+            {props.children}
         </Typography>
     )
 }
