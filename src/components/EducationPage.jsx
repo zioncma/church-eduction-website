@@ -1,6 +1,10 @@
 import React from "react";
 import CardsPageBase from './Cards/CardsPageBase';
 import {data} from "../data/courses.json";
+import Intro from './Intro';
+import Title from './Intro/Title';
+import Description from './Intro/Description';
+// import { Link } from '@material-ui/core';
 
 
 export default function EducationPage(props) {
@@ -14,7 +18,17 @@ export default function EducationPage(props) {
 
   return (
     <>
-      <CardsPageBase itemType={itemKey} {...{pageTitle, description, bg, cardList}} />
-    </>
+    <CardsPageBase
+      itemType={itemKey}
+      {...{ pageTitle, description, bg, cardList }}
+    >
+      <Intro bg={bg}>
+        <Title text={pageTitle} />
+        <Description>
+        培養造就屬靈帶領，讓弟兄姊妹能在神的話語上進深，掌握基本的聖經解釋和查經帶領方法
+        </Description>
+      </Intro>
+    </CardsPageBase>
+  </>
   );
 }

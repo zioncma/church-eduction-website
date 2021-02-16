@@ -1,6 +1,6 @@
 # Church Education Website
 
-This project contains a few web pages for the Sunday school of Zion Alliance Church.
+This project is a education resource website for the Sunday school of Zion Alliance Church.
 
 ## Update the data
 

@@ -25,7 +25,7 @@ export default function Intro(props) {
       backgroundColor: "rgba(255, 255, 255, 0.85)",
       padding: theme.spacing(2),
       paddingLeft: theme.spacing(3),
-      marginTop: theme.spacing(5),
+      marginTop: theme.spacing(4),
       width: "85%",
       [theme.breakpoints.up('sm')]: {
         width: "65%",

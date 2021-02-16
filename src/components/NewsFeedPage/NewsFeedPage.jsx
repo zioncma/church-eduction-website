@@ -30,8 +30,6 @@ const termSet = getTermSet(newsList);
 
 export default function NewsFeedPage(props) {
   const { pageTitle } = props;
-  const pageDescription =
-    '歡迎來到宣道會錫安堂基教部的網頁。在這裏你可以得到有關主日學的最新消息，下載和重温過去的主日學。如對錫安堂的基督教教育有任何意見，歡迎通過 ce@zioncma.ca 聯絡我們。';
   const contactEmail = 'mailto:ce@zioncma.ca';
 
   // Filter the news feed by terms
@@ -45,16 +43,15 @@ export default function NewsFeedPage(props) {
   ));
 
   return (
-    <div>
+    <>
       <Intro
         title={pageTitle}
-        description={pageDescription}
         emailLink={contactEmail}
       >
         <Title text={pageTitle} />
         <Description>
           歡迎來到宣道會錫安堂基教部的網頁。在這裏你可以得到有關主日學的最新消息，下載和重温過去的主日學。如對錫安堂的基督教教育有任何意見，歡迎通過
-          ce@zioncma.ca <Link href={'mailto:ce@zioncma.ca'} style={{color: "blue"}}>聯絡我們</Link>。
+          ce@zioncma.ca <Link href={contactEmail} style={{color: "blue"}}>聯絡我們</Link>。
         </Description>
       </Intro>
       <MainGridContainer>
@@ -67,6 +64,6 @@ export default function NewsFeedPage(props) {
         </Box>
         {renderedNews}
       </MainGridContainer>
-    </div>
+    </>
   );
 }
