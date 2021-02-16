@@ -26,7 +26,7 @@ export default function GrowthPage(props) {
           <Title text={pageTitle} />
           <Description>
             如果您對這一系列的新課程有興趣或問題, 請向基教部{contactEmail}{' '}
-            <Link href={contactEmail} style={{ color: 'blue' }}>
+            <Link href={'mailto:' + contactEmail} style={{ color: 'blue' }}>
               查詢
             </Link>
           </Description>
