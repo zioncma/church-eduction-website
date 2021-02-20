@@ -18,7 +18,7 @@ import NoMatchPage from './components/NoMatchPage';
 import './App.css';
 
 function App() {
-  const mainPageTitles = ['最新消息', '信仰成長路', '成人主日學', '資料庫'];
+  const mainPageTitles = ['最新消息', '信徒成長路', '成人主日學', '資料庫'];
 
   //Routing
   const rootPath = '/';

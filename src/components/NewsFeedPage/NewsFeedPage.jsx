@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import NewsItem from './NewsItem';
 import Intro from '../Intro';
-import { Grid, Box, Typography, Link } from '@material-ui/core';
-// import { useState } from "react";
+import { Grid, Box, Link } from '@material-ui/core';
 import Filter from './Filter';
 import MainGridContainer from '../MainGridContainer';
 import { news } from '../../data/news';
@@ -20,7 +19,7 @@ function getTermSet(newsList) {
 function filterByTerm(newsList, term) {
   let result = newsList;
   if (term) {
-    result = result.filter((item) => item.term == term);
+    result = result.filter((item) => item.term === term);
   }
   return result;
 }

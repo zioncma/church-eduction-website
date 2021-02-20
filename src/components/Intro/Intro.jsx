@@ -52,7 +52,5 @@ export default function Intro(props) {
 }
 
 Intro.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   bg: PropTypes.string,
 };

@@ -9,8 +9,7 @@ import { Link } from '@material-ui/core';
 
 export default function GrowthPage(props) {
   const { pageTitle } = props;
-  const description =
-    '如果您對這一系列的新課程有興趣或問題, 請向基教部ce@zioncma.ca 查詢 ';
+
   const bg = growthbg;
   const cardList = data;
   const itemKey = 'growthcourse';
@@ -20,7 +19,7 @@ export default function GrowthPage(props) {
     <>
       <CardsPageBase
         itemType={itemKey}
-        {...{ pageTitle, description, bg, cardList }}
+        {...{ pageTitle, bg, cardList }}
       >
         <Intro bg={bg}>
           <Title text={pageTitle} />
