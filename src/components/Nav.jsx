@@ -9,7 +9,6 @@ import SimpleMenu from './SimpleMenu';
 import { makeStyles } from '@material-ui/core/styles';
 const navTitleFont = "'Exo', sans-serif";
 
-
 export default function Nav(props) {
   const useStyles = makeStyles((theme) => ({
     navTitlePadding: {
@@ -23,17 +22,21 @@ export default function Nav(props) {
     image: {
       maxWidth: '100%',
     },
+    linkWhiteNoDecor: {
+      textDecoration: 'none',
+      color: theme.palette.text.white,
+    },
     singleLineContainer: {
       whiteSpace: 'nowrap',
       overflowX: 'auto',
       '& > *': {
         display: 'inline-block',
+        color: theme.palette.text.white,
       },
-      textDecoration: 'none',
       '&:visited': {
-          textDecoration: 'none',
-          color: "white"
-      }
+        textDecoration: 'none',
+        color: theme.palette.text.white,
+      },
     },
     logoColor: {
       color: theme.palette.logo,
@@ -45,30 +48,28 @@ export default function Nav(props) {
     <>
       <AppBar position='static'>
         <Toolbar disableGutters>
-          <Box
-            className={classes.singleLineContainer}
-            minWidth={290}
-            component={Link}
-            to={'/news'}
-          >
-            <Box maxWidth={38} mx={2}>
-              <img
-                className={classes.image}
-                src={logo}
-                alt='宣道會錫安堂LOGO'
-              />
+          <a href='http://www.zioncma.ca/' className={classes.linkWhiteNoDecor}>
+            <Box className={classes.singleLineContainer} minWidth={295}>
+              <Box maxWidth={38} mx={1} display={'inline-block'}>
+                <img
+                  className={classes.image}
+                  src={logo}
+                  alt='宣道會錫安堂LOGO'
+                />
+              </Box>
+              <Typography className={`${classes.navTitleFont}`} noWrap>
+                宣道會錫安堂
+              </Typography>
+
+              <Typography
+                noWrap
+                className={`${classes.navTitleFont} ${classes.logoColor}`}
+              >
+                -
+              </Typography>
+              <Typography noWrap>基教部</Typography>
             </Box>
-            <Typography className={classes.navTitleFont} noWrap>
-              宣道會錫安堂
-            </Typography>
-            <Typography
-              noWrap
-              className={`${classes.navTitleFont} ${classes.logoColor}`}
-            >
-              -
-            </Typography>
-            <Typography noWrap>基教部</Typography>
-          </Box>
+          </a>
 
           <Box style={{ flex: 1 }} />
           <Hidden xsDown>{props.children}</Hidden>
