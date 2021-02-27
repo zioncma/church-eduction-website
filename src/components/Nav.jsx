@@ -48,7 +48,7 @@ export default function Nav(props) {
     <>
       <AppBar position='static'>
         <Toolbar disableGutters>
-          <a href='http://www.zioncma.ca/' className={classes.linkWhiteNoDecor}>
+          <a href='http://www.zioncma.ca/c' className={classes.linkWhiteNoDecor}>
             <Box className={classes.singleLineContainer} minWidth={295}>
               <Box maxWidth={38} mx={1} display={'inline-block'}>
                 <img
