@@ -21,15 +21,15 @@ import { makeStyles } from "@material-ui/core/styles";
 // TODO: I don't know how to set all cards' height to be the same as the longest one, use fixed values temporarily
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: theme.spacing(49),
+    height: theme.spacing(50),
     [theme.breakpoints.up('sm')]: {
-      height: theme.spacing(41),
+      height: theme.spacing(42),
     },
     [theme.breakpoints.up('md')]: {
-      height: theme.spacing(43),
+      height: theme.spacing(44),
     },
     [theme.breakpoints.up('lg')]: {
-      height: theme.spacing(45),
+      height: theme.spacing(47),
     },
     [theme.breakpoints.up('xl')]: {
       height: theme.spacing(50),

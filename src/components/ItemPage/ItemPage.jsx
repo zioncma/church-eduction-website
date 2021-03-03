@@ -14,11 +14,8 @@ import Share from './Share';
 import Description from './Description';
 import Video from './Video';
 import videoHolder from '../../assets/video-placeholder640.jpg';
-
 import { useRouteMatch } from 'react-router-dom';
-
 import loadData from './loadData';
-
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   container: {
