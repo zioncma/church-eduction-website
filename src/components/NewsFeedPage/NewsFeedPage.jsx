@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import NewsItem from './NewsItem';
 import Intro from '../Intro';
-import { Grid, Box, Link } from '@material-ui/core';
+import { Grid, Box, Link, Typography } from '@material-ui/core';
 import Filter from './Filter';
 import MainGridContainer from '../MainGridContainer';
-import { news } from '../../data/news';
+import { groups } from '../../data/news';
 import Title from '../Intro/Title';
 import Description from '../Intro/Description';
 
+// get a set of existing terms in the data, e.g. [2010, 2011, 2012]
 function getTermSet(newsList) {
   const set = new Set();
   for (const item of newsList) {
@@ -24,17 +25,18 @@ function filterByTerm(newsList, term) {
   return result;
 }
 
-const newsList = news;
+const newsList = groups.news;
 const termSet = getTermSet(newsList);
+const groupNames = groups.name; //TODO: refactor to an array later
 
 export default function NewsFeedPage(props) {
   const { pageTitle } = props;
   const contactEmail = 'mailto:ce@zioncma.ca';
 
-  // Filter the news feed by terms
-
+  
   const [term, setTerm] = useState('');
-
+  
+  // Filter the news feed by terms
   const renderedNews = filterByTerm(newsList, term).map((news, i) => (
     <Grid key={'news-grid-' + i} item xs={12}>
       <NewsItem key={'news-' + i} {...news} />
@@ -61,6 +63,8 @@ export default function NewsFeedPage(props) {
             currentTerm={term}
           />
         </Box>
+        {/* Temp: Use a single group heading as 二零二一年春季主日學 */}
+        <Typography variant={"h2"}>{groupNames}</Typography>
         {renderedNews}
       </MainGridContainer>
     </>

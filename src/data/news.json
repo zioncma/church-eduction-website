@@ -1,27 +1,46 @@
 {
   "news": [
     {
-      "title": "最新課程",
-      "content": "二零二一年冬季主日學已經開始。時間於星期六早上十時於ZOOM上進行。如有興趣，請聯絡基教部。而主日學的視頻也會於上課後的主日下午在錫安堂的YouTube頻度播出。敬請留意。",
-      "date": "01/26/2021",
+      "title": "二零二一年春季主日學",
+      "content": "加拉太書\n加拉太書是宗教改革中一本非常重要的書，裏面特別提到因信稱義，我們得救並不是行為稱義，乃是因着信。若然我們以當時第1世紀猶太宗教及文化作其歷史背景，可能會給我們有另外一個角度的理解。加拉太書是寫給加拉太一帶的教會，準確來說是猶太人的會堂。而由於死海古卷的發現及互聯網的發達，以致學術研究較以前更容易掌握第1世紀教會發生了什麼事情。\n本主日學課程將會透過一個非傳統基督教的角度去探討加拉太書，究竟保羅為何要寫這封書信和他的寫作對象，都是非常重要的起點，讓我們一一探討。\n導師 - Keith Kwok\n日期 - 2021 Apr 10 - Jun 26 星期六 上午11點 Zoom在線課程 (第一個星期除外 )\n(Zoom ID和密碼將在註冊後通過電郵發送)",
+      "date": "03/06/2021",
       "term": "2021",
       "links": [
         {
-          "address": "https://docs.google.com/forms/u/0/d/e/1FAIpQLSf4NhOaVChWoJgcTr2MbV0b_tboO8AtEDmv0Fnuq0Fpq5VWWA/closedform",
+          "address": "https://docs.google.com/forms/d/e/1FAIpQLSehaz2JhmXYfz4XCRX2OrzveKQFMqFCSW1mbv5oIcW-gKSurw/viewform?usp=sf_link",
           "text": "登記表"
-        },
+        }
+      ],
+      "video": "https://www.youtube.com/watch?v=2MUoQugvgYA"
+    }
+  ],
+  "groups": {
+    "name": "二零二一年春季主日學",
+    "news": [
+    {
+      "title": "加拉太書",
+      "content": "\n加拉太書是宗教改革中一本非常重要的書，裏面特別提到因信稱義，我們得救並不是行為稱義，乃是因着信。若然我們以當時第1世紀猶太宗教及文化作其歷史背景，可能會給我們有另外一個角度的理解。加拉太書是寫給加拉太一帶的教會，準確來說是猶太人的會堂。而由於死海古卷的發現及互聯網的發達，以致學術研究較以前更容易掌握第1世紀教會發生了什麼事情。\n本主日學課程將會透過一個非傳統基督教的角度去探討加拉太書，究竟保羅為何要寫這封書信和他的寫作對象，都是非常重要的起點，讓我們一一探討。\n導師 - Keith Kwok\n日期 - 2021 Apr 10 - Jun 26 星期六 上午11點 Zoom在線課程 (第一個星期除外 )\n(Zoom ID和密碼將在註冊後通過電郵發送)",
+      "date": "03/06/2021",
+      "term": "2021",
+      "links": [
         {
-          "address": "http://www.zioncma.ca/c/contactus/",
-          "text": "回饋意見"
+          "address": "https://docs.google.com/forms/d/e/1FAIpQLSehaz2JhmXYfz4XCRX2OrzveKQFMqFCSW1mbv5oIcW-gKSurw/viewform?usp=sf_link",
+          "text": "登記表"
+        }
+      ],
+      "video": "https://www.youtube.com/watch?v=2MUoQugvgYA"
+    },
+    {
+      "title": "信徒成長路 - 禱告學堂",
+      "content": "⽬的：建立誠實與神相交的習慣\n對象：渴慕操練恆切的禱告⽣活\n內容：耶穌的榜樣、禱告是什麼、聖經與禱告、聖靈與禱告、禱告的障礙⋯⋯\n導師：Prisca Kok (郝師母)\n日期：2021 April 3 - June 12 逢星期六 上午10am - 11am Zoom在線課程\n(Zoom ID和密碼將在註冊後通過電郵發送)",
+      "date": "03/06/2021",
+      "term": "2021",
+      "links": [
+        {
+          "address": "https://docs.google.com/forms/d/e/1FAIpQLScu_cbZY8J413lAs87whhwswdugW7T091SqYwVHbnne9ILF-Q/viewform?usp=sf_link",
+          "text": "登記表"
         }
       ]
     }
-  ],
-  "others": [
-    {
-      "title": "創紙桉敵塞",
-      "content": "崇環。味腫給嘗函釀千娥科奕錄終寓母築家引氧仿喂綜妃羽聚濁早掩催述貝整鈞饑棋趣閘梯甜香代門鹽預協因蜀孕？宜吻賬撞創紙桉敵塞驕貌透卓欣災嘿篇於阻交馮搗幻詢智”。",
-      "date": "12/12/2020"
-    }
-  ]
+  ]}
 }

@@ -2,18 +2,10 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
-// import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 
-// const useStyles = makeStyles(() => ({
-//   image: {
-//     width: '100%',
-//   },
-// }));
 
 export default function VideoSkeleton(props) {
-    // const classes = useStyles();
-  
     return (
       <div>
         <Box display="flex" alignItems="center">

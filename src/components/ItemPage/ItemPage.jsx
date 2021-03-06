@@ -12,7 +12,7 @@ import Resources from './Resources/Resources';
 import Title from './Title';
 import Share from './Share';
 import Description from './Description';
-import Video from './Video';
+import Video from '../Video/Video';
 import videoHolder from '../../assets/video-placeholder640.jpg';
 import { useRouteMatch } from 'react-router-dom';
 import loadData from './loadData';

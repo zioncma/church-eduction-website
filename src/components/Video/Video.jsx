@@ -9,16 +9,6 @@ Video.propTypes = {
   title: PropTypes.string,
 };
 
-// function extractId(str) {
-//   //Link formats:
-//   // https://www.youtube.com/watch?v=w30P5c4aQek
-//   // https://youtu.be/w30P5c4aQek
-//   let result = str;
-//   result = result.replace("https://www.youtube.com/watch?v=");
-//   result = result.replace("https://youtu.be/");
-//   return result;
-// }
-
 export default function Video(props) {
   const [isReady, setIsReady] = useState(false);
   function updateIsReady() {
@@ -44,3 +34,13 @@ export default function Video(props) {
     </>
   );
 }
+
+// function extractId(str) {
+//   //Link formats:
+//   // https://www.youtube.com/watch?v=w30P5c4aQek
+//   // https://youtu.be/w30P5c4aQek
+//   let result = str;
+//   result = result.replace("https://www.youtube.com/watch?v=");
+//   result = result.replace("https://youtu.be/");
+//   return result;
+// }
