@@ -1,6 +1,6 @@
 import React from 'react';
 import LinkItem from './LinkItem';
-import { Box, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 export default function LinkArea(props) {
   return (

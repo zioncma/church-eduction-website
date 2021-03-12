@@ -47,12 +47,13 @@ export default function NewsItem(props) {
     },
   }));
   const classes = useStyles();
-  const multiLinedContent = content.split('\n').map((line) => {
+  const multiLinedContent = content.split('\n').map((line, index) => {
     return (
       <Typography
         color={'primary'}
         className={title ? '' : classes.startText}
         gutterBottom
+        key={'sentence-' + index}
       >
         {line}
       </Typography>
@@ -86,16 +87,10 @@ export default function NewsItem(props) {
         </Grid>
         <Grid item>
           <Typography color={'secondary'}>
-            {moment(date, 'MM/DD/YYYY').format('DD/MM/YYYY')}
+            {moment(date, 'MM/DD/YYYY').format('MM/DD/YYYY')}
           </Typography>
         </Grid>
       </Grid>
     </Paper>
   );
-}
-
-{
-  /* <Typography color={'primary'} className={title ? '' : classes.startText}>
-        {content}
-      </Typography> */
 }

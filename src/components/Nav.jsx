@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import { Typography, Toolbar, Box, Hidden } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-
 import logo from '../assets/logo.png';
 import SimpleMenu from './SimpleMenu';
 
@@ -45,7 +43,7 @@ export default function Nav(props) {
   const classes = useStyles();
 
   return (
-    <>
+    <nav>
       <AppBar position='static'>
         <Toolbar disableGutters>
           <a href='http://www.zioncma.ca/c' className={classes.linkWhiteNoDecor}>
@@ -78,6 +76,6 @@ export default function Nav(props) {
           </Hidden>
         </Toolbar>
       </AppBar>
-    </>
+    </nav>
   );
 }

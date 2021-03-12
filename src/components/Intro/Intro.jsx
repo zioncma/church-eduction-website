@@ -1,7 +1,5 @@
 import React from "react";
 import { Box } from "@material-ui/core";
-// import Title from "./Title";
-// import Description from "./Description";
 import PropTypes from "prop-types";
 // import bg from "../../assets/bg.jpg";
 import defaultbg from "../../assets/defaultBg.jpg";
@@ -41,13 +39,13 @@ export default function Intro(props) {
   const classes = useStyles();
 
   return (
-    <Box maxWidth={1} className={classes.intro}>
-      <Box className={classes.text} >
-        {/* <Title text={props.title} />
-        <Description text={props.description} /> */}
-        {props.children}
+    <header>
+      <Box maxWidth={1} className={classes.intro}>
+        <Box className={classes.text} >
+          {props.children}
+        </Box>
       </Box>
-    </Box>
+    </header>
   );
 }
 

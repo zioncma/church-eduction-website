@@ -32,40 +32,43 @@ function App() {
           <Nav routes={allTabs} pageTitles={mainPageTitles}>
             <Route
               render={({ location }) => (
-                <>
-                  <NavTabs
-                    routes={allTabs}
-                    value={location.pathname}
-                    labels={mainPageTitles}
-                  />
-                </>
+                <NavTabs
+                  routes={allTabs}
+                  value={location.pathname}
+                  labels={mainPageTitles}
+                />
               )}
             />
           </Nav>
 
-          <Switch>
-            <Route
-              exact
-              path={rootPath}
-              render={() => {
-                return <Redirect to={allTabs[0]} />;
-              }}
-            />
-            <Route
-              path={allTabs[0]}
-              render={() => <NewsFeedPage pageTitle={mainPageTitles[0]} />}
-            />
-            <Route
-              path={allTabs[1]}
-              render={() => <GrowthPage pageTitle={mainPageTitles[1]} />}
-            />
-            <Route
-              path={allTabs[2]}
-              render={() => <EducationPage pageTitle={mainPageTitles[2]} />}
-            />
-            <Route path={allTabs[3]} render={() => <ArchivePage pageTitle={mainPageTitles[3]} />} />
-            <Route path='*' component={NoMatchPage} />
-          </Switch>
+          <main>
+            <Switch>
+              <Route
+                exact
+                path={rootPath}
+                render={() => {
+                  return <Redirect to={allTabs[0]} />;
+                }}
+              />
+              <Route
+                path={allTabs[0]}
+                render={() => <NewsFeedPage pageTitle={mainPageTitles[0]} />}
+              />
+              <Route
+                path={allTabs[1]}
+                render={() => <GrowthPage pageTitle={mainPageTitles[1]} />}
+              />
+              <Route
+                path={allTabs[2]}
+                render={() => <EducationPage pageTitle={mainPageTitles[2]} />}
+              />
+              <Route
+                path={allTabs[3]}
+                render={() => <ArchivePage pageTitle={mainPageTitles[3]} />}
+              />
+              <Route path='*' component={NoMatchPage} />
+            </Switch>
+          </main>
         </div>
         <Footer />
       </Router>

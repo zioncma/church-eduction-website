@@ -32,10 +32,14 @@ const groupNames = groups.name; //TODO: refactor to an array later
 export default function NewsFeedPage(props) {
   const { pageTitle } = props;
   const contactEmail = 'mailto:ce@zioncma.ca';
+  const handleClick = () => {
+    fetch(
+      'https://drive.google.com/file/d/1atWQoL15DFrFtZB35iatuzCdKUhdzim_/view?usp=sharing'
+    ).then((fulfilled) => console.log('Fulfilled!'));
+  };
 
-  
   const [term, setTerm] = useState('');
-  
+
   // Filter the news feed by terms
   const renderedNews = filterByTerm(newsList, term).map((news, i) => (
     <Grid key={'news-grid-' + i} item xs={12}>
@@ -45,14 +49,15 @@ export default function NewsFeedPage(props) {
 
   return (
     <>
-      <Intro
-        title={pageTitle}
-        emailLink={contactEmail}
-      >
+      <Intro>
         <Title text={pageTitle} />
         <Description>
           歡迎來到宣道會錫安堂基教部的網頁。在這裏你可以得到有關主日學的最新消息，下載和重温過去的主日學。如對錫安堂的基督教教育有任何意見，歡迎通過
-          ce@zioncma.ca <Link href={contactEmail} style={{color: "blue"}}>聯絡我們</Link>。
+          ce@zioncma.ca{' '}
+          <Link href={contactEmail} style={{ color: 'blue' }}>
+            聯絡我們
+          </Link>
+          。
         </Description>
       </Intro>
       <MainGridContainer>
@@ -64,8 +69,9 @@ export default function NewsFeedPage(props) {
           />
         </Box>
         {/* Temp: Use a single group heading as 二零二一年春季主日學 */}
-        <Typography variant={"h2"}>{groupNames}</Typography>
+        <Typography variant={'h2'}>{groupNames}</Typography>
         {renderedNews}
+        {/* <button onClick={handleClick}>Test</button> */}
       </MainGridContainer>
     </>
   );

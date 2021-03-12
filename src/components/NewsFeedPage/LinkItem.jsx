@@ -16,13 +16,12 @@ export default function LinkItem(props) {
   const { address, text } = props;
   return (
     <Grid item>
-      {/* <LinkIcon />
-      <a href={address}>{text}</a> */}
       <Button
         variant="contained"
         href={address}
         size="small"
         startIcon={<LinkIcon />}
+        style={{whiteSpace: 'nowrap'}}
       >
         {text}
       </Button>

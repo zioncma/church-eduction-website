@@ -8,7 +8,6 @@ import Overview from './../Overview';
 
 export default function CardsPageBase(props) {
   const { cardList, itemType } = props;
-
   const { path, url } = useRouteMatch();
 
   //Temporary: when itemType === "growthcourse", don't display items for growth courses
