@@ -47,7 +47,7 @@ export default function NewsItem(props) {
     },
   }));
   const classes = useStyles();
-  const multiLinedContent = content.split('\n').map((line, index) => {
+  const renderMultiLinedContent = content.split('\n').map((line, index) => {
     return (
       <Typography
         color={'primary'}
@@ -74,7 +74,7 @@ export default function NewsItem(props) {
           <Video link={video} />
         </Box>
       ) : null}
-      {multiLinedContent}
+      {renderMultiLinedContent}
       <Grid
         container
         justify='flex-end'

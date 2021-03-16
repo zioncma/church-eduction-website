@@ -21,7 +21,7 @@ This project is a education resource website for the Sunday school of Zion Allia
 
 
 
-## Library dependencies
+## Credits
 
 - [Create React App](https://github.com/facebook/create-react-app)
 - Material UI

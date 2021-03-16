@@ -1,36 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import growthbg from '../assets/growthbg.jpg';
 import CardsPageBase from './Cards/CardsPageBase';
-import { data } from '../data/growths.json';
+// import { data } from '../data/growths.json';
 import Intro from './Intro';
 import Title from './Intro/Title';
 import Description from './Intro/Description';
 import { Link } from '@material-ui/core';
+import { readGrowths } from '../lib/loadData';
+import { LinearProgress } from '@material-ui/core';
+
+const itemKey = 'growthcourse';
+const contactEmail = 'ce@zioncma.ca';
 
 export default function GrowthPage(props) {
   const { pageTitle } = props;
+  const [isLoading, setIsLoading] = useState(true);
+  const dataRef = useRef(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      dataRef.current = await readGrowths();
+      setIsLoading(false);
+    };
+
+    fetchData().catch((err) => console.error(err));
+  }, []);
 
   const bg = growthbg;
-  const cardList = data;
-  const itemKey = 'growthcourse';
-  const contactEmail = 'ce@zioncma.ca';
 
   return (
     <>
-      <CardsPageBase
-        itemType={itemKey}
-        {...{ pageTitle, bg, cardList }}
-      >
-        <Intro bg={bg}>
-          <Title text={pageTitle} />
-          <Description>
-            如果您對這一系列的新課程有興趣或問題, 請向基教部{contactEmail}{' '}
-            <Link href={'mailto:' + contactEmail} style={{ color: 'blue' }}>
-              查詢
-            </Link>
-          </Description>
-        </Intro>
-      </CardsPageBase>
+      {isLoading ? (
+        <LinearProgress color={'secondary'} />
+      ) : (
+        <CardsPageBase
+          itemType={itemKey}
+          {...{ pageTitle, bg, cardList: dataRef.current }}
+        >
+          <Intro bg={bg}>
+            <Title text={pageTitle} />
+            <Description>
+              如果您對這一系列的新課程有興趣或問題, 請向基教部{contactEmail}{' '}
+              <Link href={'mailto:' + contactEmail} style={{ color: 'blue' }}>
+                查詢
+              </Link>
+            </Description>
+          </Intro>
+        </CardsPageBase>
+      )}
     </>
   );
 }

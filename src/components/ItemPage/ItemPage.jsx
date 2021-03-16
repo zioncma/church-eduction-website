@@ -15,8 +15,9 @@ import Description from './Description';
 import Video from '../Video/Video';
 import videoHolder from '../../assets/video-placeholder640.jpg';
 import { useRouteMatch } from 'react-router-dom';
-import loadData from './loadData';
+import { loadItemData } from '../../lib/loadData';
 import { makeStyles } from '@material-ui/core/styles';
+
 const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: theme.spacing(4),
@@ -84,15 +85,13 @@ export default function ItemPage(props) {
   const { id } = params; //pure item id
 
   const [isLoading, setIsLoading] = useState(true);
-  // const [item, setItem] = useState("");
   const itemRef = useRef('');
 
   useEffect(() => {
-    loadData(url, id).then((item) => {
+    loadItemData(url, id).then((item) => {
       //close isLoading
       itemRef.current = item;
       setIsLoading(false);
-      // setItem(item);
     });
   });
 

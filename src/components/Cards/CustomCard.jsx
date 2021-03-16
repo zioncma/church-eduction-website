@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
       height: theme.spacing(47),
     },
     [theme.breakpoints.up('xl')]: {
-      height: theme.spacing(50),
+      height: theme.spacing(53),
     },
     minHeight: "100%",
     display: "grid",
