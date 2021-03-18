@@ -2,7 +2,7 @@ import React from 'react';
 import CardGrids from './CardGrids';
 import MainGridContainer from '../MainGridContainer';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import ItemPage from '../ItemPage/ItemPage';
+import ItemPage from '../../pages/ItemPage';
 import Overview from './../Overview';
 
 

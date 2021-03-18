@@ -8,14 +8,14 @@ import {
   CircularProgress,
   Container,
 } from '@material-ui/core';
-import Resources from './Resources/Resources';
-import Title from './Title';
-import Share from './Share';
-import Description from './Description';
-import Video from '../Video/Video';
-import videoHolder from '../../assets/video-placeholder640.jpg';
+import Resources from '../components/ItemPage/Resources';
+import Title from '../components/ItemPage/Title';
+import Share from '../components/ItemPage/Share';
+import Description from '../components/ItemPage/Description';
+import Video from '../components/Video/Video';
+import videoHolder from '../assets/video-placeholder640.jpg';
 import { useRouteMatch } from 'react-router-dom';
-import { loadItemData } from '../../lib/loadData';
+import { loadItemData } from '../lib/loadData';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({

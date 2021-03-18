@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import growthbg from '../assets/growthbg.jpg';
-import CardsPageBase from './Cards/CardsPageBase';
+import CardsPageBase from '../components/Cards/CardsPageBase';
 // import { data } from '../data/growths.json';
-import Intro from './Intro';
-import Title from './Intro/Title';
-import Description from './Intro/Description';
+import Intro from '../components/Intro';
+import Title from '../components/Intro/Title';
+import Description from '../components/Intro/Description';
 import { Link } from '@material-ui/core';
 import { readGrowths } from '../lib/loadData';
 import { LinearProgress } from '@material-ui/core';

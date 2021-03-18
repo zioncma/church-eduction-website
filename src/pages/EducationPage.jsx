@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
-import CardsPageBase from './Cards/CardsPageBase';
-import Intro from './Intro';
-import Title from './Intro/Title';
-import Description from './Intro/Description';
+import CardsPageBase from '../components/Cards/CardsPageBase';
+import Intro from '../components/Intro/Intro';
+import Title from '../components/Intro/Title';
+import Description from '../components/Intro/Description';
 import { readCourses } from '../lib/loadData';
 import { LinearProgress } from '@material-ui/core';
 

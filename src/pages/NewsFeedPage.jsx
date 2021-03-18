@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import NewsItem from './NewsItem';
-import Intro from '../Intro';
+import NewsItem from '../components/NewsFeedPage/NewsItem';
+import Intro from '../components/Intro/Intro';
 import { Grid, Box, Link, Typography, LinearProgress } from '@material-ui/core';
-import Filter from './Filter';
-import MainGridContainer from '../MainGridContainer';
-import Title from '../Intro/Title';
-import Description from '../Intro/Description';
-import { readNews, fetchGet } from '../../lib/loadData';
+import Filter from '../components/NewsFeedPage/Filter';
+import MainGridContainer from '../components/MainGridContainer';
+import Title from '../components/Intro/Title';
+import Description from '../components/Intro/Description';
+import { readNews, fetchGet } from '../lib/loadData';
 
 // get a set of existing terms in the data, e.g. [2010, 2011, 2012]
 function getTermSet(newsList) {
