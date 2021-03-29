@@ -24,14 +24,12 @@ export async function loadItemData(url, id) {
 }
 
 export async function readCourses() {
-  // const { data } = await import("../data/courses");
   const res = await axios.get(coursesUrl);
   const data = res.data.terms;
   return data;
 }
 
 export async function readGrowths() {
-  // const { data } = await import("../data/growths");
   const res = await axios.get(growthsUrl);
   const data = res.data.data;
   return data;
@@ -39,7 +37,6 @@ export async function readGrowths() {
 
 // return a list of grouped news items
 export async function readNews() {
-  // const { groups } = await import("../data/news");
   const res = await axios.get(newsUrl);
   const groups = res.data.groups;
   return groups;

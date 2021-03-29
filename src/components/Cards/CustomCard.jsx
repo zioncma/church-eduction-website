@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-// import Image from "material-ui-image";
 import {
   Button,
   Typography,
@@ -21,22 +20,13 @@ import { makeStyles } from "@material-ui/core/styles";
 // TODO: I don't know how to set all cards' height to be the same as the longest one, use fixed values temporarily
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: theme.spacing(55),
-    [theme.breakpoints.up('sm')]: {
-      height: theme.spacing(42),
-    },
-    [theme.breakpoints.up('md')]: {
-      height: theme.spacing(44),
-    },
-    [theme.breakpoints.up('lg')]: {
-      height: theme.spacing(47),
-    },
-    [theme.breakpoints.up('xl')]: {
-      height: theme.spacing(53),
-    },
     minHeight: "100%",
-    display: "grid",
-    gridTemplateRows: "auto 1fr auto"
+    display: "flex",
+    flexDirection: "column"
+    // gridTemplateRows: "auto 1fr auto"
+  },
+  main: {
+    flexGrow: 3,
   },
   media: {
     height: theme.spacing(20),
@@ -82,7 +72,6 @@ export default function CustomCard(props) {
   const { updateIsLoading } = useContext(AppContext);
 
   function handleClick() {
-    //set isLoading=true
     updateIsLoading(true);
   }
 
@@ -102,7 +91,7 @@ export default function CustomCard(props) {
             title={fullTitle}
           />
         </Box>
-        <CardContent>
+        <CardContent className={classes.main}>
           <Typography
             gutterBottom
             variant="h5"
@@ -111,14 +100,14 @@ export default function CustomCard(props) {
           >
             {fullTitle}
           </Typography>
-          <Typography
+          {/* <Typography
             variant="body2"
             color="textPrimary"
             component="p"
             className={classes.descrip}
           >
             {description}
-          </Typography>
+          </Typography> */}
         </CardContent>
         <CardActions>
           <Button

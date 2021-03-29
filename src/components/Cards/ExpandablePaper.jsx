@@ -1,29 +1,46 @@
-import React from "react";
+import React from 'react';
 import {
   Grid,
   Typography,
   Accordion,
   AccordionSummary,
   AccordionDetails,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-// import { makeStyles } from "@material-ui/core/styles";
-// const useStyles = makeStyles((theme) => ({
-//   m: {
+  Divider
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import styled from 'styled-components';
 
-//   },
-// }));
+const CourseDescription = styled(Typography)`
+  flex: 1 1 100%;
+  margin-bottom: 40px;
+`;
+
+const CourseGrids = styled(Grid)`
+  flex:1 0 50px;
+`;
+
+const StyledAccordion = styled(Accordion)`
+  padding: 16px;
+`;
+
+const StyledAccordionDetails = styled(AccordionDetails)`
+  flex-wrap: wrap;
+`;
 
 export default function ExpandablePaper(props) {
-  const { label } = props;
-  // const classes = useStyles();
+  const { label, courseDescrip } = props;
   return (
-    <Accordion>
+    <StyledAccordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography variant={"h5"}>{label}</Typography>
+        <Typography variant={'h5'}>{label}</Typography>
       </AccordionSummary>
-      <AccordionDetails>
-      <Grid container spacing={3}>{props.children}</Grid></AccordionDetails>
-    </Accordion>
+      <Divider variant='middle'/>
+      <StyledAccordionDetails>
+        <CourseDescription paragraph>{courseDescrip}</CourseDescription>
+        <CourseGrids container spacing={5}>
+          {props.children}
+        </CourseGrids>
+      </StyledAccordionDetails>
+    </StyledAccordion>
   );
 }

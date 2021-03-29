@@ -4,6 +4,7 @@ import { Grid } from '@material-ui/core';
 import { AppContextProvider } from '../AppContext';
 import ExpandablePaper from './ExpandablePaper';
 
+
 function CardGridList(props) {
   return (
     <>
@@ -17,18 +18,17 @@ function CardGridList(props) {
 }
 
 export default function CardGrids(props) {
-  const { cardList, itemType } = props;
+  const { cardList } = props;
   let titleToCoursesMap;
   let titlesArray;
   let renderedCards;
 
   if (cardList) {
     titleToCoursesMap = generateTitleToCoursesMap(cardList); //key: title, value: course_data
-    // const titleToCoursesMap = generateTitleToCoursesMap(terms); //key: title, value: course_data
     titlesArray = [...titleToCoursesMap.keys()]; // an array of existing titles
     renderedCards = titlesArray.map((title, index) => (
       <Grid container item xs={12} key={'grid-panel' + index}>
-        <ExpandablePaper label={title} key={'expandable-' + index}>
+        <ExpandablePaper label={title} key={'expandable-' + index} courseDescrip={titleToCoursesMap.get(title)[0].description} >
           <CardGridList items={titleToCoursesMap.get(title)} />
         </ExpandablePaper>
       </Grid>
@@ -44,7 +44,7 @@ export default function CardGrids(props) {
   );
 }
 
-//return a map contains courses for each term, so we can sort courses by the term
+//return a map {title: courses[]} for all term, so we can sort courses by the term
 function generateTitleToCoursesMap(cardList) {
   const terms = cardList.map((data) => data.term);
   let titleMapObject = new Map();
