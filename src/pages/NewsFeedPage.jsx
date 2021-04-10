@@ -6,7 +6,7 @@ import Filter from '../components/NewsFeedPage/Filter';
 import MainGridContainer from '../components/MainGridContainer';
 import Title from '../components/Intro/Title';
 import Description from '../components/Intro/Description';
-import { readNews, fetchGet } from '../lib/loadData';
+import { readNews } from '../lib/loadData';
 
 // get a set of existing terms in the data, e.g. [2010, 2011, 2012]
 function getTermSet(newsList) {

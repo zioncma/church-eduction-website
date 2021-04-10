@@ -16,8 +16,6 @@ import AppContext from "../AppContext";
 import defaultCard from "../../assets/defaultCard.jpg"; //Image by <a href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Free-Photos</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Pixabay</a>
 import { makeStyles } from "@material-ui/core/styles";
 
-
-// TODO: I don't know how to set all cards' height to be the same as the longest one, use fixed values temporarily
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100%",

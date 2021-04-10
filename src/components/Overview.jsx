@@ -1,11 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Box,
-  Typography,
-  Container,
-  Button,
-} from '@material-ui/core';
+import { Box, Typography, Container, Button } from '@material-ui/core';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import { TopicGroup } from './TopicGroup';
 
@@ -23,7 +18,6 @@ export const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Overview() {
-
   const classes = useStyles();
 
   return (
@@ -32,8 +26,7 @@ export default function Overview() {
         課程簡介
       </Typography>
       <TopicGroup />
-      <Box mt={4}></Box>
-      <Box display={'flex'} justifyContent={'center'} mt={6}>
+      <Box display={'flex'} mt={10} justifyContent={'center'}>
         <Button
           variant='contained'
           size='large'
@@ -44,7 +37,6 @@ export default function Overview() {
           target='_blank'
           rel='noopener'
         >
-          {' '}
           下載課程簡介
         </Button>
       </Box>
