@@ -1,25 +1,18 @@
 # Church Education Website
 
-This project is a education resource website for the Sunday school of Zion Alliance Church.
+A responsive education resource website for the Sunday school of Zion Alliance Church.
 
-## Update the data
+## Update the content
 
-- Go to the root folder, and enter into `/src/data`, edit the JSON files.
-  - `courses.json` - all the course data will be shown in the Education page
-  - `growths.json` - all the data will be shown in the Growth page
-  - `news.json` - all the data will be shown in the News page
+- In order to achieve seperation of duties, the content data is migarated to npoint, a lightweight JSON storage service. Content updater must login in at npoint and edit. The front end will request data from its REST API in an AJAX way.
 
+## Content includes
 
-
-### News
-
-#### Data format
-
-- Date: must be in MM/DD/YYYY format
-
-### Growth
-
-
+* News
+  * Data format
+    * Date: must be in MM/DD/YYYY format
+* Growth
+* Courses
 
 ## Credits
 
