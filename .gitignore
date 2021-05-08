@@ -25,3 +25,4 @@ yarn-error.log*
 /templates
 /src/stories
 /.storybook
+/backup

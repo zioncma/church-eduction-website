@@ -8,8 +8,8 @@ import Title from '../components/Intro/Title';
 import Description from '../components/Intro/Description';
 import { readNews } from '../lib/loadData';
 
-// get a set of existing terms in the data, e.g. [2010, 2011, 2012]
 function getTermSet(newsList) {
+  // get a set of existing terms in the data, e.g. [2010, 2011, 2012]
   const set = new Set();
   for (const item of newsList) {
     set.add(item.term);
@@ -34,8 +34,8 @@ function renderNews(items) {
   );
 }
 
-// get the news list for a specific term, return all news list if term is false
 function filterByTerm(newsList, term) {
+  // get the news list for a specific term, return all news list if term is false
   let result = newsList;
   if (term) {
     result = result.filter((item) => item.term === term);
@@ -43,7 +43,7 @@ function filterByTerm(newsList, term) {
   return result;
 }
 
-const contactEmail = 'mailto:ce@zioncma.ca';
+const contactEmail = 'ce@zioncma.ca';
 
 export default function NewsFeedPage(props) {
   const { pageTitle } = props;
@@ -72,9 +72,8 @@ export default function NewsFeedPage(props) {
           <Intro>
             <Title text={pageTitle} />
             <Description>
-              歡迎來到宣道會錫安堂基教部的網頁。在這裏你可以得到有關主日學的最新消息，下載和重温過去的主日學。如對錫安堂的基督教教育有任何意見，歡迎通過
-              ce@zioncma.ca{' '}
-              <Link href={contactEmail} style={{ color: 'blue' }}>
+              歡迎來到宣道會錫安堂基教部的網頁。在這裏你可以得到有關主日學的最新消息，下載和重温過去的主日學。如對錫安堂的基督教教育有任何意見，歡迎通過{contactEmail}{' '}
+              <Link href={`mailto:${contactEmail}`} style={{ color: 'blue' }}>
                 聯絡我們
               </Link>
               。

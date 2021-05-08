@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import growthbg from '../assets/growthbg.jpg';
 import CardsPageBase from '../components/Cards/CardsPageBase';
-// import { data } from '../data/growths.json';
 import Intro from '../components/Intro';
 import Title from '../components/Intro/Title';
 import Description from '../components/Intro/Description';

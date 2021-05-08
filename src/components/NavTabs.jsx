@@ -7,6 +7,19 @@ export default function NavTabs(props) {
     text: {
       fontSize: "1.1rem",
     },
+    navLink: {
+      '&:before': {
+        content: '',
+        position: 'absolute',
+        width: '100%',
+        height: '2px',
+        bottom: '8px',
+        // left: '-50%',
+        backgroundColor: '#fff',
+        opacity: '1',
+        transform: '',
+      }
+    }
   }));
   const classes = useStyles();
 
@@ -36,7 +49,7 @@ export default function NavTabs(props) {
           component={Link}
           to={route}
           {...a11yProps(index)}
-          className={classes.text}
+          className={`${classes.text} ${classes.navLink}`}
           key={"tab-" + index}
         />
       ))}

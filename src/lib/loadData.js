@@ -16,16 +16,13 @@ export async function loadItemData(url, id) {
     items = growths;
   }
 
-  // const i = url.lastIndexOf('/');
-  // const itemId = url.slice(i+1);
-
   const item = items.find(({ itemId }) => itemId === id);
   return item;
 }
 
 export async function readCourses() {
   const res = await axios.get(coursesUrl);
-  const data = res.data.terms;
+  const data = res.data;
   return data;
 }
 
@@ -51,9 +48,5 @@ export async function fetchGet(url) {
   
   const res = await axios(config);
   return res;
-  
-  // fetch(
-  //   'https://drive.google.com/file/d/1atWQoL15DFrFtZB35iatuzCdKUhdzim_/view?usp=sharing'
-  // ).then((fulfilled) => console.log('Fulfilled!'));
 }
 
