@@ -10,7 +10,7 @@ export async function loadItemData(url, id) {
   let items = [];
   if (url.includes("course")) {
     const courses = await readCourses();
-    items = courses.reduce( (acc, currentObj) => acc.concat(currentObj.term.courses), items);
+    items = courses.terms.reduce( (acc, currentObj) => acc.concat(currentObj.term.courses), items);
   } else if (url.includes("growth")) {
     const growths = await readGrowths();
     items = growths;
