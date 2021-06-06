@@ -17,6 +17,15 @@ import videoHolder from '../assets/video-placeholder640.jpg';
 import { useRouteMatch } from 'react-router-dom';
 import { loadItemData } from '../lib/loadData';
 import { makeStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
+
+const CenteredContainer = styled.div`
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+`;
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -98,7 +107,9 @@ export default function ItemPage(props) {
   return (
     <>
       {isLoading ? (
-        <CircularProgress />
+        <CenteredContainer>
+          <CircularProgress />
+        </CenteredContainer>
       ) : (
         <LoadedContent shareUrl={shareUrl} item={itemRef.current} />
       )}
