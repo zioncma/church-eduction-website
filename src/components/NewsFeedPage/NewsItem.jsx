@@ -7,7 +7,6 @@ import LinkArea from './LinkArea';
 import { green } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import Video from '../Video/Video';
-import Image from 'material-ui-image';
 
 NewsItem.propTypes = {
   title: PropTypes.string,
