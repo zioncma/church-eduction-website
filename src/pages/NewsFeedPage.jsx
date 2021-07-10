@@ -17,9 +17,11 @@ function getTermSet(newsList) {
   return set;
 }
 
-//TODO: refactor to an array later
 function getGroupNames(newsList) {
-  return newsList.name;
+  if (newsList.groups === undefined) {
+    return [];
+  }
+  return newsList.map((group) => group.name);
 }
 
 function renderNews(items) {
@@ -37,8 +39,17 @@ function renderNews(items) {
 function filterByTerm(newsList, term) {
   // get the news list for a specific term, return all news list if term is false
   let result = newsList;
+
+  if (newsList.length === 0) {
+    return newsList;
+  }
+
   if (term) {
     result = result.filter((item) => item.term === term);
+  } else {
+    // push all groups into one array
+    const reducer = (accumulator, current) => accumulator.concat(current.news);
+    return newsList.reduce(reducer, []);
   }
   return result;
 }
@@ -50,17 +61,15 @@ export default function NewsFeedPage(props) {
   const [term, setTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-  const dataRef = useRef(null);
-  const newsList = useRef(null); // convert data format to the news list which is ready to populate
+  const newsList = useRef([]); // convert data format to the news list which is ready to populate
 
   useEffect(() => {
     const fetchData = async () => {
-      dataRef.current = await readNews();
-      newsList.current = dataRef.current.news;
+      newsList.current = await readNews();
       setIsLoading(false);
     };
 
-    fetchData().catch( (err) => console.error(err));
+    fetchData().catch((err) => console.error(err));
   }, []);
 
   return (
@@ -72,7 +81,8 @@ export default function NewsFeedPage(props) {
           <Intro>
             <Title text={pageTitle} />
             <Description>
-              歡迎來到宣道會錫安堂基教部的網頁。在這裏你可以得到有關主日學的最新消息，下載和重温過去的主日學。如對錫安堂的基督教教育有任何意見，歡迎通過{contactEmail}{' '}
+              歡迎來到宣道會錫安堂基教部的網頁。在這裏你可以得到有關主日學的最新消息，下載和重温過去的主日學。如對錫安堂的基督教教育有任何意見，歡迎通過
+              {contactEmail}{' '}
               <Link href={`mailto:${contactEmail}`} style={{ color: 'blue' }}>
                 聯絡我們
               </Link>
@@ -87,8 +97,11 @@ export default function NewsFeedPage(props) {
                 currentTerm={term}
               />
             </Box>
-            {/* Temp: Use a single group heading as 二零二一年春季主日學 */}
-            <Typography variant={'h2'}>{getGroupNames(newsList.current)}</Typography>
+            {newsList.current.length > 0 ? (
+              <Typography variant={'h2'}>
+                {getGroupNames(newsList.current)}
+              </Typography>
+            ) : null}
             {renderNews(filterByTerm(newsList.current, term))}
           </MainGridContainer>
         </>

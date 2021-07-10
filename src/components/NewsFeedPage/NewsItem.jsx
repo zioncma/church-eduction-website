@@ -7,6 +7,7 @@ import LinkArea from './LinkArea';
 import { green } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import Video from '../Video/Video';
+import Image from 'material-ui-image';
 
 NewsItem.propTypes = {
   title: PropTypes.string,
@@ -29,7 +30,7 @@ function Title(props) {
 }
 
 export default function NewsItem(props) {
-  const { title, content, date, links, video } = props;
+  const { title, content, date, links, video, images } = props;
   const useStyles = makeStyles((theme) => ({
     paper: {
       background: '#fff',
@@ -47,6 +48,7 @@ export default function NewsItem(props) {
     },
   }));
   const classes = useStyles();
+
   const renderMultiLinedContent = content.split('\n').map((line, index) => {
     return (
       <Typography
@@ -75,6 +77,16 @@ export default function NewsItem(props) {
         </Box>
       ) : null}
       {renderMultiLinedContent}
+      {!!images && images.length > 0
+        ? images.map((imgUrl, index) => (
+            <img
+              src={imgUrl}
+              alt={`news-${title}-${index}`}
+              key={`news-${title}-${index}`}
+              style={{ maxWidth: '100%', objectFit: 'contain'}}
+            />
+          ))
+        : null}
       <Grid
         container
         justify='flex-end'
