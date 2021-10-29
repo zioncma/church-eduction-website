@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const coursesUrl = 'https://api.npoint.io/1e93a3d1bb2b444ea95c';
 const growthsUrl = 'https://api.npoint.io/1b9736c9483958c59206';
-const newsUrl = 'https://api.npoint.io/b4b907997cc8ec0f1809';
+const newsUrl = 'https://api.npoint.io/214e8298279ed3cbc3e1';
 
 // para: url, return the item data
 // read data from data source corresponding to the url and id

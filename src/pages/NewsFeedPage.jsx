@@ -11,7 +11,10 @@ import { readNews } from '../lib/loadData';
 function getTermSet(newsList) {
   // get a set of existing terms in the data, e.g. [2010, 2011, 2012]
   const set = new Set();
-  newsList.forEach( (group) => { group.news.forEach( (news) => set.add(news.term))});
+  if (newsList?.news === undefined) {
+    return set;
+  }
+  newsList?.forEach( (group) => { group.news.forEach( (news) => set.add(news.term))});
   return set;
 }
 
