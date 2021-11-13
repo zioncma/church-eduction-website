@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { Typography, Box, Paper, Grid } from '@material-ui/core';
 import moment from 'moment';
 import AnnouncementIcon from '@material-ui/icons/Announcement';
-import LinkArea from './LinkArea';
+import LinksList from './LinksList';
 import { green } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import Video from '../Video/Video';
+import { Title } from './Title';
 
 NewsItem.propTypes = {
   title: PropTypes.string,
@@ -15,19 +16,6 @@ NewsItem.propTypes = {
   links: PropTypes.array,
 };
 
-function Title(props) {
-  return (
-    <Box mb={2}>
-      <AnnouncementIcon
-        style={{ color: green[300], verticalAlign: 'text-bottom' }}
-      />
-      <Typography variant={'h2'} display={'inline'} className={props.startText}>
-        {props.text}
-      </Typography>
-    </Box>
-  );
-}
-
 export default function NewsItem(props) {
   const { title, content, date, links, video, images } = props;
   const useStyles = makeStyles((theme) => ({
@@ -35,7 +23,7 @@ export default function NewsItem(props) {
       background: '#fff',
       borderRadius: '2px',
       boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
-      padding: theme.spacing(2),
+      padding: theme.spacing(3),
     },
     startText: {
       paddingLeft: theme.spacing(1),
@@ -77,27 +65,32 @@ export default function NewsItem(props) {
       ) : null}
       {renderMultiLinedContent}
       {!!images && images.length > 0
-        ? images.map((imgUrl, index) => (
+        ? images?.map((imgUrl, index) => (
             <img
               src={imgUrl}
               alt={`news-${title}-${index}`}
               key={`news-${title}-${index}`}
-              style={{ maxWidth: '100%', objectFit: 'contain'}}
+              style={{ maxWidth: '100%', objectFit: 'contain' }}
             />
           ))
         : null}
       <Grid
         container
-        justify='flex-end'
+        justify='space-between'
         spacing={3}
         alignItems={'center'}
         className={classes.container}
       >
-        <Grid item>
-          <LinkArea links={links} />
+        <Grid item justify='center'>
+          <LinksList links={links} />
         </Grid>
         <Grid item>
-          <Typography color={'secondary'}>
+          <Typography
+            color={'secondary'}
+            variant={'h6'}
+            align='center'
+            className={classes.container}
+          >
             {moment(date, 'MM/DD/YYYY').format('MM/DD/YYYY')}
           </Typography>
         </Grid>

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Button } from "@material-ui/core";
+import { Grid, Button, Typography } from "@material-ui/core";
 import LinkIcon from "@material-ui/icons/Link";
 
 LinkItem.defaultProps = {
@@ -19,11 +19,12 @@ export default function LinkItem(props) {
       <Button
         variant="contained"
         href={address}
-        size="small"
+        size="large"
         startIcon={<LinkIcon />}
-        style={{whiteSpace: 'nowrap'}}
+        style={{whiteSpace: 'nowrap', padding: '0.8rem 1rem'}}
+        // color="primary"
       >
-        {text}
+        <Typography variant={'subtitle1'} style={{fontWeight: '500'}}>{text}</Typography>
       </Button>
     </Grid>
   );
