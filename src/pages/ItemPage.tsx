@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { PropTypes } from 'prop-types';
+import React, { useRef, useEffect, useState, useMemo } from 'react';
+import * as PropTypes from 'prop-types';
 import {
   Box,
   Grid,
@@ -8,7 +8,7 @@ import {
   CircularProgress,
   Container,
 } from '@material-ui/core';
-import Resources from '../components/ItemPage/Resources';
+import Resources from '../components/ItemPage/Resources/Resources';
 import Title from '../components/ItemPage/Title';
 import Share from '../components/ItemPage/Share';
 import Description from '../components/ItemPage/Description';
@@ -18,6 +18,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { loadItemData } from '../lib/loadData';
 import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
+import {getArray, isFilledArray} from 'utils';
 
 const CenteredContainer = styled.div`
   justify-content: center;
@@ -49,11 +50,14 @@ ItemPage.propTypes = {
   files: PropTypes.array,
 };
 
-const LoadedContent = (props) => {
+function LoadedContent({ item, shareUrl, ...optionals }) {
+  // Hooks
   const classes = useStyles();
-  const { item } = props;
+
+  // Props
   const { title, subtitle, description, video, files } = item;
   const fullTitle = title + (subtitle ? ': ' + subtitle : '');
+  const videoArr: any[] = getArray(video);
 
   return (
     <Container>
@@ -62,13 +66,13 @@ const LoadedContent = (props) => {
           <Paper square className={classes.item}>
             <Box>
               <Title text={fullTitle} />
-              <Share text={fullTitle} url={props.shareUrl} />
+              {shareUrl ? <Share text={fullTitle} url={shareUrl} /> : null}
               <Divider classes={{ root: classes.divider }} />
               <Description text={description} />
             </Box>
-            {video ? (
-              <Video link={video} title={fullTitle} />
-            ) : (
+            {isFilledArray(videoArr) ? 
+              (videoArr.map( item => <Video link={item} />))
+             : (
               <img
                 src={videoHolder}
                 style={{ maxHeight: '600px', height: '600px' }}
@@ -86,7 +90,7 @@ const LoadedContent = (props) => {
       </Grid>
     </Container>
   );
-};
+}
 
 export default function ItemPage(props) {
   const shareUrl = window.location.href;

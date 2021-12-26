@@ -140,3 +140,10 @@ export function promiseWithTimeout<T>(
   // returns a race between timeout and the passed promise
   return Promise.race<T>([promise, timeout]);
 }
+
+export function getArray(args: any) {
+  if (Array.isArray(args) || !args) {
+    return args;
+  }
+  return [args];
+}

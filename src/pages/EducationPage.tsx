@@ -8,8 +8,7 @@ import { LinearProgress } from '@material-ui/core';
 
 const itemKey = 'courses';
 
-export default function EducationPage(props) {
-  const { pageTitle } = props;
+export default function EducationPage({ pageTitle, ...optionals }) {
   const [isLoading, setIsLoading] = useState(true);
   const dataRef = useRef(null);
 
