@@ -2,11 +2,17 @@
 
 A responsive education resource website for the Sunday school of Zion Alliance Church.
 
+## Pages
+
+* News
+* Growth
+* Courses
+
 ## Update the content
 
-- In order to achieve seperation of duties, the content data is migarated to npoint, a lightweight JSON storage service. Content updater must login at npoint and edit. The front end will request data from its REST API in an AJAX way.
+- In order to achieve seperation of duties, the content data is migarated to [npoint](https://www.npoint.io/), a lightweight JSON storage service. Content updater must login at npoint and edit. The front end will request data from its REST API in an AJAX way.
 
-## Content includes
+## Data
 
 * News
   * Data format
