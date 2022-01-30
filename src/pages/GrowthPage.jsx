@@ -1,52 +1,47 @@
-import React, { useEffect, useState, useRef } from 'react';
 import growthbg from '../assets/growthbg.jpg';
 import CardsPageBase from '../components/Cards/CardsPageBase';
 import Intro from '../components/Intro';
 import Title from '../components/Intro/Title';
 import Description from '../components/Intro/Description';
 import { Link } from '@material-ui/core';
-import { readGrowths } from '../lib/loadData';
 import { LinearProgress } from '@material-ui/core';
+import { useGrowthList } from '../lib/hooks';
 
 const itemKey = 'growthcourse';
 const contactEmail = 'ce@zioncma.ca';
 
-export default function GrowthPage(props) {
-  const { pageTitle } = props;
-  const [isLoading, setIsLoading] = useState(true);
-  const dataRef = useRef(null);
+export default function GrowthPage({ pageTitle, ...optionals }) {
+  const { growthData, isLoading, error } = useGrowthList();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      dataRef.current = await readGrowths();
-      setIsLoading(false);
-    };
+  if (error) {
+    console.error(error);
+    return (
+      <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>
+    );
+  }
 
-    fetchData().catch((err) => console.error(err));
-  }, []);
+  if (isLoading) {
+    return <LinearProgress color={'secondary'} />;
+  }
 
   const bg = growthbg;
 
   return (
     <>
-      {isLoading ? (
-        <LinearProgress color={'secondary'} />
-      ) : (
-        <CardsPageBase
-          itemType={itemKey}
-          {...{ pageTitle, bg, cardList: dataRef.current }}
-        >
-          <Intro bg={bg}>
-            <Title text={pageTitle} />
-            <Description>
-              如果您對這一系列的新課程有興趣或問題, 請向基教部{contactEmail}{' '}
-              <Link href={'mailto:' + contactEmail} style={{ color: 'blue' }}>
-                查詢
-              </Link>
-            </Description>
-          </Intro>
-        </CardsPageBase>
-      )}
+      <CardsPageBase
+        itemType={itemKey}
+        {...{ pageTitle, bg, cardList: growthData }}
+      >
+        <Intro bg={bg}>
+          <Title text={pageTitle} />
+          <Description>
+            如果您對這一系列的新課程有興趣或問題, 請向基教部{contactEmail}{' '}
+            <Link href={'mailto:' + contactEmail} style={{ color: 'blue' }}>
+              查詢
+            </Link>
+          </Description>
+        </Intro>
+      </CardsPageBase>
     </>
   );
 }

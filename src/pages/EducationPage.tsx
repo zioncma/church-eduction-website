@@ -1,41 +1,34 @@
-import React, { useEffect, useState, useRef } from 'react';
 import CardsPageBase from '../components/Cards/CardsPageBase';
 import Intro from '../components/Intro/Intro';
 import Title from '../components/Intro/Title';
 import Description from '../components/Intro/Description';
-import { readCourses } from '../lib/loadData';
 import { LinearProgress } from '@material-ui/core';
+import {useCoursesData} from '../lib/hooks';
 
 const itemKey = 'courses';
 
 export default function EducationPage({ pageTitle, ...optionals }) {
-  const [isLoading, setIsLoading] = useState(true);
-  const dataRef = useRef(null);
+  const {courses, isLoading, error} = useCoursesData();
+  
+  if (error) {
+    return <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>;
+  }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      dataRef.current = await readCourses();
-      setIsLoading(false);
-    };
-
-    fetchData().catch((err) => console.error(err));
-  }, []);
+  if (isLoading) {
+    return <LinearProgress color={'secondary'} />;
+  }
 
   return (
     <>
-      {isLoading && !dataRef.current ? (
-        <LinearProgress color={'secondary'} />
-      ) : (
         <CardsPageBase
           itemType={itemKey}
-          {...{ pageTitle, cardList: dataRef.current.terms }}
+          {...{ pageTitle, cardList: courses.terms }}
         >
-          <Intro bg={dataRef.current.page_banner}>
+          <Intro bg={courses.page_banner}>
             <Title text={pageTitle} />
-            <Description>{dataRef.current.page_description}</Description>
+            <Description>{courses.page_description}</Description>
           </Intro>
         </CardsPageBase>
-      )}
     </>
   );
 }

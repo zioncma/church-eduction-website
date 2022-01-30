@@ -18,7 +18,8 @@ import { useRouteMatch } from 'react-router-dom';
 import { loadItemData } from '../lib/loadData';
 import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
-import {getArray, isFilledArray} from 'utils';
+import { getArray, isFilledArray } from 'utils';
+import { useItemData } from '../lib/hooks';
 
 const CenteredContainer = styled.div`
   justify-content: center;
@@ -70,15 +71,15 @@ function LoadedContent({ item, shareUrl, ...optionals }) {
               <Divider classes={{ root: classes.divider }} />
               <Description text={description} />
             </Box>
-            {isFilledArray(videoArr) ? 
-              (videoArr.map( item => <Video link={item} />))
-             : (
-              <img
-                src={videoHolder}
-                style={{ maxHeight: '600px', height: '600px' }}
-                alt={'No Video Available'}
-              />
-            )}
+            {isFilledArray(videoArr) ?
+              (videoArr.map(item => <Video link={item} />))
+              : (
+                <img
+                  src={videoHolder}
+                  style={{ maxHeight: '600px', height: '600px' }}
+                  alt={'No Video Available'}
+                />
+              )}
             {files && files.length ? (
               <>
                 <Divider classes={{ root: classes.divider }} />
@@ -96,27 +97,19 @@ export default function ItemPage(props) {
   const shareUrl = window.location.href;
   const { url, params } = useRouteMatch();
   const { id } = params; //pure item id
+  const { courseItem, isLoading, error } = useItemData(url, id);
 
-  const [isLoading, setIsLoading] = useState(true);
-  const itemRef = useRef('');
+  if (error) {
+    return <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>;
+  }
 
-  useEffect(() => {
-    loadItemData(url, id).then((item) => {
-      //close isLoading
-      itemRef.current = item;
-      setIsLoading(false);
-    });
-  });
+  if (isLoading) {
+    return <CenteredContainer><CircularProgress color={'secondary'} /></CenteredContainer>;
+  }
 
   return (
     <>
-      {isLoading ? (
-        <CenteredContainer>
-          <CircularProgress />
-        </CenteredContainer>
-      ) : (
-        <LoadedContent shareUrl={shareUrl} item={itemRef.current} />
-      )}
+      <LoadedContent shareUrl={shareUrl} item={courseItem} />
     </>
   );
 }

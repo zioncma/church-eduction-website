@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 const baseAPI = 'https://api.npoint.io/';
-const coursesUrl = `${baseAPI}1e93a3d1bb2b444ea95c`;
-const growthsUrl = `${baseAPI}1b9736c9483958c59206`;
-const newsUrl = `${baseAPI}214e8298279ed3cbc3e1`;
+export const coursesUrl = `${baseAPI}1e93a3d1bb2b444ea95c`;
+export const growthsUrl = `${baseAPI}1b9736c9483958c59206`;
+export const newsUrl = `${baseAPI}214e8298279ed3cbc3e1`;
 
 // para: url, return the item data
 // read data from data source corresponding to the url and id
