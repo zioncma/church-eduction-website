@@ -15,15 +15,10 @@ import EducationPage from './pages/EducationPage';
 import GrowthPage from './pages/GrowthPage';
 import ArchivePage from './pages/ArchivePage';
 import NoMatchPage from './pages/NoMatchPage';
+import {ROUTES, rootPath, allTabs, mainPageTitles} from './routes';
 import './App.css';
 
 function App() {
-  const mainPageTitles = ['最新消息', '信徒成長路', '主日學', '資料庫'];
-
-  //Routing
-  const rootPath = '/';
-  const allTabs = ['/news', '/growth', '/course', '/archive']; //TODO: need to fix later
-
   return (
     <Theme>
       <Router>
@@ -47,7 +42,7 @@ function App() {
                 exact
                 path={rootPath}
                 render={() => {
-                  return <Redirect to={allTabs[0]} />;
+                  return <Redirect to={ROUTES[0].path} />;
                 }}
               />
               <Route
@@ -63,8 +58,8 @@ function App() {
                 render={() => <EducationPage pageTitle={mainPageTitles[2]} />}
               />
               <Route
-                path={allTabs[3]}
-                render={() => <ArchivePage pageTitle={mainPageTitles[3]} />}
+                path={ROUTES[3].path}
+                render={() => <ArchivePage pageTitle={ROUTES[3].title} />}
               />
               <Route path='*' component={NoMatchPage} />
             </Switch>

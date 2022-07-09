@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@material-ui/core';
+import {Podcast} from 'components/features/Podcast';
 
 // 資料庫
 export default function ArchivePage() {
@@ -11,9 +12,10 @@ export default function ArchivePage() {
       justifyContent={'center'}
       height={'88vh'}
     >
-      <Typography variant={'h1'} component={'p'}>
+      {/* <Typography variant={'h1'} component={'p'}>
         Coming Soon.
-      </Typography>
+      </Typography> */}
+      <Podcast />
     </Box>
   );
 }
