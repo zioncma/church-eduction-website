@@ -1,7 +1,6 @@
-import React from 'react';
-import Nav from './components/Nav';
+import Nav from './components/features/Nav';
 import Footer from './components/Footer/Footer';
-import Theme from './components/Theme';
+import Theme from './providers/Theme';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {
   BrowserRouter as Router,
@@ -9,7 +8,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import NavTabs from './components/NavTabs';
+import NavTabs from './components/features/Nav/NavTabs';
 import NewsFeedPage from './pages/NewsFeedPage';
 import EducationPage from './pages/EducationPage';
 import GrowthPage from './pages/GrowthPage';

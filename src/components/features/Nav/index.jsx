@@ -1,8 +1,7 @@
-import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import { Typography, Toolbar, Box, Hidden } from '@material-ui/core';
-import logo from '../assets/logo.png';
-import SimpleMenu from './SimpleMenu';
+import logo from '../../../assets/logo.png';
+import SimpleMenu from '../../SimpleMenu';
 
 import { makeStyles } from '@material-ui/core/styles';
 const navTitleFont = "'Exo', sans-serif";
