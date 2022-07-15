@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Typography } from '@material-ui/core';
 import {Podcast} from 'components/features/Podcast';
 
@@ -6,7 +5,7 @@ import {Podcast} from 'components/features/Podcast';
 export default function ArchivePage() {
   return (
     <Box
-      mx={10}
+      mx={4}
       display='flex'
       alignItems={'center'}
       justifyContent={'center'}

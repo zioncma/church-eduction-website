@@ -1,7 +1,7 @@
 import React from 'react';
 import CustomCard from './CustomCard';
 import { Grid } from '@material-ui/core';
-import { AppContextProvider } from '../AppContext';
+import { AppContextProvider } from '../../providers/AppContext';
 import ExpandablePaper from './ExpandablePaper';
 
 
