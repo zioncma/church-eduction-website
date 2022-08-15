@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { shallow, mount } from "enzyme";
-import NewsFeedPage from './NewsFeedPage';
+import NewsFeedPage from './index';
 
 const newsList = [{
   title: "some title",
