@@ -1,12 +1,15 @@
-import { useState } from 'react';
-import NewsItem from '../components/NewsFeedPage/NewsItem';
-import Intro from '../components/Intro/Intro';
-import { Grid, Box, Link, Typography, LinearProgress } from '@material-ui/core';
-import Filter from '../components/NewsFeedPage/Filter';
-import MainGridContainer from '../components/MainGridContainer';
-import Title from '../components/Intro/Title';
-import Description from '../components/Intro/Description';
-import { useNewsList } from '../lib/hooks';
+import { useState, useEffect } from "react";
+import NewsItem from "../components/NewsFeedPage/NewsItem";
+import NewsItemFirebase from "../components/NewsFeedPage/NewsItemFirebase";
+import Intro from "../components/Intro/Intro";
+import { Grid, Box, Link, Typography, LinearProgress } from "@material-ui/core";
+import Filter from "../components/NewsFeedPage/Filter";
+import MainGridContainer from "../components/MainGridContainer";
+import Title from "../components/Intro/Title";
+import Description from "../components/Intro/Description";
+import { useNewsList } from "../lib/hooks";
+import db from "../Firebase";
+import { collection, onSnapshot } from "firebase/firestore";
 
 function getTermSet(newsList) {
   // get a set of existing terms in the data, e.g. [2010, 2011, 2012]
@@ -31,8 +34,9 @@ function renderNews(items) {
   return (
     <>
       {items.map((news, i) => (
-        <Grid key={'news-grid-' + i} item xs={12}>
-          <NewsItem key={'news-' + i} {...news} />
+        <Grid key={"news-grid-" + i} item xs={12}>
+          {/* <NewsItem key={"news-" + i} {...news} /> */}
+          <NewsItemFirebase key={"news-" + i} news={news} />
         </Grid>
       ))}
     </>
@@ -57,19 +61,31 @@ function filterByTerm(newsList, term) {
   return result;
 }
 
-const contactEmail = 'ce@zioncma.ca';
+const contactEmail = "ce@zioncma.ca";
 
 export default function NewsFeedPage({ pageTitle }) {
   const { newsList, isLoading, error } = useNewsList();
 
-  const [term, setTerm] = useState('');
+  //firebase
+  const [content, setContent] = useState([]);
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "content"), (snapshot) =>
+        setContent(snapshot.docs.map((doc) => doc.data()))
+      ),
+    []
+  );
+
+  const [term, setTerm] = useState("");
 
   if (error) {
-    return <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>;
+    return (
+      <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>
+    );
   }
 
   if (isLoading) {
-    return <LinearProgress color={'secondary'} />;
+    return <LinearProgress color={"secondary"} />;
   }
 
   return (
@@ -78,15 +94,15 @@ export default function NewsFeedPage({ pageTitle }) {
         <Title text={pageTitle} />
         <Description>
           歡迎來到宣道會錫安堂基教部的網頁。在這裏你可以得到有關主日學的最新消息，下載和重温過去的主日學。如對錫安堂的基督教教育有任何意見，歡迎通過
-          {contactEmail}{' '}
-          <Link href={`mailto:${contactEmail}`} style={{ color: 'blue' }}>
+          {contactEmail}{" "}
+          <Link href={`mailto:${contactEmail}`} style={{ color: "blue" }}>
             聯絡我們
           </Link>
           。
         </Description>
       </Intro>
       <MainGridContainer>
-        <Box display='flex' justifyContent='flex-end' width={'100%'}>
+        <Box display="flex" justifyContent="flex-end" width={"100%"}>
           <Filter
             itemSet={getTermSet(newsList)}
             updateTerm={(value) => setTerm(value)}
@@ -94,9 +110,10 @@ export default function NewsFeedPage({ pageTitle }) {
           />
         </Box>
         {newsList && newsList?.length > 0 ? (
-          <Typography variant={'h2'}>{getGroupNames(newsList)}</Typography>
+          <Typography variant={"h2"}>{getGroupNames(newsList)}</Typography>
         ) : null}
-        {renderNews(filterByTerm(newsList, term))}
+        {/* {renderNews(filterByTerm(newsList, term))} */}
+        {renderNews(content)}
       </MainGridContainer>
     </>
   );
