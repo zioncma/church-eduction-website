@@ -101,7 +101,7 @@ export default function NewsItem(news) {
             align="center"
             className={classes.container}
           >
-            {/* {moment(date, "MM/DD/YYYY").format("MM/DD/YYYY")} */}
+            {moment(news.news.date, "MM/DD/YYYY").format("MM/DD/YYYY")}
           </Typography>
         </Grid>
       </Grid>

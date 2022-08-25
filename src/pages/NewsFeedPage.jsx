@@ -9,7 +9,7 @@ import Title from "../components/Intro/Title";
 import Description from "../components/Intro/Description";
 import { useNewsList } from "../lib/hooks";
 import db from "../Firebase";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 
 function getTermSet(newsList) {
   // get a set of existing terms in the data, e.g. [2010, 2011, 2012]
@@ -70,8 +70,9 @@ export default function NewsFeedPage({ pageTitle }) {
   const [content, setContent] = useState([]);
   useEffect(
     () =>
-      onSnapshot(collection(db, "content"), (snapshot) =>
-        setContent(snapshot.docs.map((doc) => doc.data()))
+      onSnapshot(
+        query(collection(db, "content"), orderBy("createAt", "desc")),
+        (snapshot) => setContent(snapshot.docs.map((doc) => doc.data()))
       ),
     []
   );
