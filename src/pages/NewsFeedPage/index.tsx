@@ -10,6 +10,10 @@ import { useNewsList } from 'lib/hooks';
 import { getTermSet, getGroupNames, filterByTerm } from './processors';
 
 export function renderNews(items) {
+  if (!items || items.length === 0) {
+    return null;
+  }
+
   return (
     <>
       {items.map((news, i) => (
@@ -21,12 +25,16 @@ export function renderNews(items) {
   );
 }
 
-const contactEmail = 'ce@zioncma.ca';
+const CONTACT_EMAIL = 'ce@zioncma.ca';
 
+/**
+ * 
+ */
 export default function NewsFeedPage({ pageTitle }) {
   const { newsList, isLoading, error } = useNewsList();
 
-  const [term, setTerm] = useState('');
+  // Local state
+  const [term, setTerm] = useState('二零二三年冬季主日學');
 
   if (error) {
     return <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>;
@@ -35,7 +43,8 @@ export default function NewsFeedPage({ pageTitle }) {
   if (isLoading) {
     return <LinearProgress color={'secondary'} />;
   }
-  console.debug('newsList', newsList);
+  // console.debug('newsList', newsList);
+  const filtered = filterByTerm(newsList, term);
 
   return (
     <>
@@ -43,8 +52,8 @@ export default function NewsFeedPage({ pageTitle }) {
         <Title text={pageTitle} />
         <Description>
           歡迎來到宣道會錫安堂基教部的網頁。在這裏你可以得到有關主日學的最新消息，下載和重温過去的主日學。如對錫安堂的基督教教育有任何意見，歡迎通過
-          {contactEmail}{' '}
-          <Link href={`mailto:${contactEmail}`} style={{ color: 'blue' }}>
+          {CONTACT_EMAIL}{' '}
+          <Link href={`mailto:${CONTACT_EMAIL}`} style={{ color: 'blue' }}>
             聯絡我們
           </Link>
           。
@@ -61,7 +70,7 @@ export default function NewsFeedPage({ pageTitle }) {
         {newsList && newsList?.length > 0 ? (
           <Typography variant={'h2'}>{getGroupNames(newsList)}</Typography>
         ) : null}
-        {renderNews(filterByTerm(newsList, term))}
+        {renderNews(filtered)}
       </MainGridContainer>
     </>
   );
