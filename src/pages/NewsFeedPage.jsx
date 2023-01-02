@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import NewsItem from "../components/NewsFeedPage/NewsItem";
 import NewsItemFirebase from "../components/NewsFeedPage/NewsItemFirebase";
 import Intro from "../components/Intro/Intro";
-import { Grid, Box, Link, Typography, LinearProgress } from "@material-ui/core";
+import { Grid, Box, Link, LinearProgress } from "@material-ui/core";
 import Filter from "../components/NewsFeedPage/Filter";
 import MainGridContainer from "../components/MainGridContainer";
 import Title from "../components/Intro/Title";
 import Description from "../components/Intro/Description";
-import { useNewsList } from "../lib/hooks";
-import db from "../Firebase";
+import db from "features/firebase/Firebase";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 
 function getTermSet(newsList) {
@@ -64,20 +63,22 @@ function filterByTerm(newsList, term) {
 const contactEmail = "ce@zioncma.ca";
 
 export default function NewsFeedPage({ pageTitle }) {
-  const { newsList, isLoading, error } = useNewsList();
 
   //firebase
   const [content, setContent] = useState([]);
+  const [error, setError] = useState(null);
+
   useEffect(
     () =>
       onSnapshot(
         query(collection(db, "content"), orderBy("createAt", "desc")),
-        (snapshot) => setContent(snapshot.docs.map((doc) => doc.data()))
+        (snapshot) => setContent(snapshot.docs.map((doc) => doc.data())),
+        (err) => setError(err),
       ),
     []
   );
 
-  const [term, setTerm] = useState("");
+  // const [term, setTerm] = useState("");
 
   if (error) {
     return (
@@ -85,9 +86,11 @@ export default function NewsFeedPage({ pageTitle }) {
     );
   }
 
-  if (isLoading) {
+  if (!content) {
     return <LinearProgress color={"secondary"} />;
   }
+
+  // console.debug('firebase data', content);
 
   return (
     <>
@@ -104,17 +107,17 @@ export default function NewsFeedPage({ pageTitle }) {
       </Intro>
       <MainGridContainer>
         <Box display="flex" justifyContent="flex-end" width={"100%"}>
-          <Filter
+          {/* <Filter
             itemSet={getTermSet(newsList)}
             updateTerm={(value) => setTerm(value)}
             currentTerm={term}
-          />
+          /> */}
         </Box>
-        {newsList && newsList?.length > 0 ? (
+        {/* {newsList && newsList?.length > 0 ? (
           <Typography variant={"h2"}>{getGroupNames(newsList)}</Typography>
-        ) : null}
+        ) : null} */}
         {/* {renderNews(filterByTerm(newsList, term))} */}
-        {renderNews(content)}
+        {content && content?.length > 0 && renderNews(content)}
       </MainGridContainer>
     </>
   );

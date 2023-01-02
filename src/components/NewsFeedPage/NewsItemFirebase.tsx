@@ -1,22 +1,23 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Typography, Box, Paper, Grid } from "@material-ui/core";
 import moment from "moment";
 import AnnouncementIcon from "@material-ui/icons/Announcement";
 import LinksList from "./LinksList";
 import { green } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
-import Video from "../Video/Video";
 import { Title } from "./Title";
 
-NewsItem.propTypes = {
-  title: PropTypes.string,
-  content: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  links: PropTypes.array,
+type NewsItemT = {
+  title: string,
+  content: string,
+  date: string,
+  links: string[],
+  descrt: string,
+  signupForm: any,
+  linkText: any,
 };
 
-export default function NewsItem(news) {
+export default function NewsItem({news}: {news: NewsItemT}) {
   const useStyles = makeStyles((theme) => ({
     paper: {
       background: "#fff",
@@ -50,8 +51,8 @@ export default function NewsItem(news) {
 
   return (
     <Paper className={classes.paper}>
-      {news.news.title ? (
-        <Title text={news.news.title} startText={classes.startText} />
+      {news.title ? (
+        <Title text={news.title} startText={classes.startText} />
       ) : (
         <AnnouncementIcon
           style={{ color: green[300], verticalAlign: "text-bottom" }}
@@ -68,7 +69,7 @@ export default function NewsItem(news) {
         gutterBottom
         key={"sentence-"}
       >
-        <div style={{ whiteSpace: "pre-line" }}>{news.news.descrt}</div>
+        <div style={{ whiteSpace: "pre-line" }}>{news.descrt}</div>
       </Typography>
 
       {/* {!!images && images.length > 0
@@ -90,8 +91,8 @@ export default function NewsItem(news) {
       >
         <Grid item justify="center">
           <LinksList
-            links={news.news.signupForm}
-            linkText={news.news.linkText}
+            links={news.signupForm}
+            linkText={news.linkText}
           />
         </Grid>
         <Grid item>
@@ -101,7 +102,7 @@ export default function NewsItem(news) {
             align="center"
             className={classes.container}
           >
-            {moment(news.news.date, "MM/DD/YYYY").format("MM/DD/YYYY")}
+            {moment(news.date, "MM/DD/YYYY").format("MM/DD/YYYY")}
           </Typography>
         </Grid>
       </Grid>
