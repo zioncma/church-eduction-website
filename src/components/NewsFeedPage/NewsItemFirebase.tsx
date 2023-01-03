@@ -1,23 +1,23 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Typography, Box, Paper, Grid } from "@material-ui/core";
 import moment from "moment";
 import AnnouncementIcon from "@material-ui/icons/Announcement";
 import LinksList from "./LinksList";
 import { green } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
+import Video from "../Video/Video";
 import { Title } from "./Title";
 
-type NewsItemT = {
-  title: string,
-  content: string,
-  date: string,
-  links: string[],
-  descrt: string,
-  signupForm: any,
-  linkText: any,
+NewsItem.propTypes = {
+  title: PropTypes.string,
+  descrt: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  links: PropTypes.array,
 };
 
-export default function NewsItem({news}: {news: NewsItemT}) {
+export default function NewsItem(props) {
+  const { title, content, date, signupForm, video, images } = props;
   const useStyles = makeStyles((theme) => ({
     paper: {
       background: "#fff",
@@ -36,52 +36,40 @@ export default function NewsItem({news}: {news: NewsItemT}) {
   }));
   const classes = useStyles();
 
-  // const renderMultiLinedContent = content.split('\n').map((line, index) => {
-  //   return (
-  //     <Typography
-  //       color={'primary'}
-  //       className={title ? '' : classes.startText}
-  //       gutterBottom
-  //       key={'sentence-' + index}
-  //     >
-  //       {line}
-  //     </Typography>
-  //   );
-  // });
-
   return (
     <Paper className={classes.paper}>
-      {news.title ? (
-        <Title text={news.title} startText={classes.startText} />
+      {title ? (
+        <Title text={title} startText={classes.startText} />
       ) : (
         <AnnouncementIcon
           style={{ color: green[300], verticalAlign: "text-bottom" }}
         />
       )}
-      {/* {video ? (
-        <Box maxWidth={720} mx={'auto'}>
+      {video ? (
+        <Box maxWidth={720} mx={"auto"}>
           <Video link={video} />
         </Box>
-      ) : null} */}
+      ) : null}
+
       <Typography
         color={"primary"}
-        className={news.title ? "" : classes.startText}
+        className={title ? "" : classes.startText}
         gutterBottom
         key={"sentence-"}
       >
-        <div style={{ whiteSpace: "pre-line" }}>{news.descrt}</div>
+        <div style={{ whiteSpace: "pre-line" }}>{content}</div>
       </Typography>
 
-      {/* {!!images && images.length > 0
+      {!!images && images.length > 0
         ? images?.map((imgUrl, index) => (
             <img
               src={imgUrl}
               alt={`news-${title}-${index}`}
               key={`news-${title}-${index}`}
-              style={{ maxWidth: '100%', objectFit: 'contain' }}
+              style={{ maxWidth: "100%", objectFit: "contain" }}
             />
           ))
-        : null} */}
+        : null}
       <Grid
         container
         justify="space-between"
@@ -90,10 +78,7 @@ export default function NewsItem({news}: {news: NewsItemT}) {
         className={classes.container}
       >
         <Grid item justify="center">
-          <LinksList
-            links={news.signupForm}
-            linkText={news.linkText}
-          />
+          <LinksList links={signupForm} linkText={"按此報名"} />
         </Grid>
         <Grid item>
           <Typography
@@ -102,7 +87,7 @@ export default function NewsItem({news}: {news: NewsItemT}) {
             align="center"
             className={classes.container}
           >
-            {moment(news.date, "MM/DD/YYYY").format("MM/DD/YYYY")}
+            {moment(date, "MM/DD/YYYY").format("MM/DD/YYYY")}
           </Typography>
         </Grid>
       </Grid>

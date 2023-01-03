@@ -1,12 +1,12 @@
 // import { group } from "console";
 
 type TermNews = {
-  name:string;
+  name: string;
   news: any[];
 };
 
 /**
- * 
+ *
  */
 export function getTermSet(newsList: TermNews[]): Set<string | unknown> {
   // get a set of existing terms in the data, e.g. [2010, 2011, 2012]
