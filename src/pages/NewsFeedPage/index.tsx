@@ -45,7 +45,7 @@ export default function NewsFeedPage({ pageTitle }) {
 
   //firebase
   const [terms, setTerms] = useState([]);
-  const currentTerm = terms[0];
+  const currentTerm = "二零二二年冬季主日學";
   const [term, setTerm] = useState(currentTerm);
 
   useEffect(
