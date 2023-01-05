@@ -11,7 +11,7 @@ import { Title } from "./Title";
 
 NewsItem.propTypes = {
   title: PropTypes.string,
-  descrt: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   links: PropTypes.array,
 };
