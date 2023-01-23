@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useMemo } from 'react';
+// import {NotAvailableImg} from '../components/Video/NotAvailableImg';
 import * as PropTypes from 'prop-types';
 import {
   Box,
@@ -13,9 +13,8 @@ import Title from '../components/ItemPage/Title';
 import Share from '../components/ItemPage/Share';
 import Description from '../components/ItemPage/Description';
 import Video from '../components/Video/Video';
-import videoHolder from '../assets/video-placeholder640.jpg';
 import { useRouteMatch } from 'react-router-dom';
-import { loadItemData } from '../lib/loadData';
+// import { loadItemData } from '../lib/loadData';
 import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 import { getArray, isFilledArray } from 'utils';
@@ -51,6 +50,9 @@ ItemPage.propTypes = {
   files: PropTypes.array,
 };
 
+/**
+ * 
+ */
 function LoadedContent({ item, shareUrl, ...optionals }) {
   // Hooks
   const classes = useStyles();
@@ -74,13 +76,9 @@ function LoadedContent({ item, shareUrl, ...optionals }) {
             {isFilledArray(videoArr) ?
               (videoArr.map(item => <Video link={item} />))
               : (
-                <img
-                  src={videoHolder}
-                  style={{ maxHeight: '600px', height: '600px' }}
-                  alt={'No Video Available'}
-                />
+                null
               )}
-            {files && files.length ? (
+            {isFilledArray(files)? (
               <>
                 <Divider classes={{ root: classes.divider }} />
                 <Resources files={files} />{' '}

@@ -3,7 +3,9 @@ import ReactPlayer from "react-player/lazy"; //https://github.com/CookPete/react
 import "./Video.css";
 import VideoSkeleton from "./VideoSkeleton";
 
-
+/**
+ * 
+ */
 export default function Video({link, ...optionals}: {link: string, [x: string]: any}) {
   const [isReady, setIsReady] = useState(false);
   function updateIsReady() {
