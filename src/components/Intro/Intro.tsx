@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import bg from "../../assets/bg.jpg";
 import defaultbg from '../../assets/defaultBg.jpg';
 import { makeStyles } from '@material-ui/core/styles';
