@@ -128,4 +128,5 @@ dist
 .DS_Store
 temp.json
 **/.DS_Store
-.yarn/
+.yarn/cache/
+.yarn/unplugged/
