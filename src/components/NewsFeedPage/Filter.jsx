@@ -1,6 +1,6 @@
-import React from 'react';
-import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -22,24 +22,22 @@ export default function Filter(props) {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id='simple-select-label' color={'primary'}>
+        <InputLabel id="simple-select-label" color={"primary"}>
           Term
         </InputLabel>
         <Select
-          labelId='simple-select-label'
-          id='simple-select'
-          defaultValue=''
+          labelId="simple-select-label"
+          id="simple-select"
+          defaultValue=""
           onChange={(e) => updateTerm(e.target.value)}
           value={currentTerm}
         >
           {[...itemSet].map((term, index) => (
-            <MenuItem key={'term-' + index} value={term}>
+            <MenuItem key={"term-" + index} value={term}>
               {term}
             </MenuItem>
           ))}
-          <MenuItem key={'none'} value={''}>
-            All
-          </MenuItem>
+          <MenuItem key={"none"} defaultvalue={currentTerm}></MenuItem>
         </Select>
       </FormControl>
     </div>

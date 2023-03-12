@@ -1,15 +1,15 @@
-import React from 'react';
-import LinkItem from './LinkItem';
-import { Grid } from '@material-ui/core';
+import React from "react";
+import LinkItem from "./LinkItem";
+import { Grid } from "@material-ui/core";
 
-export default function LinksList({ links, ...optionals }) {
+export default function LinksList({ links, linkText, ...optionals }) {
   if (!links) {
     return null;
   }
 
   return (
     <Grid container spacing={3}>
-      {links
+      {/* {links
         ? links?.map((link, index) => (
             <LinkItem
               key={'link-' + index}
@@ -17,7 +17,10 @@ export default function LinksList({ links, ...optionals }) {
               text={link?.text}
             />
           ))
-        : null}
+        : null} */}
+      {links ? (
+        <LinkItem key={"link-"} address={links} text={linkText} />
+      ) : null}
     </Grid>
   );
 }
