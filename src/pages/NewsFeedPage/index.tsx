@@ -14,6 +14,7 @@ import db from "features/firebase/Firebase";
 import {
   collection,
   doc,
+  getDoc,
   onSnapshot,
   orderBy,
   query,
@@ -45,8 +46,8 @@ export default function NewsFeedPage({ pageTitle }) {
 
   //firebase
   const [terms, setTerms] = useState([]);
-  const currentTerm = "二零二二年冬季主日學";
-  const [term, setTerm] = useState(currentTerm);
+  const currentTerm = terms[0];
+  const [term, setTerm] = useState("二零二三年春季主日學");
 
   useEffect(
     () =>

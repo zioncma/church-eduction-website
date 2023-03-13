@@ -80,7 +80,7 @@ export default function NewsItem(props) {
         <Grid item justify="center">
           <LinksList links={signupForm} linkText={"按此報名"} />
         </Grid>
-        <Grid item>
+        {/*      <Grid item>
           <Typography
             color={"secondary"}
             variant={"h6"}
@@ -89,7 +89,7 @@ export default function NewsItem(props) {
           >
             {moment(date, "MM/DD/YYYY").format("MM/DD/YYYY")}
           </Typography>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Paper>
   );
