@@ -13,8 +13,7 @@ import NewsItemFirebase from "../../components/NewsFeedPage/NewsItemFirebase";
 import db from "features/firebase/Firebase";
 import {
   collection,
-  doc,
-  getDoc,
+  getDocs,
   onSnapshot,
   orderBy,
   query,
@@ -38,38 +37,47 @@ export function renderNews(items) {
 
 const CONTACT_EMAIL = "ce@zioncma.ca";
 
-/**
- *
- */
-export default function NewsFeedPage({ pageTitle }) {
-  // const { newsList, isLoading, error } = useNewsList();
+async function fetchTerms() {
+  const querySnapshot = await getDocs(
+    query(collection(db, "terms"), orderBy("index", "desc"))
+  );
+  const termsData = querySnapshot.docs.map((doc) => doc.data());
+  return termsData;
+}
 
+export default function NewsFeedPage({ pageTitle }) {
   //firebase
   const [terms, setTerms] = useState([]);
-  const currentTerm = terms[0];
-  const [term, setTerm] = useState("二零二三年春季主日學");
+  const [selectedTerm, setSelectedTerm] = useState(undefined);
+  const path = `content/SundaySchool/${selectedTerm}`;
 
-  useEffect(
-    () =>
-      onSnapshot(
-        query(collection(db, "terms"), orderBy("index", "desc")),
-        (snapshot) =>
-          setTerms(snapshot.docs.map((doc) => doc.data()).map((t) => t.name))
-      ),
-    []
-  );
+  // useEffect(
+  //   () =>
+  //     onSnapshot(
+  //       query(collection(db, "terms"), orderBy("index", "desc")),
+  //       (snapshot) =>
+  //         setTerms(snapshot.docs.map((doc) => doc.data()).map((t) => t.name))
+  //     ),
+  //   []
+  // );
+
+  useEffect(() => {
+    async function fetchData() {
+      const termsData = await fetchTerms();
+      setTerms(termsData.map((t) => t.name));
+      setSelectedTerm(termsData[0]?.name);
+    }
+    fetchData();
+  }, []);
 
   const [course, setCourse] = useState([]);
   useEffect(
     () =>
       onSnapshot(
-        query(
-          collection(db, "content", "SundaySchool", term),
-          orderBy("createAt", "desc")
-        ),
+        query(collection(db, path), orderBy("createAt", "desc")),
         (snapshot) => setCourse(snapshot.docs.map((doc) => doc.data()))
       ),
-    [term]
+    [path]
   );
 
   // Local state
@@ -103,8 +111,8 @@ export default function NewsFeedPage({ pageTitle }) {
         <Box display="flex" justifyContent="flex-end" width={"100%"}>
           <Filter
             itemSet={terms}
-            updateTerm={(value) => setTerm(value)}
-            currentTerm={term}
+            updateTerm={(value) => setSelectedTerm(value)}
+            currentTerm={selectedTerm}
           />
         </Box>
         {course && course?.length > 0 && renderNews(course)}
