@@ -8,7 +8,6 @@ import Title from "components/Intro/Title";
 import Description from "components/Intro/Description";
 import { useNewsList } from "lib/hooks";
 import { getTermSet, getGroupNames, filterByTerm } from "./processors";
-
 import NewsItemFirebase from "../../components/NewsFeedPage/NewsItemFirebase";
 import db from "features/firebase/Firebase";
 import {
@@ -50,16 +49,6 @@ export default function NewsFeedPage({ pageTitle }) {
   const [terms, setTerms] = useState([]);
   const [selectedTerm, setSelectedTerm] = useState(undefined);
   const path = `content/SundaySchool/${selectedTerm}`;
-
-  // useEffect(
-  //   () =>
-  //     onSnapshot(
-  //       query(collection(db, "terms"), orderBy("index", "desc")),
-  //       (snapshot) =>
-  //         setTerms(snapshot.docs.map((doc) => doc.data()).map((t) => t.name))
-  //     ),
-  //   []
-  // );
 
   useEffect(() => {
     async function fetchData() {
