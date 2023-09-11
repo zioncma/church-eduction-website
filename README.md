@@ -10,7 +10,7 @@ A responsive education resource website for the Sunday school of Zion Alliance C
 
 ## Update the content
 
-- In order to achieve seperation of duties, the content data is migarated to [npoint.io](https://www.npoint.io/), a lightweight JSON storage service. Content updater must login at npoint and edit. The front end will request data from its REST API in an AJAX way.
+- In order to achieve separation of duties, the content data is migrated to [npoint.io](https://www.npoint.io/), a lightweight JSON storage service. Content updater must login at npoint and edit. The front end will request data from its REST API in an AJAX way.
 
 ## Data
 
@@ -28,4 +28,3 @@ A responsive education resource website for the Sunday school of Zion Alliance C
 - Storybook
 - moment.js
 - etc.
-
