@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Typography, Box, Paper, Grid } from "@material-ui/core";
-import moment from "moment";
 import AnnouncementIcon from "@material-ui/icons/Announcement";
 import LinksList from "./LinksList";
 import { green } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import Video from "../Video/Video";
 import { Title } from "./Title";
+import { hasValidChar } from "../../utils";
 
 NewsItem.propTypes = {
   title: PropTypes.string,
@@ -35,6 +35,7 @@ export default function NewsItem(props) {
     },
   }));
   const classes = useStyles();
+  const hasFormLink = signupForm && hasValidChar(signupForm);
 
   return (
     <Paper className={classes.paper}>
@@ -77,9 +78,9 @@ export default function NewsItem(props) {
         alignItems={"center"}
         className={classes.container}
       >
-        <Grid item justify="center">
+        {hasFormLink ? <Grid item justify="center">
           <LinksList links={signupForm} linkText={"按此報名"} />
-        </Grid>
+        </Grid> : null}
         {/*      <Grid item>
           <Typography
             color={"secondary"}
