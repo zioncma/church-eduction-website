@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import NewsItem from "components/NewsFeedPage/NewsItem";
 import Intro from "components/Intro/Intro";
-import { Grid, Box, Link, Typography, LinearProgress } from "@material-ui/core";
+import { Grid, Box, Link } from "@material-ui/core";
 import Filter from "components/NewsFeedPage/Filter";
 import MainGridContainer from "components/MainGridContainer";
 import Title from "components/Intro/Title";
 import Description from "components/Intro/Description";
-import { useNewsList } from "lib/hooks";
-import { getTermSet, getGroupNames, filterByTerm } from "./processors";
 import NewsItemFirebase from "../../components/NewsFeedPage/NewsItemFirebase";
 import db from "features/firebase/Firebase";
 import {
@@ -17,6 +14,7 @@ import {
   orderBy,
   query,
 } from "firebase/firestore";
+import {ErrorBoundary} from '../../features/error-handling';
 
 export function renderNews(items) {
   if (!items || items.length === 0) {
@@ -24,13 +22,13 @@ export function renderNews(items) {
   }
 
   return (
-    <>
+    <ErrorBoundary>
       {items.map((news, i) => (
         <Grid key={"news-grid-" + i} item xs={12}>
           <NewsItemFirebase key={"news-" + i} {...news} />
         </Grid>
       ))}
-    </>
+    </ErrorBoundary>
   );
 }
 
@@ -69,9 +67,6 @@ export default function NewsFeedPage({ pageTitle }) {
     [path]
   );
 
-  // Local state
-  // const [term, setTerm] = useState("二零二三年冬季主日學");
-
   // if (error) {
   //   return (
   //     <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>
@@ -84,7 +79,7 @@ export default function NewsFeedPage({ pageTitle }) {
   // console.debug('newsList', newsList);
 
   return (
-    <>
+    <ErrorBoundary>
       <Intro>
         <Title text={pageTitle} />
         <Description>
@@ -106,6 +101,6 @@ export default function NewsFeedPage({ pageTitle }) {
         </Box>
         {course && course?.length > 0 && renderNews(course)}
       </MainGridContainer>
-    </>
+    </ErrorBoundary>
   );
 }

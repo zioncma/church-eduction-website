@@ -1,6 +1,6 @@
 
 import NewsFeedPage from 'pages/NewsFeedPage';
-import EducationPage from 'pages/EducationPage';
+import {EducationPage} from 'pages/EducationPage';
 import GrowthPage from 'pages/GrowthPage';
 import {ArchivePage} from 'pages/ArchivePage';
 // import NoMatchPage from 'pages/NoMatchPage';

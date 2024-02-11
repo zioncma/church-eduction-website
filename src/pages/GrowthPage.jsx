@@ -5,10 +5,10 @@ import Title from '../components/Intro/Title';
 import Description from '../components/Intro/Description';
 import { Link } from '@material-ui/core';
 import { LinearProgress } from '@material-ui/core';
-import { useGrowthList } from '../lib/hooks';
+import { useGrowthList } from '../features/npoint/hooks';
 
 const itemKey = 'growthcourse';
-const contactEmail = 'ce@zioncma.ca';
+const CONTACT_EMAIL = 'ce@zioncma.ca';
 
 export default function GrowthPage({ pageTitle, ...optionals }) {
   const { growthData, isLoading, error } = useGrowthList();
@@ -35,8 +35,8 @@ export default function GrowthPage({ pageTitle, ...optionals }) {
         <Intro bg={bg}>
           <Title text={pageTitle} />
           <Description>
-            如果您對這一系列的新課程有興趣或問題, 請向基教部{contactEmail}{' '}
-            <Link href={'mailto:' + contactEmail} style={{ color: 'blue' }}>
+            如果您對這一系列的新課程有興趣或問題, 請向基教部{CONTACT_EMAIL}{' '}
+            <Link href={'mailto:' + CONTACT_EMAIL} style={{ color: 'blue' }}>
               查詢
             </Link>
           </Description>

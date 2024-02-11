@@ -10,11 +10,11 @@ import {
 } from 'react-router-dom';
 import NavTabs from './components/features/Nav/NavTabs';
 import NewsFeedPage from './pages/NewsFeedPage';
-import EducationPage from './pages/EducationPage';
+import { EducationPage } from './pages/EducationPage';
 import GrowthPage from './pages/GrowthPage';
-import {ArchivePage} from './pages/ArchivePage';
+import { ArchivePage } from './pages/ArchivePage';
 import NoMatchPage from './pages/NoMatchPage';
-import {ROUTES, rootPath, allTabs, mainPageTitles} from './routes';
+import { ROUTES, rootPath, allTabs, mainPageTitles } from './routes';
 import './App.css';
 
 function App() {

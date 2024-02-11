@@ -1,6 +1,9 @@
 import useSWR from 'swr';
 import { readCourses, coursesUrl, readNews, newsUrl, loadItemData, growthsUrl, readGrowths } from './loadData';
 
+/**
+ * 
+ */
 export function useCoursesData() {
   const { data, error } = useSWR(coursesUrl, readCourses);
   return { courses: data, error, isLoading: !error && !data };

@@ -6,7 +6,9 @@ export const growthsUrl = `${baseAPI}1b9736c9483958c59206`;
 export const newsUrl = `${baseAPI}214e8298279ed3cbc3e1`;
 
 // para: url, return the item data
-// read data from data source corresponding to the url and id
+/**
+ * read data from data source corresponding to the url and id
+ */
 export async function loadItemData(url, id) {
   let items = [];
   if (url.includes("course")) {
