@@ -5,9 +5,10 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import ItemPage from '../../pages/ItemPage';
 import Overview from './../Overview';
 
-
-export default function CardsPageBase(props) {
-  const { cardList, itemType } = props;
+/**
+ * Cards Page content
+ */
+export default function CardsPageBase({cardList, itemType, children, ...optionals}) {
   const { path, url } = useRouteMatch();
 
   //Temporary: when itemType === "growthcourse", don't display items for growth courses
@@ -18,7 +19,7 @@ export default function CardsPageBase(props) {
           <ItemPage />
         </Route>
         <Route path={url}>
-          {props.children}
+          {children}
           <MainGridContainer>
             {itemType === 'growthcourse' ? (
               <Overview />

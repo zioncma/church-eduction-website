@@ -18,7 +18,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 import { getArray, isFilledArray } from 'utils';
-import { useItemData } from '../lib/hooks';
+import { useItemData } from '../features/npoint/hooks';
 
 const CenteredContainer = styled.div`
   justify-content: center;
