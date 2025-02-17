@@ -3,8 +3,8 @@ import CardsPageBase from '../components/Cards/CardsPageBase';
 import Intro from '../components/Intro';
 import Title from '../components/Intro/Title';
 import Description from '../components/Intro/Description';
-import { Link } from '@material-ui/core';
-import { LinearProgress } from '@material-ui/core';
+import { Link } from '../components/atomic/Link';
+import LinearProgress from '@mui/material/LinearProgress';
 import { useGrowthList } from '../features/npoint/hooks';
 
 const itemKey = 'growthcourse';
@@ -24,7 +24,7 @@ export default function GrowthPage({ pageTitle, ...optionals }) {
     return <LinearProgress color={'secondary'} />;
   }
 
-  const bg = growthbg;
+  const bg = growthbg.src;
 
   return (
     <>
@@ -32,7 +32,7 @@ export default function GrowthPage({ pageTitle, ...optionals }) {
         itemType={itemKey}
         {...{ pageTitle, bg, cardList: growthData }}
       >
-        <Intro bg={bg}>
+        {/* <Intro bg={bg}>
           <Title text={pageTitle} />
           <Description>
             如果您對這一系列的新課程有興趣或問題, 請向基教部{CONTACT_EMAIL}{' '}
@@ -40,7 +40,7 @@ export default function GrowthPage({ pageTitle, ...optionals }) {
               查詢
             </Link>
           </Description>
-        </Intro>
+        </Intro> */}
       </CardsPageBase>
     </>
   );

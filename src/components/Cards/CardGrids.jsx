@@ -1,6 +1,6 @@
 import React from 'react';
 import CustomCard from './CustomCard';
-import { Grid } from '@material-ui/core';
+import { Grid } from '../atomic/Grid';
 import { AppContextProvider } from '../../providers/AppContext';
 import ExpandablePaper from './ExpandablePaper';
 

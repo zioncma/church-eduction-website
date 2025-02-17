@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { IconButton, MenuItem, Popper, Grow, Paper, ClickAwayListener, MenuList, Box } from "@material-ui/core";
+import { Box } from "../components/atomic/Container";
+import IconButton from '@mui/material/IconButton';
 import MenuIcon from "@material-ui/icons/Menu";
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
+import Popper from '@mui/material/Popper';
+import Grow from "@mui/material/Grow";
+import Paper from '@mui/material/Paper';
+import { ClickAwayListener } from '@mui/base';
 import { Link } from "react-router-dom";
 
 export default function SimpleMenu(props) {

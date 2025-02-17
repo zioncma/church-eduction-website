@@ -1,13 +1,12 @@
 // import {NotAvailableImg} from '../components/Video/NotAvailableImg';
 import * as PropTypes from 'prop-types';
 import {
-  Box,
-  Grid,
-  Paper,
   Divider,
   CircularProgress,
-  Container,
-} from '@material-ui/core';
+} from '@mui/material';
+import {Box, Container} from 'components/atomic/Container';
+import { Grid } from '../components/atomic/Grid';
+import Paper from '@mui/material/Paper';
 import Resources from '../components/ItemPage/Resources/Resources';
 import Title from '../components/ItemPage/Title';
 import Share from '../components/ItemPage/Share';
@@ -15,7 +14,7 @@ import Description from '../components/ItemPage/Description';
 import Video from '../components/Video/Video';
 import { useRouteMatch } from 'react-router-dom';
 // import { loadItemData } from '../lib/loadData';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from 'styles';
 import styled from 'styled-components';
 import { getArray, isFilledArray } from 'utils';
 import { useItemData } from '../features/npoint/hooks';

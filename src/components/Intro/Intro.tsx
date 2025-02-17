@@ -1,9 +1,7 @@
 import React from 'react';
-import { Box } from '@material-ui/core';
-// import PropTypes from 'prop-types';
-// import bg from "../../assets/bg.jpg";
+import { Box } from '../../components/atomic/Container';
 import defaultbg from '../../assets/defaultBg.jpg';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '../../styles';
 
 export default function Intro(props) {
   const {
@@ -20,7 +18,7 @@ export default function Intro(props) {
         minHeight: theme.spacing(35),
       },
       overflow: 'hidden',
-      backgroundImage: `url(${props.bg ? props.bg : defaultbg})`,
+      backgroundImage: `url(${props.bg ? props.bg : defaultbg.src})`,
       backgroundPosition: 'center',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
@@ -46,7 +44,7 @@ export default function Intro(props) {
 
   return (
     <header>
-      <Box maxWidth={1} className={classes.intro}>
+      <Box className={classes.intro} sx={{maxWidth: 1}}>
         <Box className={classes.text}>{props.children}</Box>
       </Box>
     </header>

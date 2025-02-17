@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Typography, Box, Paper, Grid } from '@material-ui/core';
+import Paper from '@mui/material/Paper';
+import { Typography } from 'components/atomic/Typography';
+import { Box } from 'components/atomic/Container';
+import { Grid } from 'components/atomic/Grid';
 import moment from 'moment';
 import AnnouncementIcon from '@material-ui/icons/Announcement';
 import LinksList from './LinksList';
 import { green } from '@material-ui/core/colors';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '../../styles';
 import Video from '../Video/Video';
 import { Title } from './Title';
 
@@ -29,6 +32,7 @@ export default function NewsItem(props) {
       paddingLeft: theme.spacing(1),
       display: 'inline',
       marginBottom: theme.spacing(2),
+      // fontWeight: 500
     },
     container: {
       marginTop: theme.spacing(1),

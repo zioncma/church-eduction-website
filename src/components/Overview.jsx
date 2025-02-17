@@ -1,7 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Typography, Container, Button } from '@material-ui/core';
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import { makeStyles } from 'styles';
+import Button from '@mui/material/Button';
+import { Box, Container } from 'components/atomic/Container';
+import { Typography } from '../components/atomic/Typography';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import { TopicGroup } from './TopicGroup';
 
 export const useStyles = makeStyles((theme) => ({

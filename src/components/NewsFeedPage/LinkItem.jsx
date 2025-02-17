@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Button, Typography } from "@material-ui/core";
-import LinkIcon from "@material-ui/icons/Link";
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid2';
+import {Typography} from '../../components/atomic/Typography';
+import LinkIcon from '@mui/icons-material/Link';
 
 LinkItem.defaultProps = {
   text: "訪問鏈接",

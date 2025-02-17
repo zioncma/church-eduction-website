@@ -1,6 +1,6 @@
 import React from "react";
 import LinkItem from "./LinkItem";
-import { Grid } from "@material-ui/core";
+import Grid from '@mui/material/Grid2';
 
 export default function LinksList({ links, linkText, ...optionals }) {
   if (!links) {

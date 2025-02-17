@@ -8,7 +8,6 @@ import {ArchivePage} from 'pages/ArchivePage';
 //Routing
 export const rootPath = '/';
 
-
 export const ROUTES = [
   {title: '最新消息', path: '/news', component: NewsFeedPage, isInNavBar: true},
   {title: '信徒成長路', path: '/growth', component: GrowthPage, isInNavBar: true},

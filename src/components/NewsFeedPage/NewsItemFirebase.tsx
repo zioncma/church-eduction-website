@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Typography, Box, Paper, Grid } from "@material-ui/core";
-import AnnouncementIcon from "@material-ui/icons/Announcement";
+import Paper from '@mui/material/Paper';
+import {Typography} from '../../components/atomic/Typography';
+import {Box} from '../../components/atomic/Container';
+import {Grid} from '../../components/atomic/Grid';
+import AnnouncementIcon from '@mui/icons-material/Announcement';
 import LinksList from "./LinksList";
 import { green } from "@material-ui/core/colors";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "../../styles";
 import Video from "../Video/Video";
 import { Title } from "./Title";
 import { hasValidChar } from "../../utils";
@@ -32,6 +35,8 @@ export default function NewsItem(props) {
     },
     container: {
       marginTop: theme.spacing(1),
+      alignItems: "center",
+      justifyContent: "space-between",
     },
   }));
   const classes = useStyles();
@@ -73,15 +78,13 @@ export default function NewsItem(props) {
         : null}
       <Grid
         container
-        justify="space-between"
         spacing={3}
-        alignItems={"center"}
         className={classes.container}
       >
         {hasFormLink ? <Grid item justify="center">
           <LinksList links={signupForm} linkText={"按此報名"} />
         </Grid> : null}
-        {/*      <Grid item>
+             {/* <Grid item>
           <Typography
             color={"secondary"}
             variant={"h6"}

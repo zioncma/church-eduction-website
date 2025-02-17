@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  Box,
   Grid,
   Card,
   CardHeader,
   CardContent,
-  Typography,
   Grow,
-} from '@material-ui/core';
+} from '@mui/material';
+import { Typography } from '../components/atomic/Typography';
+import { Box } from './atomic/Container';
 import { useStyles } from './Overview';
 import {isMobile} from 'react-device-detect';
 import { topics } from './topics';

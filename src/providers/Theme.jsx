@@ -1,10 +1,7 @@
 //Styles
-import {
-  ThemeProvider,
-  createMuiTheme,
-} from "@material-ui/core/styles";
+import { ThemeProvider, createTheme } from '../styles';
 
-const themeInstance = createMuiTheme({
+const themeInstance = createTheme({
   //Colors
   palette: {
     primary: {

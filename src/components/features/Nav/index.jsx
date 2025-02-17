@@ -1,9 +1,11 @@
-import AppBar from '@material-ui/core/AppBar';
-import { Typography, Toolbar, Box, Hidden } from '@material-ui/core';
+import {AppBar, Toolbar} from '../../../components/atomic/AppBar';
+import {Box} from '../../../components/atomic/Container';
+import {Typography} from '../../../components/atomic/Typography';
 import logo from '../../../assets/logo.png';
 import SimpleMenu from '../../SimpleMenu';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '../../../styles';
 const navTitleFont = "'Exo', sans-serif";
 
 export default function Nav(props) {
@@ -40,6 +42,8 @@ export default function Nav(props) {
     },
   }));
   const classes = useStyles();
+  const xsDown = useMediaQuery(theme => theme.breakpoints.down('xs'));
+  const smUp = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
   return (
     <nav>
@@ -50,7 +54,7 @@ export default function Nav(props) {
               <Box maxWidth={38} mx={1} display={'inline-block'}>
                 <img
                   className={classes.image}
-                  src={logo}
+                  src={logo.src}
                   alt='宣道會錫安堂LOGO'
                 />
               </Box>
@@ -69,10 +73,8 @@ export default function Nav(props) {
           </a>
 
           <Box style={{ flex: 1 }} />
-          <Hidden xsDown>{props.children}</Hidden>
-          <Hidden smUp>
-            <SimpleMenu routes={props.routes} pageTitles={props.pageTitles} />
-          </Hidden>
+          {xsDown ? props.children : null}
+          {smUp ? <SimpleMenu routes={props.routes} pageTitles={props.pageTitles} /> : null}
         </Toolbar>
       </AppBar>
     </nav>

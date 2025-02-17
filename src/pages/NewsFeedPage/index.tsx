@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Intro from "components/Intro/Intro";
-import { Grid, Box, Link } from "@material-ui/core";
+import { Grid } from '../../components/atomic/Grid';
+import { Box } from '../../components/atomic/Container';
+import { Link } from '../../components/atomic/Link';
 import Filter from "components/NewsFeedPage/Filter";
 import MainGridContainer from "components/MainGridContainer";
 import Title from "components/Intro/Title";
@@ -92,7 +94,7 @@ export default function NewsFeedPage({ pageTitle }) {
         </Description>
       </Intro>
       <MainGridContainer>
-        <Box display="flex" justifyContent="flex-end" width={"100%"}>
+        <Box sx={{display: "flex", justifyContent: "flex-end", width: "100%"}}>
           <Filter
             itemSet={terms}
             updateTerm={(value) => setSelectedTerm(value)}

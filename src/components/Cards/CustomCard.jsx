@@ -1,20 +1,20 @@
 import React, { useContext } from "react";
 import {
   Button,
-  Typography,
   Card,
   CardActions,
   CardContent,
   CardMedia,
-  Box,
-} from "@material-ui/core";
+} from "@mui/material";
+import { Typography } from "components/atomic/Typography";
+import {Box} from 'components/atomic/Container';
 import { PropTypes } from "prop-types";
 import moment from "moment";
 import { Link, useRouteMatch } from "react-router-dom";
 import AppContext from "../../providers/AppContext";
 
 import defaultCard from "../../assets/defaultCard.jpg"; //Image by <a href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Free-Photos</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Pixabay</a>
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,10 +56,9 @@ CustomCard.propTypes = {
 };
 
 CustomCard.defaultProps = {
-  // date: new Date(),
   title: "",
   subtitle: "",
-  bg: defaultCard,
+  bg: defaultCard.src,
 };
 
 export default function CustomCard(props) {
