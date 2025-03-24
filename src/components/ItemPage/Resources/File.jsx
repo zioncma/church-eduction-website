@@ -1,35 +1,42 @@
-import React from "react";
-import { Box, Typography, Button } from "@material-ui/core";
-import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
-import DescriptionIcon from "@material-ui/icons/Description";
-import { PropTypes } from "prop-types";
-import blue from "@material-ui/core/colors/blue";
-import { makeStyles } from "@material-ui/core/styles";
-const useStyles = makeStyles((theme) => ({
-  container: {
-    lineHeight: "1rem",
-    // textAlign: "center",
-    "& > *": {
-      display: "inline-block",
-      verticalAlign: "middle",
-      lineHeight: "1rem",
-    },
-  },
-}));
+import React from 'react';
+import { Typography } from 'components/atomic/Typography';
+import { Box } from 'components/atomic/Container';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import DescriptionIcon from '@mui/icons-material/Description';
+import { PropTypes } from 'prop-types';
+import { blue } from '@mui/material/colors';
+import { Button } from '@mui/material';
+import { muiTheme } from 'styles';
 
 File.propTypes = {
   title: PropTypes.string.isRequired,
   doc: PropTypes.string,
 };
 
-export default function File(props) {
-  const classes = useStyles();
-
+export default function File({ title = '', doc = '', ...optionals }) {
+  //className={classes.container}
+  const theme = muiTheme;
   return (
-    <Box width={130} className={classes.container}>
-      <DescriptionIcon style={{ color: blue[500] }} fontSize="small" />
-      <Typography component="span">{props.title}</Typography>
-      <Button variant="contained" href={props.doc} size="small" endIcon={<CloudDownloadIcon />}>
+    <Box width={130} sx={{
+      lineHeight: "1rem",
+      "& > *": {
+        display: "inline-block",
+        verticalAlign: "middle",
+        lineHeight: "1rem",
+      },
+    }}>
+      <DescriptionIcon style={{ color: blue[500] }} fontSize='small' />
+      <Typography component='span'>{title}</Typography>
+      <Button
+        variant='contained'
+        href={doc}
+        size='small'
+        endIcon={<CloudDownloadIcon />}
+        sx={{
+          backgroundColor: theme.palette.buttonBg,
+          color: theme.palette.primary.main,
+        }}
+      >
         Download
       </Button>
     </Box>

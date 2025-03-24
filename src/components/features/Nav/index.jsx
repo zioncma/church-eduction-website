@@ -1,70 +1,65 @@
-import {AppBar, Toolbar} from '../../../components/atomic/AppBar';
-import {Box} from '../../../components/atomic/Container';
-import {Typography} from '../../../components/atomic/Typography';
+import { AppBar, Toolbar } from '../../../components/atomic/AppBar';
+import { Box } from '../../../components/atomic/Container';
+import { Typography } from '../../../components/atomic/Typography';
 import logo from '../../../assets/logo.png';
-import SimpleMenu from '../../SimpleMenu';
+import {SimpleMenu} from '../../SimpleMenu';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { muiTheme } from 'styles';
 
-import { makeStyles } from '../../../styles';
 const navTitleFont = "'Exo', sans-serif";
 
 export default function Nav(props) {
-  const useStyles = makeStyles((theme) => ({
-    navTitlePadding: {
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(6),
-    },
-    navTitleFont: {
-      fontFamily: navTitleFont,
-      fontSize: theme.spacing(3),
-    },
-    image: {
-      maxWidth: '100%',
-    },
-    linkWhiteNoDecor: {
-      textDecoration: 'none',
-      color: theme.palette.text.white,
-    },
-    singleLineContainer: {
-      whiteSpace: 'nowrap',
-      overflowX: 'auto',
-      '& > *': {
-        display: 'inline-block',
-        color: theme.palette.text.white,
-      },
-      '&:visited': {
-        textDecoration: 'none',
-        color: theme.palette.text.white,
-      },
-    },
-    logoColor: {
-      color: theme.palette.logo,
-    },
-  }));
-  const classes = useStyles();
-  const xsDown = useMediaQuery(theme => theme.breakpoints.down('xs'));
-  const smUp = useMediaQuery(theme => theme.breakpoints.up('sm'));
+  const theme = muiTheme;
+  const xsDown = useMediaQuery((theme) => theme.breakpoints.down('xs'));
+  const smUp = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   return (
     <nav>
       <AppBar position='static'>
         <Toolbar disableGutters>
-          <a href='http://www.zioncma.ca/c' className={classes.linkWhiteNoDecor}>
-            <Box className={classes.singleLineContainer} minWidth={295}>
+          <a
+            href='http://www.zioncma.ca/c'
+            className={`no-underline`}
+          >
+            <Box
+              minWidth={295}
+              sx={{
+                whiteSpace: 'nowrap',
+                overflowX: 'auto',
+                '& > *': {
+                  display: 'inline-block',
+                  color: theme.palette.text.secondary,
+                },
+                '&:visited': {
+                  textDecoration: 'none',
+                  color: theme.palette.text.secondary,
+                },
+              }}
+            >
               <Box maxWidth={38} mx={1} display={'inline-block'}>
                 <img
-                  className={classes.image}
                   src={logo.src}
                   alt='宣道會錫安堂LOGO'
+                  className="max-w-full"
                 />
               </Box>
-              <Typography className={`${classes.navTitleFont}`} noWrap>
+              <Typography
+                noWrap
+                sx={{
+                  fontFamily: navTitleFont,
+                  fontSize: theme.spacing(3),
+                }}
+              >
                 宣道會錫安堂
               </Typography>
 
               <Typography
                 noWrap
-                className={`${classes.navTitleFont} ${classes.logoColor}`}
+                sx={{
+                  fontFamily: navTitleFont,
+                  fontSize: theme.spacing(3),
+                  color: theme.palette.logo,
+                }}
               >
                 -
               </Typography>
@@ -73,8 +68,10 @@ export default function Nav(props) {
           </a>
 
           <Box style={{ flex: 1 }} />
-          {xsDown ? props.children : null}
-          {smUp ? <SimpleMenu routes={props.routes} pageTitles={props.pageTitles} /> : null}
+          {xsDown ? null : props.children }
+          {smUp ? null : (
+            <SimpleMenu routes={props.routes} pageTitles={props.pageTitles} />
+          )}
         </Toolbar>
       </AppBar>
     </nav>

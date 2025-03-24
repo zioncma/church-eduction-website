@@ -1,10 +1,12 @@
 import React from 'react';
 import { Typography } from '../../components/atomic/Typography';
 
-export default function Title(props) {
+export default function PageHeaderTitle(props) {
   return (
     <>
-      <Typography variant={'h1'}>{props.text}</Typography>
+      <Typography variant={'h1'} sx={{
+        fontWeight: 'bold',
+      }}>{props.text}</Typography>
     </>
   );
 }

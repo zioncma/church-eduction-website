@@ -1,5 +1,5 @@
 import Nav from './components/features/Nav';
-import Footer from './components/Footer/Footer';
+import { Footer } from './components/Footer/Footer';
 import Theme from './providers/Theme';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {
@@ -8,7 +8,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import NavTabs from './components/features/Nav/NavTabs';
+import { NavTabs } from './components/features/Nav/NavTabs';
 import NewsFeedPage from './pages/NewsFeedPage';
 import { EducationPage } from './pages/EducationPage';
 import GrowthPage from './pages/GrowthPage';
@@ -34,7 +34,6 @@ function App() {
               )}
             />
           </Nav>
-
           <main>
             <Switch>
               <Route

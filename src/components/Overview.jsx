@@ -1,34 +1,34 @@
 import React from 'react';
-import { makeStyles } from 'styles';
-import Button from '@mui/material/Button';
+import { muiTheme } from 'styles';
 import { Box, Container } from 'components/atomic/Container';
+import { Button } from '@mui/material';
 import { Typography } from '../components/atomic/Typography';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import { TopicGroup } from './TopicGroup';
 
-export const useStyles = makeStyles((theme) => ({
-  cardRoot: {
-    width: theme.spacing(35),
-    height: theme.spacing(36),
-    borderRadius: 15,
-  },
-  sectionHeading: {
-    backgroundColor: 'bisque',
-    paddingLeft: theme.spacing(2),
-    fontSize: theme.spacing(4),
-  },
-}));
-
-export default function Overview() {
-  const classes = useStyles();
+export function Overview() {
+  const theme = muiTheme;
+  // const test = theme.spacing(4);
+  // console.log('test: ', test);
 
   return (
-    <Container>
-      <Typography variant={'h2'} className={classes.sectionHeading}>
+    <Container maxWidth={false}>
+      <Typography
+        variant={'h2Lg'}
+        sx={{
+          backgroundColor: 'bisque',
+          paddingLeft: theme.spacing(2),
+          // fontSize: theme.spacing(4),
+          // fontWeight: 'bold',
+        }}
+      >
         課程簡介
       </Typography>
       <TopicGroup />
-      <Box display={'flex'} mt={10} justifyContent={'center'}>
+      <Box mt={10} sx={{
+        display: 'flex',
+        justifyContent: 'center',
+      }}>
         <Button
           variant='contained'
           size='large'
@@ -38,6 +38,10 @@ export default function Overview() {
           }
           target='_blank'
           rel='noopener'
+          sx={{
+            backgroundColor: theme.palette.buttonBg,
+            color: theme.palette.primary.main,
+          }}
         >
           下載課程簡介
         </Button>

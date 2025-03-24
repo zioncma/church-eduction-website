@@ -1,42 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 import {
   Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
-} from "@mui/material";
-import { Typography } from "components/atomic/Typography";
-import {Box} from 'components/atomic/Container';
-import { PropTypes } from "prop-types";
-import moment from "moment";
-import { Link, useRouteMatch } from "react-router-dom";
-import AppContext from "../../providers/AppContext";
+} from '@mui/material';
+import { Typography } from 'components/atomic/Typography';
+import { Box } from 'components/atomic/Container';
+import moment from 'moment';
+import { Link, useRouteMatch } from 'react-router-dom';
+import AppContext from '../../providers/AppContext';
 
-import defaultCard from "../../assets/defaultCard.jpg"; //Image by <a href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Free-Photos</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Pixabay</a>
-import { makeStyles } from "styles";
+import defaultCard from '../../assets/defaultCard.jpg'; //Image by <a href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Free-Photos</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Pixabay</a>
+import { makeStyles, muiTheme } from 'styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    minHeight: "100%",
-    display: "flex",
-    flexDirection: "column"
-    // gridTemplateRows: "auto 1fr auto"
-  },
   main: {
     flexGrow: 3,
   },
-  media: {
-    height: theme.spacing(20),
-  },
   date: {
-    position: "absolute",
+    position: 'absolute',
     bottom: theme.spacing(1),
     right: theme.spacing(2),
-    color: theme.palette.text.white,
+    color: theme.palette.text.secondary,
   },
   imageContainer: {
-    position: "relative",
+    position: 'relative',
   },
   descrip: {
     opacity: 0.8,
@@ -46,25 +36,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-CustomCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  itemId: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-  date: PropTypes.string,
-  description: PropTypes.string,
-  bg: PropTypes.string,
-};
-
-CustomCard.defaultProps = {
-  title: "",
-  subtitle: "",
-  bg: defaultCard.src,
-};
+// CustomCard.propTypes = {
+//   title: PropTypes.string.isRequired,
+//   itemId: PropTypes.string.isRequired,
+//   subtitle: PropTypes.string,
+//   date: PropTypes.string,
+//   description: PropTypes.string,
+//   bg: PropTypes.string,
+// };
 
 export default function CustomCard(props) {
   const classes = useStyles();
-  const { date, title, subtitle, itemId, description, bg } = props;
-  const fullTitle = title + (subtitle ? ": " + subtitle : "");
+  const theme = muiTheme;
+  const { date, title = '', subtitle = '', itemId, description, bg = defaultCard.src } = props;
+  // console.debug('CustomCard bg:', bg);
+  const fullTitle = title + (subtitle ? ': ' + subtitle : '');
   const { url } = useRouteMatch();
   const { updateIsLoading } = useContext(AppContext);
 
@@ -74,25 +60,50 @@ export default function CustomCard(props) {
 
   return (
     <>
-      <Card className={classes.root}>
-        <Box className={classes.imageContainer}>
+      <Card
+        sx={{
+          minHeight: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          // gridTemplateRows: "auto 1fr auto"
+        }}
+      >
+        <Box
+          sx={{
+            position: 'relative',
+          }}
+        >
           {date ? (
-            <Typography component="span" className={classes.date}>
-              {moment(date).format("DD/MM/YYYY")}
+            <Typography
+              component='span'
+              sx={{
+                position: 'absolute',
+                bottom: theme.spacing(1),
+                right: theme.spacing(2),
+                color: theme.palette.text.secondary,
+              }}
+            >
+              {moment(date).format('DD/MM/YYYY')}
             </Typography>
           ) : null}
           <CardMedia
-            className={classes.media}
             image={bg}
             cover={true}
             title={fullTitle}
+            sx={{
+              height: theme.spacing(20),
+            }}
           />
         </Box>
-        <CardContent className={classes.main}>
+        <CardContent
+          sx={{
+            flexGrow: 3,
+          }}
+        >
           <Typography
             gutterBottom
-            variant="h5"
-            component="h2"
+            variant='h5'
+            component='h2'
             className={classes.title}
           >
             {fullTitle}
@@ -108,10 +119,12 @@ export default function CustomCard(props) {
         </CardContent>
         <CardActions>
           <Button
-            variant={"outlined"}
-            size="small"
-            color="primary"
-            className={classes.button}
+            variant={'outlined'}
+            size='small'
+            color='primary'
+            sx={{
+              marginLeft: theme.spacing(1),
+            }}
             component={Link}
             to={`${url}/${itemId}`}
             onClick={handleClick}

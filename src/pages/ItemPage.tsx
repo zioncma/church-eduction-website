@@ -4,20 +4,21 @@ import {
   Divider,
   CircularProgress,
 } from '@mui/material';
-import {Box, Container} from 'components/atomic/Container';
-import { Grid } from '../components/atomic/Grid';
+import { Box, Container } from 'components/atomic/Container';
+import { Grid2 } from '../components/atomic/Grid';
 import Paper from '@mui/material/Paper';
 import Resources from '../components/ItemPage/Resources/Resources';
 import Title from '../components/ItemPage/Title';
 import Share from '../components/ItemPage/Share';
-import Description from '../components/ItemPage/Description';
+import { Description } from '../components/ItemPage/Description';
 import Video from '../components/Video/Video';
 import { useRouteMatch } from 'react-router-dom';
 // import { loadItemData } from '../lib/loadData';
-import { makeStyles } from 'styles';
+import { makeStyles, muiTheme } from 'styles';
 import styled from 'styled-components';
 import { getArray, isFilledArray } from 'utils';
 import { useItemData } from '../features/npoint/hooks';
+import { ErrorBoundary } from '../features/error-handling';
 
 const CenteredContainer = styled.div`
   justify-content: center;
@@ -55,6 +56,7 @@ ItemPage.propTypes = {
 function LoadedContent({ item, shareUrl, ...optionals }) {
   // Hooks
   const classes = useStyles();
+  const theme = muiTheme;
 
   // Props
   const { title, subtitle, description, video, files } = item;
@@ -63,29 +65,36 @@ function LoadedContent({ item, shareUrl, ...optionals }) {
 
   return (
     <Container>
-      <Grid container className={classes.container}>
-        <Grid item xs={12}>
-          <Paper square className={classes.item}>
+      <Grid2 container sx={{ marginTop: theme.spacing(4), }}>
+        <Grid2 size={{ xs: 12 }}>
+          <Paper square sx={{
+            padding: theme.spacing(2),
+          }}>
             <Box>
               <Title text={fullTitle} />
               {shareUrl ? <Share text={fullTitle} url={shareUrl} /> : null}
               <Divider classes={{ root: classes.divider }} />
               <Description text={description} />
             </Box>
-            {isFilledArray(videoArr) ?
-              (videoArr.map(item => <Video link={item} />))
-              : (
-                null
-              )}
-            {isFilledArray(files)? (
-              <>
-                <Divider classes={{ root: classes.divider }} />
-                <Resources files={files} />{' '}
-              </>
-            ) : null}
+            <ErrorBoundary>
+              {isFilledArray(videoArr) ?
+                (videoArr.map(item => <Video link={item} />))
+                : (
+                  null
+                )}
+              {isFilledArray(files) ? (
+                <>
+                  <Divider sx={{
+                    marginTop: theme.spacing(2),
+                    marginBottom: theme.spacing(2),
+                  }} />
+                  <Resources files={files} />{' '}
+                </>
+              ) : null}
+            </ErrorBoundary>
           </Paper>
-        </Grid>
-      </Grid>
+        </Grid2>
+      </Grid2>
     </Container>
   );
 }

@@ -5,9 +5,9 @@ import {Typography} from '../../components/atomic/Typography';
 import {Box} from '../../components/atomic/Container';
 import {Grid} from '../../components/atomic/Grid';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
-import LinksList from "./LinksList";
+import {LinksList} from "./LinksList";
 import { green } from "@material-ui/core/colors";
-import { makeStyles } from "../../styles";
+import { muiTheme, styled } from "../../styles";
 import Video from "../Video/Video";
 import { Title } from "./Title";
 import { hasValidChar } from "../../utils";
@@ -21,31 +21,24 @@ NewsItem.propTypes = {
 
 export default function NewsItem(props) {
   const { title, content, date, signupForm, video, images } = props;
-  const useStyles = makeStyles((theme) => ({
-    paper: {
+  const theme = muiTheme;
+
+  const hasFormLink = signupForm && hasValidChar(signupForm);
+
+  return (
+    <Paper sx={{
       background: "#fff",
       borderRadius: "2px",
       boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
       padding: theme.spacing(3),
-    },
-    startText: {
-      paddingLeft: theme.spacing(1),
-      display: "inline",
-      marginBottom: theme.spacing(2),
-    },
-    container: {
-      marginTop: theme.spacing(1),
-      alignItems: "center",
-      justifyContent: "space-between",
-    },
-  }));
-  const classes = useStyles();
-  const hasFormLink = signupForm && hasValidChar(signupForm);
-
-  return (
-    <Paper className={classes.paper}>
+    }}>
       {title ? (
-        <Title text={title} startText={classes.startText} />
+        <Title text={title} sx={{
+          paddingLeft: theme.spacing(1),
+          display: "inline",
+          marginBottom: theme.spacing(2),
+          fontWeight: "bold",
+        }}/>
       ) : (
         <AnnouncementIcon
           style={{ color: green[300], verticalAlign: "text-bottom" }}
@@ -57,14 +50,31 @@ export default function NewsItem(props) {
         </Box>
       ) : null}
 
-      <Typography
+      {/* <Typography
         color={"primary"}
         className={title ? "" : classes.startText}
         gutterBottom
         key={"sentence-"}
       >
         <div style={{ whiteSpace: "pre-line" }}>{content}</div>
-      </Typography>
+      </Typography> */}
+      <div>
+        <Typography
+          color={"primary"}
+          // className={title ? "" : classes.startText}
+          gutterBottom
+          key={"sentence-"}
+          sx={title ? { whiteSpace: "pre-line" } : {
+            paddingLeft: theme.spacing(1),
+            display: "inline",
+            marginBottom: theme.spacing(2),
+            fontWeight: "bold",
+            whiteSpace: "pre-line"
+          }}
+        >
+          {content}
+        </Typography>
+      </div>
 
       {!!images && images.length > 0
         ? images?.map((imgUrl, index) => (
@@ -78,22 +88,17 @@ export default function NewsItem(props) {
         : null}
       <Grid
         container
-        spacing={3}
-        className={classes.container}
+        // spacing={3}
+        sx={{      
+          marginTop: theme.spacing(2),
+          alignItems: "center",
+          justifyContent: "space-between",
+          //marginLeft: theme.spacing(1),
+        }}
       >
-        {hasFormLink ? <Grid item justify="center">
+        {hasFormLink ? <Grid sx={{justifyContent: "center"}} >
           <LinksList links={signupForm} linkText={"按此報名"} />
         </Grid> : null}
-             {/* <Grid item>
-          <Typography
-            color={"secondary"}
-            variant={"h6"}
-            align="center"
-            className={classes.container}
-          >
-            {moment(date, "MM/DD/YYYY").format("MM/DD/YYYY")}
-          </Typography>
-        </Grid> */}
       </Grid>
     </Paper>
   );

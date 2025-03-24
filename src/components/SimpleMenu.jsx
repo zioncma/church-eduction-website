@@ -10,7 +10,10 @@ import Paper from '@mui/material/Paper';
 import { ClickAwayListener } from '@mui/base';
 import { Link } from "react-router-dom";
 
-export default function SimpleMenu(props) {
+/**
+ * 
+ */
+export function SimpleMenu(props) {
   // const [anchorEl, setAnchorEl] = useState(null);
   const {routes, pageTitles} = props;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,7 +39,7 @@ export default function SimpleMenu(props) {
   }
 
   return (
-    <Box>
+    <Box className={"simple-menu"} >
       <IconButton
         edge="start"
         className={""}

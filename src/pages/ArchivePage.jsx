@@ -1,4 +1,4 @@
-import { Box } from '@material-ui/core';
+import { Box } from "components/atomic/Container";
 import { Podcast } from 'components/features/Podcast';
 
 // 資料庫

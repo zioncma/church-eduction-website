@@ -1,5 +1,5 @@
 import React from 'react';
-import { createTheme } from '../../styles';
+import { createTheme, muiTheme } from '../../styles';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 /**
@@ -7,7 +7,7 @@ import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
  */
 export default function Filter(props) {
   const { itemSet, updateTerm, currentTerm } = props;
-  const theme = createTheme();
+  const theme = muiTheme;
 
   return (
     <div>

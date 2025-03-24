@@ -3,12 +3,17 @@ import CardGrids from './CardGrids';
 import MainGridContainer from '../MainGridContainer';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import ItemPage from '../../pages/ItemPage';
-import Overview from './../Overview';
+import { Overview } from '../Overview';
 
 /**
  * Cards Page content
  */
-export default function CardsPageBase({cardList, itemType, children, ...optionals}) {
+export default function CardsPageBase({
+  cardList,
+  itemType,
+  children,
+  ...optionals
+}) {
   const { path, url } = useRouteMatch();
 
   //Temporary: when itemType === "growthcourse", don't display items for growth courses

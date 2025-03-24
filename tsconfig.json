@@ -30,11 +30,12 @@
     "strictNullChecks": true
   },
   "include": [
+    "build/types/**/*.ts",
     "next-env.d.ts",
     "src",
     "src/*",
     "src/**/*",
-    "build/types/**/*.ts"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

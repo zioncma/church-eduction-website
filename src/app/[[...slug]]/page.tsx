@@ -4,6 +4,7 @@ export function generateStaticParams() {
   return [{ slug: [''] },
   { slug: ["news"] }, // Handles /news
   {slug: ["growth"]},
+  {slug: ["course"]},
   ]
 }
 

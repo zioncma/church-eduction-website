@@ -5,7 +5,7 @@ import { Box } from '../../components/atomic/Container';
 import { Link } from '../../components/atomic/Link';
 import Filter from "components/NewsFeedPage/Filter";
 import MainGridContainer from "components/MainGridContainer";
-import Title from "components/Intro/Title";
+import PageHeaderTitle from "components/Intro/Title";
 import Description from "components/Intro/Description";
 import NewsItemFirebase from "../../components/NewsFeedPage/NewsItemFirebase";
 import db from "features/firebase/Firebase";
@@ -83,7 +83,7 @@ export default function NewsFeedPage({ pageTitle }) {
   return (
     <ErrorBoundary>
       <Intro>
-        <Title text={pageTitle} />
+        <PageHeaderTitle text={pageTitle} />
         <Description>
           歡迎來到宣道會錫安堂基教部的網頁。在這裏你可以得到有關主日學的最新消息，下載和重温過去的主日學。如對錫安堂的基督教教育有任何意見，歡迎通過
           {CONTACT_EMAIL}{" "}

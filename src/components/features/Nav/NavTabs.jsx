@@ -1,14 +1,8 @@
-import { Tab, Tabs } from "@material-ui/core/";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
-export default function NavTabs(props) {
-  const useStyles = makeStyles((theme) => ({
-    text: {
-      fontSize: "1.1rem",
-    },
-  }));
-  const classes = useStyles();
+export function NavTabs(props) {
 
   const { labels, routes } = props;
   
@@ -28,6 +22,8 @@ export default function NavTabs(props) {
       variant="scrollable"
       scrollButtons="on"
       aria-label="scrollable auto tabs"
+      textColor="secondary"
+      indicatorColor="secondary"
     >
       {routes.map((route, index) => (
         <Tab
@@ -36,7 +32,7 @@ export default function NavTabs(props) {
           component={Link}
           to={route}
           {...a11yProps(index)}
-          className={`${classes.text} ${classes.navLink}`}
+          className={`text-lg`}
           key={"tab-" + index}
         />
       ))}

@@ -1,7 +1,7 @@
 import growthbg from '../assets/growthbg.jpg';
 import CardsPageBase from '../components/Cards/CardsPageBase';
 import Intro from '../components/Intro';
-import Title from '../components/Intro/Title';
+import PageHeaderTitle from '../components/Intro/Title';
 import Description from '../components/Intro/Description';
 import { Link } from '../components/atomic/Link';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -10,6 +10,9 @@ import { useGrowthList } from '../features/npoint/hooks';
 const itemKey = 'growthcourse';
 const CONTACT_EMAIL = 'ce@zioncma.ca';
 
+/**
+ * 信徒成長路
+ */
 export default function GrowthPage({ pageTitle, ...optionals }) {
   const { growthData, isLoading, error } = useGrowthList();
 
@@ -32,15 +35,15 @@ export default function GrowthPage({ pageTitle, ...optionals }) {
         itemType={itemKey}
         {...{ pageTitle, bg, cardList: growthData }}
       >
-        {/* <Intro bg={bg}>
-          <Title text={pageTitle} />
+        <Intro bg={bg}>
+          <PageHeaderTitle text={pageTitle} />
           <Description>
             如果您對這一系列的新課程有興趣或問題, 請向基教部{CONTACT_EMAIL}{' '}
             <Link href={'mailto:' + CONTACT_EMAIL} style={{ color: 'blue' }}>
               查詢
             </Link>
           </Description>
-        </Intro> */}
+        </Intro>
       </CardsPageBase>
     </>
   );
