@@ -6,7 +6,7 @@ import {Box} from '../../components/atomic/Container';
 import {Grid} from '../../components/atomic/Grid';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import {LinksList} from "./LinksList";
-import { green } from "@material-ui/core/colors";
+import { green } from '@mui/material/colors';
 import { muiTheme, styled } from "../../styles";
 import Video from "../Video/Video";
 import { Title } from "./Title";

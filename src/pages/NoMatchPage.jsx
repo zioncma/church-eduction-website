@@ -1,32 +1,30 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-const useStyles = makeStyles((theme) => ({
-  fof: {
-    width: "100%",
-    height: "80vh",
-    // backgroundImage: `url(${img})`,
-    textAlign: "center",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-  },
-  '& *': {
-    fontFamily: "'Montserrat', Helvetica, sans-serif",
-    color: "#bbb",
-  },
-  h: {
-    margin: "30px 15px",
-    fontSize: "4rem"
-  }
-}));
+import styled from 'styled-components';
 
+// '& *': {
+//   fontFamily: "'Montserrat', Helvetica, sans-serif",
+//   color: "#bbb",
+// },
+
+const StyledFof = styled.div`
+  width: 100%;
+  height: 80vh;
+  text-align: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+`;
+
+const Heading = styled.h1`
+  font-size: 4rem;
+  margin: 30px 15px;
+`;  
 
 export default function NoMatchPage() {
-  const classes = useStyles();
   return (
-    <div className={classes.fof}>
-      <h1 className={classes.h}>Error 404</h1>
+    <StyledFof >
+      <Heading>Error 404</Heading>
       <p>Sorry, this page doesn't exist...</p>
-    </div>
+    </StyledFof>
   )
 }

@@ -1,7 +1,7 @@
 import Nav from './components/features/Nav';
 import { Footer } from './components/Footer/Footer';
 import Theme from './providers/Theme';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from '@mui/material/CssBaseline';
 import {
   BrowserRouter as Router,
   Switch,

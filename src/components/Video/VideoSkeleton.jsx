@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box } from "components/atomic/Container";
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import Skeleton from '@material-ui/lab/Skeleton';
+import { Typography } from 'components/atomic/Typography';
+import Avatar from '@mui/material/Avatar';
+import Skeleton from '@mui/material/Skeleton';
 
 
 export default function VideoSkeleton(props) {

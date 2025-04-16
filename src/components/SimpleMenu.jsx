@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box } from "../components/atomic/Container";
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from "@material-ui/icons/Menu";
+import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Popper from '@mui/material/Popper';
