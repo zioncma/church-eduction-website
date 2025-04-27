@@ -7,28 +7,20 @@ import Filter from "components/NewsFeedPage/Filter";
 import MainGridContainer from "components/MainGridContainer";
 import PageHeaderTitle from "components/Intro/Title";
 import Description from "components/Intro/Description";
-import NewsItemFirebase from "../../components/NewsFeedPage/NewsItemFirebase";
-import db from "features/firebase/Firebase";
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  orderBy,
-  query,
-} from "firebase/firestore";
-import {ErrorBoundary} from '../../features/error-handling';
+import NewsItem from "../../components/NewsFeedPage/NewsItem";
+import { ErrorBoundary } from '../../features/error-handling';
+import { useNews, useTerms } from "./hooks";
 
 export function renderNews(items) {
   if (!items || items.length === 0) {
     return null;
   }
+  console.debug("renderNews", items);
 
   return (
     <ErrorBoundary>
       {items.map((news, i) => (
-        <Grid key={"news-grid-" + i} item xs={12}>
-          <NewsItemFirebase key={"news-" + i} {...news} />
-        </Grid>
+          <NewsItem key={"news-" + i} {...news} />
       ))}
     </ErrorBoundary>
   );
@@ -36,38 +28,36 @@ export function renderNews(items) {
 
 const CONTACT_EMAIL = "ce@zioncma.ca";
 
-async function fetchTerms() {
-  const querySnapshot = await getDocs(
-    query(collection(db, "terms"), orderBy("index", "desc"))
-  );
-  const termsData = querySnapshot.docs.map((doc) => doc.data());
-  return termsData;
-}
-
 export default function NewsFeedPage({ pageTitle }) {
+  const {data: terms, error: termError} = useTerms();
+
   //firebase
-  const [terms, setTerms] = useState([]);
-  const [selectedTerm, setSelectedTerm] = useState(undefined);
-  const path = `content/SundaySchool/${selectedTerm}`;
+  // const [terms, setTerms] = useState([]);
+  const [selectedTermName, setSelectedTermName] = useState(undefined);
+  const [selectedTermId, setSelectedTermId] = useState<number | undefined>(undefined);
+  const {data: newsData, error: newsError} = useNews(selectedTermId);
 
   useEffect(() => {
-    async function fetchData() {
-      const termsData = await fetchTerms();
-      setTerms(termsData.map((t) => t.name));
-      setSelectedTerm(termsData[0]?.name);
-    }
-    fetchData();
+    // async function fetchData() {
+    //   const termsData = await fetchTerms2();
+    //   setTerms(termsData.map((t) => t.name));
+    //   setSelectedTerm(termsData[0]?.name);
+    // }
+    // fetchData();
   }, []);
 
-  const [course, setCourse] = useState([]);
-  useEffect(
-    () =>
-      onSnapshot(
-        query(collection(db, path), orderBy("createAt", "desc")),
-        (snapshot) => setCourse(snapshot.docs.map((doc) => doc.data()))
-      ),
-    [path]
-  );
+  const [courses, setCourses] = useState([]);
+
+  if (termError) {
+    return (
+      <div>{`Error! ${termError?.message} Please refresh or contact administrators`}</div>
+    );
+  }
+  if (newsError) {
+    return (
+      <div>{`Error! ${newsError?.message} Please refresh or contact administrators`}</div>
+    );
+  }
 
   // if (error) {
   //   return (
@@ -94,14 +84,18 @@ export default function NewsFeedPage({ pageTitle }) {
         </Description>
       </Intro>
       <MainGridContainer>
-        <Box sx={{display: "flex", justifyContent: "flex-end", width: "100%"}}>
+        <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
           <Filter
             itemSet={terms}
-            updateTerm={(value) => setSelectedTerm(value)}
-            currentTerm={selectedTerm}
+            updateTerm={(value) => {
+              setSelectedTermName(value)
+              const term = terms?.find((t) => t.name === value);
+              setSelectedTermId(term?.id);
+            }}
+            currentTerm={selectedTermName}
           />
         </Box>
-        {course && course?.length > 0 && renderNews(course)}
+        {newsData && newsData?.length > 0 && renderNews(newsData)}
       </MainGridContainer>
     </ErrorBoundary>
   );

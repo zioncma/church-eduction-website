@@ -6,8 +6,12 @@ import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
  *
  */
 export default function Filter(props) {
-  const { itemSet, updateTerm, currentTerm } = props;
+  const { itemSet, updateTerm, currentTerm, ...rest } = props;
   const theme = muiTheme;
+
+  if (!itemSet) {
+    return null;
+  }
 
   return (
     <div>
@@ -23,8 +27,8 @@ export default function Filter(props) {
           value={currentTerm}
         >
           {[...itemSet].map((term, index) => (
-            <MenuItem key={'term-' + index} value={term}>
-              {term}
+            <MenuItem key={'term-' + index} value={term.name}>
+              {term.name}
             </MenuItem>
           ))}
           <MenuItem key={'none'} defaultvalue={currentTerm}></MenuItem>
