@@ -45,10 +45,14 @@ const useStyles = makeStyles((theme) => ({
 //   bg: PropTypes.string,
 // };
 
-export default function CustomCard(props) {
+/**
+ * A card component displaying a lesson.
+ */
+export function LessonCard({ date, title = '', subtitle = '', id: lessonId, bg = defaultCard.src, ...optionals }) {
+  const { courseId } = optionals;
+
   const classes = useStyles();
   const theme = muiTheme;
-  const { date, title = '', subtitle = '', itemId, description, bg = defaultCard.src } = props;
   // console.debug('CustomCard bg:', bg);
   const fullTitle = title + (subtitle ? ': ' + subtitle : '');
   const { url } = useRouteMatch();
@@ -57,6 +61,8 @@ export default function CustomCard(props) {
   function handleClick() {
     updateIsLoading(true);
   }
+
+  const lessonUrl = `${url}/${courseId}/${lessonId}`
 
   return (
     <>
@@ -126,7 +132,7 @@ export default function CustomCard(props) {
               marginLeft: theme.spacing(1),
             }}
             component={Link}
-            to={`${url}/${itemId}`}
+            to={lessonUrl}
             onClick={handleClick}
           >
             Learn More

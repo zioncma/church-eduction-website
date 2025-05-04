@@ -5,7 +5,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { shallow, mount } from "enzyme";
 import renderer from 'react-test-renderer';
-import CustomCard from './CustomCard';
+import {LessonCard} from './LessonCard';
 
 // describe('Card', () => {
 //     const props = {

@@ -1,5 +1,5 @@
 import { Box } from "components/atomic/Container";
-import { Podcast } from 'components/features/Podcast';
+import { Podcast } from 'components/atomic/Podcast';
 
 // 資料庫
 export function ArchivePage() {

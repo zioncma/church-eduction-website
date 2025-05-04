@@ -1,19 +1,16 @@
-import CardsPageBase from '../components/Cards/CardsPageBase';
 import Intro from '../components/Intro/Intro';
 import PageHeaderTitle from '../components/Intro/Title';
 import Description from '../components/Intro/Description';
 import LinearProgress from '@mui/material/LinearProgress';
-import { useCoursesData } from '../features/npoint/hooks';
-import { useCourseList } from '../features/firebase';
+import { useEducationPageData } from './hooks';
 import { ErrorBoundary } from '../features/error-handling';
-
-const ITEM_KEY = 'courses';
+import { CoursesList } from '../components/organism/CoursesList';
 
 /**
  * Page for CE courses
  */
 export function EducationPage({ pageTitle, ...optionals }) {
-  const { data: courses, isLoading, error } = useCourseList();
+  const { courses, error, isLoading, terms, } = useEducationPageData();
 
   if (error) {
     return <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>;
@@ -25,15 +22,14 @@ export function EducationPage({ pageTitle, ...optionals }) {
 
   return (
     <ErrorBoundary>
-      <CardsPageBase
-        itemType={ITEM_KEY}
-        cardList={courses?.terms}
+      <CoursesList
+        data={courses}
       >
-        <Intro bg={courses?.page_banner}>
+        <Intro bg={"https://cdn.pixabay.com/photo/2017/03/23/09/08/bible-2167778_960_720.jpg"} >
           <PageHeaderTitle text={pageTitle} />
-          <Description>{courses?.page_description}</Description>
+          <Description>培養造就屬靈帶領，讓弟兄姊妹能在神的話語上進深，掌握基本的聖經解釋和查經帶領方法。</Description>
         </Intro>
-      </CardsPageBase>
+      </CoursesList>
     </ErrorBoundary>
   );
 }

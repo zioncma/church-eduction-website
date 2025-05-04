@@ -1,6 +1,5 @@
 import useSWR from 'swr';
 import { fetchCourses } from './apis';
-import { useEffect, useState } from "react";
 import db from "features/firebase/Firebase";
 import {
   collection,

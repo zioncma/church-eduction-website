@@ -20,7 +20,7 @@ NewsItem.propTypes = {
 };
 
 export default function NewsItem(props) {
-  console.debug("NewsItem props", props);
+  // console.debug("NewsItem props", props);
   const { title, content, form_link: signupForm, video, images } = props;
   const theme = muiTheme;
 

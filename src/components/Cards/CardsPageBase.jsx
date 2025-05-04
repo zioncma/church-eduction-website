@@ -8,7 +8,7 @@ import { Overview } from '../Overview';
 /**
  * Cards Page content
  */
-export default function CardsPageBase({
+export function CardsPageBase({
   cardList,
   itemType,
   children,
@@ -29,7 +29,7 @@ export default function CardsPageBase({
             {itemType === 'growthcourse' ? (
               <Overview />
             ) : (
-              <CardGrids cardList={cardList} itemType={itemType} />
+              <CardGrids cardList={cardList} />
             )}
           </MainGridContainer>
         </Route>

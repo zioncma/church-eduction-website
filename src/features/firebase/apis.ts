@@ -1,5 +1,11 @@
-import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import db from './Firebase';
+import {
+  collection,
+  getDocs,
+  orderBy,
+  query,
+  doc, getDoc
+} from "firebase/firestore";
 
 const collectionName = 'courses';
 const pathSegment = 'pS4uRUtiS617BbVRdFaf';
@@ -21,4 +27,13 @@ export async function fetchCourses() {
   console.log('fetched courses', result);
 
   return result;
+}
+
+
+export async function fetchTerms() {
+  const querySnapshot = await getDocs(
+    query(collection(db, "terms"), orderBy("index", "desc"))
+  );
+  const termsData = querySnapshot.docs.map((doc) => doc.data());
+  return termsData;
 }

@@ -9,13 +9,13 @@ import PageHeaderTitle from "components/Intro/Title";
 import Description from "components/Intro/Description";
 import NewsItem from "../../components/NewsFeedPage/NewsItem";
 import { ErrorBoundary } from '../../features/error-handling';
-import { useNews, useTerms } from "./hooks";
+import { useNews, useTerms } from "../../domain";
 
 export function renderNews(items) {
   if (!items || items.length === 0) {
     return null;
   }
-  console.debug("renderNews", items);
+  // console.debug("renderNews", items);
 
   return (
     <ErrorBoundary>
@@ -29,7 +29,7 @@ export function renderNews(items) {
 const CONTACT_EMAIL = "ce@zioncma.ca";
 
 export default function NewsFeedPage({ pageTitle }) {
-  const {data: terms, error: termError} = useTerms();
+  const {terms, error: termError} = useTerms();
 
   //firebase
   // const [terms, setTerms] = useState([]);

@@ -3,7 +3,7 @@ import { createTheme, muiTheme } from '../../styles';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 /**
- *
+ * Filter by term
  */
 export default function Filter(props) {
   const { itemSet, updateTerm, currentTerm, ...rest } = props;

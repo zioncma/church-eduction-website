@@ -13,20 +13,13 @@ import Share from '../components/ItemPage/Share';
 import { Description } from '../components/ItemPage/Description';
 import Video from '../components/Video/Video';
 import { useRouteMatch } from 'react-router-dom';
-// import { loadItemData } from '../lib/loadData';
 import { makeStyles, muiTheme } from 'styles';
 import styled from 'styled-components';
 import { getArray, isFilledArray } from 'utils';
-import { useItemData } from '../features/npoint/hooks';
 import { ErrorBoundary } from '../features/error-handling';
+import { CenteredContainer } from '../components/atomic/CenteredContainer';
+import { useItemPageData } from '../domain';
 
-const CenteredContainer = styled.div`
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  width: 100%;
-  height: 100vh;
-`;
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -41,25 +34,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-ItemPage.propTypes = {
-  title: PropTypes.string,
-  // id: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-  description: PropTypes.string,
-  video: PropTypes.string,
-  files: PropTypes.array,
-};
+type LessonItem = {
+  title: string;
+  subtitle: string;
+  description: string;
+  video: string[];
+  files: any[];
+  [x: string]: any;
+}
 
 /**
  * 
  */
-function LoadedContent({ item, shareUrl, ...optionals }) {
+function LoadedContent({ item, shareUrl, ...optionals }: {item: LessonItem, shareUrl: string, [x: string]: any}) {
   // Hooks
   const classes = useStyles();
+
   const theme = muiTheme;
 
   // Props
-  const { title, subtitle, description, video, files } = item;
+  const { title, subtitle, description, video, files } = item || {};
   const fullTitle = title + (subtitle ? ': ' + subtitle : '');
   const videoArr: any[] = getArray(video);
 
@@ -99,11 +93,15 @@ function LoadedContent({ item, shareUrl, ...optionals }) {
   );
 }
 
+/**
+ * Lesson page for displaying a single lesson
+ */
 export default function ItemPage(props) {
   const shareUrl = window.location.href;
-  const { url, params } = useRouteMatch();
-  const { id } = params; //pure item id
-  const { courseItem, isLoading, error } = useItemData(url, id);
+
+  const { params } = useRouteMatch();
+  const { id, courseId } = params;
+  const {lesson, course, error, isLoading} = useItemPageData(id, courseId);
 
   if (error) {
     return <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>;
@@ -113,9 +111,20 @@ export default function ItemPage(props) {
     return <CenteredContainer><CircularProgress color={'secondary'} /></CenteredContainer>;
   }
 
+  console.log(" ItemPage ~ lesson:", lesson)
+
+  
+  // title, subtitle, description, video, files
+  const lessonItem: LessonItem = {
+    ...lesson,
+    description: lesson?.content || course?.description,
+    video: lesson?.file_document?.filter(item => item.file_type === 'video')?.map(item => item.link),
+    files: lesson?.file_document?.filter(item => item.file_type !== 'document')?.map(item => item.link),
+  }
+
   return (
     <>
-      <LoadedContent shareUrl={shareUrl} item={courseItem} />
+      <LoadedContent shareUrl={shareUrl} item={lessonItem} />
     </>
   );
 }
