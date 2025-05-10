@@ -1,7 +1,7 @@
 import { AppBar, Toolbar } from '../../../components/atomic/AppBar';
 import { Box } from '../../../components/atomic/Container';
 import { Typography } from '../../../components/atomic/Typography';
-import logo from '../../../assets/logo.png';
+import logo from 'styles/assets/logo.png';
 import {SimpleMenu} from '../../SimpleMenu';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { muiTheme } from 'styles';

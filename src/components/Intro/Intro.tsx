@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '../../components/atomic/Container';
-import defaultbg from '../../assets/defaultBg.jpg';
+import defaultbg from 'styles/assets/defaultBg.jpg';
 import { makeStyles, muiTheme } from '../../styles';
 
 export default function Intro(props) {

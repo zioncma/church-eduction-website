@@ -12,7 +12,7 @@ import moment from 'moment';
 import { Link, useRouteMatch } from 'react-router-dom';
 import AppContext from '../../providers/AppContext';
 
-import defaultCard from '../../assets/defaultCard.jpg'; //Image by <a href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Free-Photos</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Pixabay</a>
+import defaultCard from 'styles/assets/defaultCard.jpg'; //Image by <a href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Free-Photos</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Pixabay</a>
 import { makeStyles, muiTheme } from 'styles';
 
 const useStyles = makeStyles((theme) => ({

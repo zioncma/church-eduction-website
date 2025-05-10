@@ -2,16 +2,27 @@ import { getAllNews, getNewsByTerm, getAllCourses } from '../features/supabase';
 import useSWR from 'swr';
 import _ from 'lodash';
 import { useCourseById, useLessonById } from './courses';
+import { sortByStartDate } from '.';
 
 export function useNews(termId: number | undefined) {
   if (termId === undefined) {
-    return useSWR('news', getAllNews);
+    const allNews = useSWR('news', getAllNews);
+    return {
+      newsData: sortByStartDate(allNews.data), 
+      newsError: allNews.error, 
+      isLoading: !allNews.error && !allNews.data,
+    };
   }
 
   const result = useSWR(termId ? `news:${termId}` : null, () =>
     getNewsByTerm(termId)
   );
-  return result;
+
+  return {
+    newsData: sortByStartDate(result.data), 
+    newsError: result.error, 
+    isLoading: !result.error && !result.data,
+  };
 }
 
 

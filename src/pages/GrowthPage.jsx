@@ -1,4 +1,4 @@
-import growthbg from '../assets/growthbg.jpg';
+import growthbg from 'styles/assets/growthbg.jpg';
 import {CardsPageBase} from '../components/Cards/CardsPageBase';
 import Intro from '../components/Intro';
 import PageHeaderTitle from '../components/Intro/Title';

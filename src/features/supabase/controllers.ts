@@ -202,19 +202,9 @@ export const getAllTerms = async () => {
     .select("*");
   if (termsError) throw termsError;
 
-  // const termsWithCourseCount = await terms?.map(async (term) => {
-  //   const { data: courses, error: coursesError } = await supabase
-  //     .from("course")
-  //     .select("id")
-  //     .eq("term", term.id);
-
-  //   if (coursesError) throw coursesError;
-
-  //   return {
-  //     ...term,
-  //     courseCount: courses?.length || 0,
-  //   };
-  // })
+  if (!terms) {
+    return [];
+  }
 
   const termsWithCourseCount = await Promise.all(
     terms.map(async (term) => {
@@ -227,7 +217,7 @@ export const getAllTerms = async () => {
 
       return {
         ...term,
-        courseCount: courses.length,
+        courseCount: courses?.length || 0,
       };
     })
   );

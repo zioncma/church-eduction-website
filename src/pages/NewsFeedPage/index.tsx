@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Intro from "components/Intro/Intro";
-import { Grid } from '../../components/atomic/Grid';
 import { Box } from '../../components/atomic/Container';
 import { Link } from '../../components/atomic/Link';
 import Filter from "components/NewsFeedPage/Filter";
@@ -20,7 +19,7 @@ export function renderNews(items) {
   return (
     <ErrorBoundary>
       {items.map((news, i) => (
-          <NewsItem key={"news-" + i} {...news} />
+        <NewsItem key={"news-" + i} {...news} />
       ))}
     </ErrorBoundary>
   );
@@ -29,13 +28,12 @@ export function renderNews(items) {
 const CONTACT_EMAIL = "ce@zioncma.ca";
 
 export default function NewsFeedPage({ pageTitle }) {
-  const {terms, error: termError} = useTerms();
+  const { terms, error: termError } = useTerms();
 
-  //firebase
-  // const [terms, setTerms] = useState([]);
+
   const [selectedTermName, setSelectedTermName] = useState(undefined);
   const [selectedTermId, setSelectedTermId] = useState<number | undefined>(undefined);
-  const {data: newsData, error: newsError} = useNews(selectedTermId);
+  const { newsData, newsError } = useNews(selectedTermId);
 
   useEffect(() => {
     // async function fetchData() {
@@ -45,8 +43,6 @@ export default function NewsFeedPage({ pageTitle }) {
     // }
     // fetchData();
   }, []);
-
-  const [courses, setCourses] = useState([]);
 
   if (termError) {
     return (
