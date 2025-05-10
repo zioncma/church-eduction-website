@@ -9,6 +9,9 @@ import Description from "components/Intro/Description";
 import NewsItem from "../../components/NewsFeedPage/NewsItem";
 import { ErrorBoundary } from '../../features/error-handling';
 import { useNews, useTerms } from "../../domain";
+import { CenteredContainer } from "../../components/atomic/CenteredContainer";
+import CircularProgress from "@mui/material/CircularProgress";
+import { isFilledArray } from "../../utils";
 
 export function renderNews(items) {
   if (!items || items.length === 0) {
@@ -33,7 +36,7 @@ export default function NewsFeedPage({ pageTitle }) {
 
   const [selectedTermName, setSelectedTermName] = useState(undefined);
   const [selectedTermId, setSelectedTermId] = useState<number | undefined>(undefined);
-  const { newsData, newsError } = useNews(selectedTermId);
+  const { newsData, newsError, isLoading } = useNews(selectedTermId);
 
   useEffect(() => {
     // async function fetchData() {
@@ -55,16 +58,10 @@ export default function NewsFeedPage({ pageTitle }) {
     );
   }
 
-  // if (error) {
-  //   return (
-  //     <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>
-  //   );
-  // }
+  if (isLoading) {
+    return <CenteredContainer><CircularProgress color={'secondary'} /></CenteredContainer>;
+  }
 
-  // if (isLoading) {
-  //   return <LinearProgress color={"secondary"} />;
-  // }
-  // console.debug('newsList', newsList);
 
   return (
     <ErrorBoundary>
@@ -91,7 +88,7 @@ export default function NewsFeedPage({ pageTitle }) {
             currentTerm={selectedTermName}
           />
         </Box>
-        {newsData && newsData?.length > 0 && renderNews(newsData)}
+        {isFilledArray(newsData) ? renderNews(newsData) : null}
       </MainGridContainer>
     </ErrorBoundary>
   );

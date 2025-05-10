@@ -16,7 +16,7 @@ export default function Video({link, ...optionals}: {link: string, [x: string]: 
     <>
       <div
         className={"player-wrapper"}
-        style={{ display: isReady ? null : "none" }}
+        style={{ display: isReady ? "unset" : "none" }}
       >
         <ReactPlayer
           url={link}

@@ -1,4 +1,3 @@
-// import { group } from "console";
 
 type TermNews = {
   name: string;

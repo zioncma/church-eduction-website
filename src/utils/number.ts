@@ -12,7 +12,7 @@ export function getPercentageInt(x: number, y: number): number {
  *
  * @returns percentage number
  */
-export function getIncreaseRate(num: number, comparedNum: number): number {
+export function getIncreaseRate(num: number, comparedNum: number): number | null {
   if (!Number.isFinite(num) || !Number.isFinite(comparedNum)) {
     return null;
   }

@@ -1,28 +1,3 @@
-/**
- * @description trim all the string type properties of an object
- * @param  {T} obj
- * @returns T
- */
- export function trimObjectProperties<T>(obj: T): T {
-  let result = {} as T;
-  Object.assign(result, obj);
-  Object.keys(obj).map((k) => {
-    return (result[k] = typeof obj[k] === 'string' ? obj[k].trim() : obj[k]);
-  });
-
-  return result;
-}
-
-
-export function replaceEmptyStringWithNull<T>(obj: T): T {
-  const result = { ...obj };
-  Object.keys(result).forEach((key) => {
-    if (result[key] === '') {
-      result[key] = null;
-    }
-  });
-  return result;
-}
 
 const getCircularReplacer = () => {
   const seen = new WeakSet();
@@ -50,7 +25,7 @@ export function inspect(obj: object): string {
  */
 export function getKeysExcept(data: object, except: string[]): string[] {
   if (!data) {
-    return null;
+    return [];
   }
 
   return Object.keys(data).filter(

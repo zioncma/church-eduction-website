@@ -15,3 +15,5 @@ export function ArchivePage() {
     </Box>
   );
 }
+
+export default ArchivePage;

@@ -32,6 +32,8 @@ export function File({ title = '', doc = '', ...optionals }) {
         href={doc}
         size='small'
         endIcon={<CloudDownloadIcon />}
+        // TODO: fix this type error
+        //@ts-ignore
         sx={{
           backgroundColor: theme.palette.buttonBg,
           color: theme.palette.primary.main,

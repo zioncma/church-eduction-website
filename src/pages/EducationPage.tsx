@@ -2,9 +2,27 @@ import Intro from '../components/Intro/Intro';
 import PageHeaderTitle from '../components/Intro/Title';
 import Description from '../components/Intro/Description';
 import LinearProgress from '@mui/material/LinearProgress';
-import { useEducationPageData } from './hooks';
 import { ErrorBoundary } from '../features/error-handling';
 import { CoursesList } from '../components/organism/CoursesList';
+import { useAllCourses, useTerms } from '../domain';
+
+/**
+ * 
+ * @returns get all courses and 
+ */
+function useEducationPageData() {
+  const {terms, error: termsError, isLoading: isLoadingTerms } = useTerms();
+  const { courses, error: allCoursesError, isLoading: isLoadingAllCourses } = useAllCourses();
+
+  return {
+    courses,
+    terms,
+    error: allCoursesError || termsError,
+    isLoading: isLoadingAllCourses || isLoadingTerms,
+  };
+}
+
+
 
 /**
  * Page for CE courses
@@ -33,3 +51,6 @@ export function EducationPage({ pageTitle, ...optionals }) {
     </ErrorBoundary>
   );
 }
+
+
+export default EducationPage;

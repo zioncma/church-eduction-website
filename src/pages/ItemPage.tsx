@@ -18,6 +18,7 @@ import { getArray, isFilledArray } from 'utils';
 import { ErrorBoundary } from '../features/error-handling';
 import { CenteredContainer } from '../components/atomic/CenteredContainer';
 import { useItemPageData } from '../domain';
+import { useEffect, useState } from 'react';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -96,7 +97,12 @@ function LoadedContent({ item, shareUrl, ...optionals }: { item: LessonItem, sha
  * Lesson page for displaying a single lesson
  */
 export default function ItemPage(props) {
-  const shareUrl = window.location.href;
+  // For any window-dependent variables, initialize with null or a fallback value
+  const [shareUrl, setShareUrl] = useState("")
+  useEffect(() => {
+    // This code only runs in the browser, never on the server
+    setShareUrl(window.location.href)
+  }, [])
 
   const { params } = useRouteMatch();
   const { id, courseId } = params;
