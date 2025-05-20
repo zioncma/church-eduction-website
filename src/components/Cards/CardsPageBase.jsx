@@ -2,7 +2,7 @@ import React from 'react';
 import CardGrids from './CardGrids';
 import MainGridContainer from '../MainGridContainer';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import ItemPage from '../../pages/ItemPage';
+// import ItemPage from '../../pages/[...lesson]';
 import { Overview } from '../Overview';
 
 /**
@@ -20,9 +20,9 @@ export function CardsPageBase({
   return (
     <>
       <Switch>
-        <Route path={`${path}/:id`}>
+        {/* <Route path={`${path}/:id`}>
           <ItemPage />
-        </Route>
+        </Route> */}
         <Route path={url}>
           {children}
           <MainGridContainer>

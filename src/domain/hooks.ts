@@ -5,6 +5,7 @@ import { useCourseById, useLessonById } from './courses';
 import { sortByStartDate } from '.';
 
 export function useNews(termId: number | undefined) {
+  console.debug("useNews: ", termId);
   if (termId === undefined) {
     const allNews = useSWR('news', getAllNews);
     return {

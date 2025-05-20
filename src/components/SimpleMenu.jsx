@@ -8,7 +8,8 @@ import Popper from '@mui/material/Popper';
 import Grow from "@mui/material/Grow";
 import Paper from '@mui/material/Paper';
 import { ClickAwayListener } from '@mui/base';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import Link from 'next/link';
 
 /**
  * 
@@ -76,7 +77,7 @@ export function SimpleMenu(props) {
                   id="menu-list-grow"
                   onKeyDown={handleListKeyDown}
                 >
-                  {routes.map( (route, index) => (<MenuItem onClick={handleClose} component={Link} to={route} key={"menu-item-" + index}>{pageTitles[index]}</MenuItem>) )}
+                  {routes.map( (route, index) => (<MenuItem onClick={handleClose} component={Link} href={route} key={"menu-item-" + index}>{pageTitles[index]}</MenuItem>) )}
                 </MenuList>
               </ClickAwayListener>
             </Paper>

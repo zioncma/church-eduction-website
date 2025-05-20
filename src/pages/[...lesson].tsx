@@ -11,28 +11,14 @@ import Title from '../components/ItemPage/Title';
 import Share from '../components/ItemPage/Share';
 import { Description } from '../components/ItemPage/Description';
 import Video from '../components/Video/Video';
-import { useRouteMatch } from 'react-router-dom';
-import { makeStyles, muiTheme } from 'styles';
-import styled from 'styled-components';
+import { muiTheme } from 'styles';
 import { getArray, isFilledArray } from 'utils';
 import { ErrorBoundary } from '../features/error-handling';
 import { CenteredContainer } from '../components/atomic/CenteredContainer';
 import { useItemPageData } from '../domain';
 import { useEffect, useState } from 'react';
-
-
-const useStyles = makeStyles((theme) => ({
-  container: {
-    marginTop: theme.spacing(4),
-  },
-  item: {
-    padding: theme.spacing(2),
-  },
-  divider: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-  },
-}));
+import { useRouter } from 'next/router';
+import CommonTemplate from '../components/template/CommonTemplate';
 
 type LessonItem = {
   title: string;
@@ -48,8 +34,6 @@ type LessonItem = {
  */
 function LoadedContent({ item, shareUrl, ...optionals }: { item: LessonItem, shareUrl: string, [x: string]: any }) {
   // Hooks
-  const classes = useStyles();
-
   const theme = muiTheme;
 
   // Props
@@ -67,7 +51,10 @@ function LoadedContent({ item, shareUrl, ...optionals }: { item: LessonItem, sha
             <Box>
               <Title text={fullTitle} />
               {shareUrl ? <Share text={fullTitle} url={shareUrl} /> : null}
-              <Divider classes={{ root: classes.divider }} />
+              <Divider sx={{
+                marginTop: theme.spacing(2),
+                marginBottom: theme.spacing(2),
+              }} />
               <Description text={description} />
             </Box>
             <ErrorBoundary>
@@ -96,7 +83,7 @@ function LoadedContent({ item, shareUrl, ...optionals }: { item: LessonItem, sha
 /**
  * Lesson page for displaying a single lesson
  */
-export default function ItemPage(props) {
+export function ItemPage(props) {
   // For any window-dependent variables, initialize with null or a fallback value
   const [shareUrl, setShareUrl] = useState("")
   useEffect(() => {
@@ -104,9 +91,12 @@ export default function ItemPage(props) {
     setShareUrl(window.location.href)
   }, [])
 
-  const { params } = useRouteMatch();
-  const { id, courseId } = params;
-  const { lesson, course, error, isLoading } = useItemPageData(id, courseId);
+  const router = useRouter();
+  const lessonQuery = router.query.lesson;
+  const [id, courseId] = Array.isArray(lessonQuery) ? lessonQuery : ["0", "0"];
+  // const { params } = useRouteMatch();
+  // const { id, courseId } = params;
+  const { lesson, course, error, isLoading } = useItemPageData(parseInt(id), parseInt(courseId));
 
   if (error) {
     return <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>;
@@ -125,11 +115,15 @@ export default function ItemPage(props) {
     description: lesson?.content || course?.description,
     video: lesson?.file_document?.filter(item => item.file_type === 'video')?.map(item => item.link),
     files: lesson?.file_document?.filter(item => item.file_type === 'document'),
+    subtitle: lesson.title,
+    title: course?.title,
   }
 
   return (
-    <>
+    <CommonTemplate>
       <LoadedContent shareUrl={shareUrl} item={lessonItem} />
-    </>
+    </CommonTemplate>
   );
 }
+
+export default ItemPage;

@@ -9,11 +9,14 @@ import {
 import { Typography } from 'components/atomic/Typography';
 import { Box } from 'components/atomic/Container';
 import moment from 'moment';
-import { Link, useRouteMatch } from 'react-router-dom';
-import AppContext from '../../providers/AppContext';
+// import { useRouteMatch } from 'react-router-dom';
+// import Link from 'next/link'
+// import AppContext from '../../providers/AppContext';
 
 import defaultCard from 'styles/assets/defaultCard.jpg'; //Image by <a href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Free-Photos</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Pixabay</a>
 import { makeStyles, muiTheme } from 'styles';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -36,15 +39,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// CustomCard.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   itemId: PropTypes.string.isRequired,
-//   subtitle: PropTypes.string,
-//   date: PropTypes.string,
-//   description: PropTypes.string,
-//   bg: PropTypes.string,
-// };
-
 /**
  * A card component displaying a lesson.
  */
@@ -55,14 +49,15 @@ export function LessonCard({ date, title = '', subtitle = '', id: lessonId, bg =
   const theme = muiTheme;
   // console.debug('CustomCard bg:', bg);
   const fullTitle = title + (subtitle ? ': ' + subtitle : '');
-  const { url } = useRouteMatch();
-  const { updateIsLoading } = useContext(AppContext);
+  // const { url } = useRouteMatch();
+  const router = useRouter();
+  // const { updateIsLoading } = useContext(AppContext);
+  const lessonUrl = `/${courseId}/${lessonId}`
 
   function handleClick() {
-    updateIsLoading(true);
+    router.push(lessonUrl);
   }
 
-  const lessonUrl = `${url}/${courseId}/${lessonId}`
 
   return (
     <>
@@ -114,14 +109,6 @@ export function LessonCard({ date, title = '', subtitle = '', id: lessonId, bg =
           >
             {fullTitle}
           </Typography>
-          {/* <Typography
-            variant="body2"
-            color="textPrimary"
-            component="p"
-            className={classes.descrip}
-          >
-            {description}
-          </Typography> */}
         </CardContent>
         <CardActions>
           <Button
@@ -131,7 +118,6 @@ export function LessonCard({ date, title = '', subtitle = '', id: lessonId, bg =
             sx={{
               marginLeft: theme.spacing(1),
             }}
-            component={Link}
             to={lessonUrl}
             onClick={handleClick}
           >

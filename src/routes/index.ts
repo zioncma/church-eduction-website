@@ -1,8 +1,8 @@
 
-import NewsFeedPage from 'pages/NewsFeedPage';
-import {EducationPage} from 'pages/EducationPage';
-import GrowthPage from 'pages/GrowthPage';
-import {ArchivePage} from 'pages/ArchivePage';
+import NewsFeedPage from 'pages/news';
+import {EducationPage} from 'pages/course';
+import GrowthPage from 'pages/growth';
+import {ArchivePage} from 'pages/archive';
 // import NoMatchPage from 'pages/NoMatchPage';
 
 //Routing

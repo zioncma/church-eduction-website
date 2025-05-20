@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { isFilledArray } from '../../../utils';
+import { useRouter } from 'next/navigation'
 
-export function NavTabs(props) {
+/**
+ * Default tab: /news
+ */
+export function NavTabs({ labels, routes, value }) {
+  const router = useRouter();
 
-  const { labels, routes } = props;
-  
   //find which tab should be the active tab
-  const currentTab = routes.find((tabValue) => props.value.includes(tabValue));
+  const currentTab = routes.find((tabValue) => value === tabValue) || '/news';
 
   const a11yProps = (index) => {
     return {
@@ -25,17 +29,20 @@ export function NavTabs(props) {
       textColor="secondary"
       indicatorColor="secondary"
     >
-      {routes.map((route, index) => (
+      {isFilledArray(routes) ? routes.map((route, index) => (
         <Tab
           label={labels[index]}
           value={route}
-          component={Link}
-          to={route}
+          // component={Link}
+          onClick={() => {
+            router.push(route);
+          }}
+          // herf={route}
           {...a11yProps(index)}
           className={`text-lg`}
           key={"tab-" + index}
         />
-      ))}
+      )) : null}
     </Tabs>
   );
 }

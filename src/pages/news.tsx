@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import Intro from "components/Intro/Intro";
-import { Box } from '../../components/atomic/Container';
-import { Link } from '../../components/atomic/Link';
+import { Intro } from "components/Intro";
+import { Box } from '../components/atomic/Container';
+import { Link } from '../components/atomic/Link';
 import Filter from "components/NewsFeedPage/Filter";
 import MainGridContainer from "components/MainGridContainer";
 import PageHeaderTitle from "components/Intro/Title";
 import Description from "components/Intro/Description";
-import NewsItem from "../../components/NewsFeedPage/NewsItem";
-import { ErrorBoundary } from '../../features/error-handling';
-import { useNews, useTerms } from "../../domain";
-import { CenteredContainer } from "../../components/atomic/CenteredContainer";
+import NewsItem from "../components/NewsFeedPage/NewsItem";
+import { ErrorBoundary } from '../features/error-handling';
+import { useNews, useTerms } from "../domain";
+import { CenteredContainer } from "../components/atomic/CenteredContainer";
 import CircularProgress from "@mui/material/CircularProgress";
-import { isFilledArray } from "../../utils";
+import { isFilledArray } from "../utils";
+import CommonTemplate from "../components/template/CommonTemplate";
 
 export function renderNews(items) {
   if (!items || items.length === 0) {
@@ -29,10 +30,11 @@ export function renderNews(items) {
 }
 
 const CONTACT_EMAIL = "ce@zioncma.ca";
+const pageTitle = "最新消息";
 
-export default function NewsFeedPage({ pageTitle }) {
+export function NewsFeedPage() {
   const { terms, error: termError } = useTerms();
-
+  console.debug("terms", terms);
 
   const [selectedTermName, setSelectedTermName] = useState(undefined);
   const [selectedTermId, setSelectedTermId] = useState<number | undefined>(undefined);
@@ -92,4 +94,11 @@ export default function NewsFeedPage({ pageTitle }) {
       </MainGridContainer>
     </ErrorBoundary>
   );
+}
+
+export default function NewsPage() {
+  return (
+  <CommonTemplate>
+    <NewsFeedPage />
+  </CommonTemplate>);
 }

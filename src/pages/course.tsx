@@ -3,15 +3,17 @@ import PageHeaderTitle from '../components/Intro/Title';
 import Description from '../components/Intro/Description';
 import LinearProgress from '@mui/material/LinearProgress';
 import { ErrorBoundary } from '../features/error-handling';
-import { CoursesList } from '../components/organism/CoursesList';
 import { useAllCourses, useTerms } from '../domain';
+import CommonTemplate from '../components/template/CommonTemplate';
+import MainGridContainer from '../components/MainGridContainer';
+import CardGrids from '../components/Cards/CardGrids';
 
 /**
  * 
  * @returns get all courses and 
  */
 function useEducationPageData() {
-  const {terms, error: termsError, isLoading: isLoadingTerms } = useTerms();
+  const { terms, error: termsError, isLoading: isLoadingTerms } = useTerms();
   const { courses, error: allCoursesError, isLoading: isLoadingAllCourses } = useAllCourses();
 
   return {
@@ -21,7 +23,6 @@ function useEducationPageData() {
     isLoading: isLoadingAllCourses || isLoadingTerms,
   };
 }
-
 
 
 /**
@@ -39,16 +40,17 @@ export function EducationPage({ pageTitle, ...optionals }) {
   }
 
   return (
-    <ErrorBoundary>
-      <CoursesList
-        data={courses}
-      >
-        <Intro bg={"https://cdn.pixabay.com/photo/2017/03/23/09/08/bible-2167778_960_720.jpg"} >
-          <PageHeaderTitle text={pageTitle} />
-          <Description>培養造就屬靈帶領，讓弟兄姊妹能在神的話語上進深，掌握基本的聖經解釋和查經帶領方法。</Description>
-        </Intro>
-      </CoursesList>
-    </ErrorBoundary>
+    <CommonTemplate>
+      <ErrorBoundary>
+          <Intro bg={"https://cdn.pixabay.com/photo/2017/03/23/09/08/bible-2167778_960_720.jpg"} >
+            <PageHeaderTitle text={pageTitle} />
+            <Description>培養造就屬靈帶領，讓弟兄姊妹能在神的話語上進深，掌握基本的聖經解釋和查經帶領方法。</Description>
+          </Intro>
+          <MainGridContainer>
+            <CardGrids cardList={courses} />
+          </MainGridContainer>
+      </ErrorBoundary>
+    </CommonTemplate>
   );
 }
 

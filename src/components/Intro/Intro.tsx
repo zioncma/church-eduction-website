@@ -3,7 +3,7 @@ import { Box } from '../../components/atomic/Container';
 import defaultbg from 'styles/assets/defaultBg.jpg';
 import { makeStyles, muiTheme } from '../../styles';
 
-export default function Intro(props) {
+export function Intro(props) {
   const {
     bg,
     children,
@@ -86,3 +86,5 @@ export default function Intro(props) {
     </header>
   );
 }
+
+export default Intro;

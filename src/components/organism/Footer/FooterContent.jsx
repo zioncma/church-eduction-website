@@ -6,11 +6,11 @@ export function FooterContent() {
   return (
     <footer>
       <Box justifyContent={'center'}>
-          <small>
-        <Typography align='center' color={'textSecondary'}>
+        <small>
+          <Typography align='center' color={'textSecondary'}>
             Copyright 2021 — Zion Alliance Church. All rights reserved.
-        </Typography>
-          </small>
+          </Typography>
+        </small>
       </Box>
     </footer>
   );

@@ -18,6 +18,10 @@ export function useAllCourses() {
 }
 
 export function useCourseById(courseId: number | undefined) {
+  const result = useSWR(courseId ? `course:${courseId}` : null, () =>
+    getCourseById(courseId || -1)
+  );
+
   if (!courseId) {
     return {
       course: undefined,
@@ -25,9 +29,7 @@ export function useCourseById(courseId: number | undefined) {
       isLoading: false,
     };
   }
-  const result = useSWR(courseId ? `course:${courseId}` : null, () =>
-    getCourseById(courseId)
-  );
+
   return {
     course: result.data,
     error: result.error,
@@ -58,6 +60,10 @@ export function useLessonsByCourse(courseId: number | undefined) {
 }
 
 export function useLessonById(lessonId: number | undefined) {
+  const result = useSWR(lessonId ? `lesson:${lessonId}` : null, () =>
+    getLessonById(lessonId || -1)
+  );
+
   if (!lessonId) {
     return {
       lesson: undefined,
@@ -65,9 +71,7 @@ export function useLessonById(lessonId: number | undefined) {
       isLoading: false,
     };
   }
-  const result = useSWR(lessonId ? `lesson:${lessonId}` : null, () =>
-    getLessonById(lessonId)
-  );
+
   return {
     lesson: result.data,
     error: result.error,

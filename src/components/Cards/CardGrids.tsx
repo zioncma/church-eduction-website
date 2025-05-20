@@ -15,7 +15,7 @@ import { CenteredContainer } from '../atomic/CenteredContainer';
  */
 function CardGridList({ id, ...optionals }) {
   // get all lessons of this course
-  const {lessons, error, isLoading} = useLessonsByCourse(id);
+  const { lessons, error, isLoading } = useLessonsByCourse(id);
   if (error) {
     console.error('CardGridList ~ error:', error);
     return <div>Error: {error.message}</div>;

@@ -9,11 +9,11 @@ import {
   Redirect,
 } from 'react-router-dom';
 import { NavTabs } from './components/features/Nav/NavTabs';
-import NewsFeedPage from './pages/NewsFeedPage';
-import { EducationPage } from './pages/EducationPage';
-import GrowthPage from './pages/GrowthPage';
-import { ArchivePage } from './pages/ArchivePage';
-import NoMatchPage from './pages/NoMatchPage';
+import NewsFeedPage from './pages/news';
+import { EducationPage } from './pages/course';
+import GrowthPage from './pages/growth';
+import { ArchivePage } from './pages/archive';
+import NoMatchPage from './pages/not-found';
 import { ROUTES, rootPath, allTabs, mainPageTitles } from './routes';
 import './App.css';
 
