@@ -1,7 +1,7 @@
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { isFilledArray } from '../../../utils';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 /**
  * Default tab: /news
@@ -10,7 +10,7 @@ export function NavTabs({ labels, routes, value }) {
   const router = useRouter();
 
   //find which tab should be the active tab
-  const currentTab = routes.find((tabValue) => value === tabValue) || '/news';
+  const currentTab = routes?.find((tabValue) => value === tabValue) || '/news';
 
   const a11yProps = (index) => {
     return {

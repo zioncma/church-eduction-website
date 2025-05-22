@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import {device} from 'styles';
-
+import { device } from 'styles';
 
 const StyledIframe = styled.iframe`
   border: none; 
@@ -15,10 +14,10 @@ const StyledIframe = styled.iframe`
 `;
 
 const AppleIframe = styled.iframe`
-  width:100%;
-  max-width:660px;
-  overflow:hidden;
-  background:transparent;
+  width: 100%;
+  max-width: 660px;
+  overflow: hidden;
+  background: transparent;
 `;
 
 export function SpotifyPodcast() {
@@ -34,11 +33,9 @@ export function Podbean() {
     <StyledIframe
       title='Zion Alliance Church Christian Education Podcast'
       allowTransparency={true}
-      // height='315'
       scrolling='no'
       data-name='pb-iframe-player'
       src='https://www.podbean.com/player-v2/?i=dn859-dfb3c4-pbblog-playlist&share=1&download=1&rtl=0&fonts=Arial&skin=1&font-color=auto&logo_link=episode_page&order=episodic&limit=10&filter=all&ss=a713390a017602015775e868a2cf26b0&btn-skin=7&size=315'
-    // allowfullscreen=''
     ></StyledIframe>
   );
 }
