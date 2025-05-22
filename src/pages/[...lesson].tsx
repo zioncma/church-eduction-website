@@ -17,8 +17,8 @@ import { ErrorBoundary } from '../features/error-handling';
 import { CenteredContainer } from '../components/atomic/CenteredContainer';
 import { useItemPageData } from '../domain';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import CommonTemplate from '../components/template/CommonTemplate';
+import { usePathname, useParams } from 'next/navigation'
 
 type LessonItem = {
   title: string;
@@ -91,11 +91,10 @@ export function ItemPage(props) {
     setShareUrl(window.location.href)
   }, [])
 
-  const router = useRouter();
-  const lessonQuery = router.query.lesson;
+  const { lesson: lessonQuery } = useParams() || {};
+
+  // const lessonQuery = router.query.lesson;
   const [id, courseId] = Array.isArray(lessonQuery) ? lessonQuery : ["0", "0"];
-  // const { params } = useRouteMatch();
-  // const { id, courseId } = params;
   const { lesson, course, error, isLoading } = useItemPageData(parseInt(id), parseInt(courseId));
 
   if (error) {
@@ -106,7 +105,7 @@ export function ItemPage(props) {
     return <CenteredContainer><CircularProgress color={'secondary'} /></CenteredContainer>;
   }
 
-  console.log(" ItemPage ~ lesson:", lesson)
+  // console.log(" ItemPage ~ lesson:", lesson)
 
 
   // title, subtitle, description, video, files

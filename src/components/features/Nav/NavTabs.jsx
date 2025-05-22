@@ -32,7 +32,6 @@ export function NavTabs({ labels, routes, value }) {
         <Tab
           label={labels[index]}
           value={route}
-          // component={Link}
           onClick={() => {
             router.push(route);
           }}
