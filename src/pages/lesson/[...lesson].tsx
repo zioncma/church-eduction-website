@@ -4,20 +4,20 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { Box, Container } from 'components/atomic/Container';
-import { Grid2 } from '../components/atomic/Grid';
+import { Grid2 } from '../../components/atomic/Grid';
 import Paper from '@mui/material/Paper';
-import { Resources } from '../components/ItemPage/Resources/Resources';
-import Title from '../components/ItemPage/Title';
-import Share from '../components/ItemPage/Share';
-import { Description } from '../components/ItemPage/Description';
-import Video from '../components/Video/Video';
+import { Resources } from '../../components/ItemPage/Resources/Resources';
+import Title from '../../components/ItemPage/Title';
+import Share from '../../components/ItemPage/Share';
+import { Description } from '../../components/ItemPage/Description';
+import Video from '../../components/Video/Video';
 import { muiTheme } from 'styles';
 import { getArray, isFilledArray } from 'utils';
-import { ErrorBoundary } from '../features/error-handling';
-import { CenteredContainer } from '../components/atomic/CenteredContainer';
-import { useItemPageData } from '../domain';
+import { ErrorBoundary } from '../../features/error-handling';
+import { CenteredContainer } from '../../components/atomic/CenteredContainer';
+import { useItemPageData } from '../../domain';
 import { useEffect, useState } from 'react';
-import CommonTemplate from '../components/template/CommonTemplate';
+import CommonTemplate from '../../components/template/CommonTemplate';
 import { usePathname, useParams } from 'next/navigation'
 
 type LessonItem = {
@@ -83,7 +83,9 @@ function LoadedContent({ item, shareUrl, ...optionals }: { item: LessonItem, sha
 /**
  * Lesson page for displaying a single lesson
  */
-export function ItemPage(props) {
+export function ItemPage() {
+  const { lesson: lessonQuery } = useParams() || {};
+  
   // For any window-dependent variables, initialize with null or a fallback value
   const [shareUrl, setShareUrl] = useState("")
   useEffect(() => {
@@ -91,7 +93,6 @@ export function ItemPage(props) {
     setShareUrl(window.location.href)
   }, [])
 
-  const { lesson: lessonQuery } = useParams() || {};
 
   // const lessonQuery = router.query.lesson;
   const [id, courseId] = Array.isArray(lessonQuery) ? lessonQuery : ["0", "0"];

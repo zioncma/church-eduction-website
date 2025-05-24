@@ -49,7 +49,7 @@ export function LessonCard({ date, title = '', subtitle = '', id: lessonId, bg =
   // const { url } = useRouteMatch();
   const router = useRouter();
   // const { updateIsLoading } = useContext(AppContext);
-  const lessonUrl = `/${courseId}/${lessonId}`
+  const lessonUrl = `lesson/${courseId}/${lessonId}`
 
   function handleClick() {
     router.push(lessonUrl);
