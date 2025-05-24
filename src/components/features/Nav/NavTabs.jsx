@@ -2,12 +2,14 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { isFilledArray } from '../../../utils';
 import { useRouter } from 'next/navigation';
+import { muiTheme } from 'styles';
 
 /**
  * Default tab: /news
  */
 export function NavTabs({ labels, routes, value }) {
   const router = useRouter();
+  const theme = muiTheme;
 
   //find which tab should be the active tab
   const currentTab = routes?.find((tabValue) => value === tabValue) || '/news';
@@ -39,6 +41,11 @@ export function NavTabs({ labels, routes, value }) {
           {...a11yProps(index)}
           className={`text-lg`}
           key={"tab-" + index}
+          sx={{
+            fontSize: theme.typography.subtitle1,
+            fontWeight: theme.typography.fontWeightBold,
+            minWidth: theme.spacing(18),
+          }}
         />
       )) : null}
     </Tabs>

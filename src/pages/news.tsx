@@ -40,14 +40,14 @@ export function NewsFeedPage() {
   const [selectedTermId, setSelectedTermId] = useState<number | undefined>(undefined);
   const { newsData, newsError, isLoading } = useNews(selectedTermId);
 
-  useEffect(() => {
-    // async function fetchData() {
-    //   const termsData = await fetchTerms2();
-    //   setTerms(termsData.map((t) => t.name));
-    //   setSelectedTerm(termsData[0]?.name);
-    // }
-    // fetchData();
-  }, []);
+  // useEffect(() => {
+  //   // async function fetchData() {
+  //   //   const termsData = await fetchTerms2();
+  //   //   setTerms(termsData.map((t) => t.name));
+  //   //   setSelectedTerm(termsData[0]?.name);
+  //   // }
+  //   // fetchData();
+  // }, []);
 
   if (termError) {
     return (
