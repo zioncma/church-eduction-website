@@ -114,7 +114,13 @@ export function LessonCard({
           </Typography>
         </CardContent>
         <CardActions>
-          <Link href={lessonUrl}>
+          <Link href={{
+            pathname: '/lesson/[courseId]/[lessonId]',
+            query: {
+              courseId,
+              lessonId,
+            },
+          }}>
             <Button
               variant={'outlined'}
               size='small'
@@ -122,8 +128,8 @@ export function LessonCard({
               sx={{
                 marginLeft: theme.spacing(1),
               }}
-              to={lessonUrl}
-              onClick={handleClick}
+              // to={lessonUrl}
+              // onClick={handleClick}
             >
               Learn More
             </Button>
