@@ -3,7 +3,6 @@ import Tab from '@mui/material/Tab';
 import { isFilledArray } from '../../../utils';
 import { useRouter } from 'next/navigation';
 import { muiTheme } from 'styles';
-import Link from 'next/link';
 
 /**
  * Default tab: /news

@@ -114,13 +114,15 @@ export function LessonCard({
           </Typography>
         </CardContent>
         <CardActions>
-          <Link href={{
-            pathname: '/lesson/[courseId]/[lessonId]',
-            query: {
-              courseId,
-              lessonId,
-            },
-          }}>
+          <Link
+            href={{
+              pathname: '/lesson/[courseId]/[lessonId]',
+              query: {
+                courseId,
+                lessonId,
+              },
+            }}
+          >
             <Button
               variant={'outlined'}
               size='small'

@@ -109,7 +109,6 @@ export function ItemPage() {
     return <CenteredContainer><CircularProgress color={'secondary'} /></CenteredContainer>;
   }
 
-  // console.log(" ItemPage ~ lesson:", lesson)
 
 
   // title, subtitle, description, video, files
