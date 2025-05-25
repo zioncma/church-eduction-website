@@ -39,7 +39,14 @@ const useStyles = makeStyles((theme) => ({
 /**
  * A card component displaying a lesson.
  */
-export function LessonCard({ date, title = '', subtitle = '', id: lessonId, bg = defaultCard.src, ...optionals }) {
+export function LessonCard({
+  date,
+  title = '',
+  subtitle = '',
+  id: lessonId,
+  bg = defaultCard.src,
+  ...optionals
+}) {
   const { courseId } = optionals;
 
   const classes = useStyles();
@@ -49,12 +56,11 @@ export function LessonCard({ date, title = '', subtitle = '', id: lessonId, bg =
   // const { url } = useRouteMatch();
   const router = useRouter();
   // const { updateIsLoading } = useContext(AppContext);
-  const lessonUrl = `lesson/${courseId}/${lessonId}`
+  const lessonUrl = `lesson/${courseId}/${lessonId}`;
 
   function handleClick() {
     router.push(lessonUrl);
   }
-
 
   return (
     <>
@@ -108,18 +114,20 @@ export function LessonCard({ date, title = '', subtitle = '', id: lessonId, bg =
           </Typography>
         </CardContent>
         <CardActions>
-          <Button
-            variant={'outlined'}
-            size='small'
-            color='primary'
-            sx={{
-              marginLeft: theme.spacing(1),
-            }}
-            to={lessonUrl}
-            onClick={handleClick}
-          >
-            Learn More
-          </Button>
+          <Link href={lessonUrl}>
+            <Button
+              variant={'outlined'}
+              size='small'
+              color='primary'
+              sx={{
+                marginLeft: theme.spacing(1),
+              }}
+              to={lessonUrl}
+              onClick={handleClick}
+            >
+              Learn More
+            </Button>
+          </Link>
         </CardActions>
       </Card>
     </>

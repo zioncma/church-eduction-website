@@ -4,8 +4,7 @@ import Theme from 'providers/Theme';
 import CssBaseline from '@mui/material/CssBaseline';
 import { NavTabs } from 'components/features/Nav/NavTabs';
 import { allTabs, mainPageTitles } from 'routes';
-import '../../App.css';
-import { usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation';
 
 export function CommonTemplate({ children, ...optionals }) {
   const pathname = usePathname();
