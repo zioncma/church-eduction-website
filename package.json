@@ -23,7 +23,7 @@
     "firebase": "^9.9.3",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
-    "next": "^15.1.7",
+    "next": "^15.3.2",
     "react": "18",
     "react-device-detect": "^1.17.0",
     "react-dom": "18",
@@ -41,7 +41,8 @@
     "build-storybook": "build-storybook -s public",
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "serve": "npx serve -s out"
   },
   "browserslist": {
     "production": [
