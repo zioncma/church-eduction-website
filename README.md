@@ -22,9 +22,27 @@ A responsive education resource website for the Sunday school of Zion Alliance C
 
 ## Credits
 
-- [Create React App](https://github.com/facebook/create-react-app)
-- Material UI
-- React Router
-- Storybook
-- moment.js
-- etc.
+* [Create React App](https://github.com/facebook/create-react-app)
+* Material UI
+* React Router
+* Storybook
+* `moment.js`
+* etc.
+
+## Configurations
+
+* Environment variables
+  * `NEXT_PUBLIC_SUPABASE_URL`
+  * `NEXT_PUBLIC_SUPABASE_KEY`
+* Deployment
+  * Production
+    * https://cew-5d8o.onrender.com
+    * Account: Asher Yang's Personal Daily Google Account
+  * Staging
+    * https://church-eduction-website.onrender.com
+    * Account: Asher Yang's Techie Google Account
+
+## Related
+
+* Admin Website:
+  * https://zionce-website.onrender.com/
