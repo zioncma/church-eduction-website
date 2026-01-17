@@ -2,14 +2,14 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { isFilledArray } from '../../../utils';
 import { useRouter } from 'next/navigation';
-import { muiTheme } from 'styles';
+import { useTheme } from 'styles';
 
 /**
  * Default tab: /news
  */
 export function NavTabs({ labels, routes, value }) {
   const router = useRouter();
-  const theme = muiTheme;
+  const theme = useTheme();
 
   //find which tab should be the active tab
   const currentTab = routes?.find((tabValue) => value === tabValue) || '/news';

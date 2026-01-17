@@ -5,13 +5,12 @@ import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { blue } from '@mui/material/colors';
 import { Button } from '@mui/material';
-import { muiTheme } from 'styles';
+import { useTheme } from 'styles';
 import { isFilledArray } from 'utils';
 import { Grid2 } from '../../atomic/Grid';
 
 export function File({ title = '', doc = '', ...optionals }) {
-  //className={classes.container}
-  const theme = muiTheme;
+  const theme = useTheme();
 
   return (
     <Box

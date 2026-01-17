@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '../../components/atomic/Container';
 import defaultbg from 'styles/assets/defaultBg.jpg';
-import { makeStyles, muiTheme } from '../../styles';
+import { makeStyles, useTheme } from '../../styles';
 
 export function Intro(props) {
   const {
@@ -9,7 +9,7 @@ export function Intro(props) {
     children,
     ...optionals
   }: { bg: string; children: any; [x: string]: any } = props;
-  const theme = muiTheme;
+  const theme = useTheme();
 
   const useStyles = makeStyles((theme) => ({
     intro: {

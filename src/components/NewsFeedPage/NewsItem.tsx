@@ -7,7 +7,7 @@ import { Grid } from '../atomic/Grid';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import { LinksList } from "./LinksList";
 import { green } from '@mui/material/colors';
-import { muiTheme } from "../../styles";
+import { useTheme } from "../../styles";
 import Video from "../Video/Video";
 import { Title } from "./Title";
 import { hasValidChar } from "../../utils";
@@ -22,7 +22,7 @@ NewsItem.propTypes = {
 export default function NewsItem(props) {
   // console.debug("NewsItem props", props);
   const { title, content, form_link: signupForm, video, images } = props;
-  const theme = muiTheme;
+  const theme = useTheme();
 
   const hasFormLink = signupForm && hasValidChar(signupForm);
 
@@ -34,7 +34,7 @@ export default function NewsItem(props) {
       padding: theme.spacing(3),
       width: "100%",
     }}
-    className="news-item-container"
+      className="news-item-container"
     >
       {title ? (
         <Title text={title} sx={{

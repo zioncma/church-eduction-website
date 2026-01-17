@@ -11,14 +11,14 @@ import Title from 'components/ItemPage/Title';
 import Share from 'components/ItemPage/Share';
 import { Description } from 'components/ItemPage/Description';
 import Video from 'components/Video/Video';
-import { muiTheme } from 'styles';
+import { useTheme } from 'styles';
 import { getArray, isFilledArray } from 'utils';
 import { ErrorBoundary } from 'features/error-handling';
 import { CenteredContainer } from 'components/atomic/CenteredContainer';
 import { useItemPageData } from '../../../domain';
 import { useEffect, useState } from 'react';
 import CommonTemplate from 'components/template/CommonTemplate';
-import { usePathname, useParams } from 'next/navigation'
+import { usePathname, useParams } from 'next/navigation';
 
 type LessonItem = {
   title: string;
@@ -34,7 +34,7 @@ type LessonItem = {
  */
 function LoadedContent({ item, shareUrl, ...optionals }: { item: LessonItem, shareUrl: string, [x: string]: any }) {
   // Hooks
-  const theme = muiTheme;
+  const theme = useTheme();
 
   // Props
   const { title, subtitle, description, video, files } = item || {};

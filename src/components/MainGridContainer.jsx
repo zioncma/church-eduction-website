@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container } from '../components/atomic/Container';
 import { Grid2 } from '../components/atomic/Grid';
-import { muiTheme } from '../styles';
+import { useTheme } from '../styles';
 
 export default function MainGridContainer(props) {
-  const theme = muiTheme;
+  const theme = useTheme();
   return (
     <Container
       sx={{

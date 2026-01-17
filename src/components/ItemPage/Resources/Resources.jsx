@@ -4,10 +4,10 @@ import { Box } from 'components/atomic/Container';
 import { Typography } from 'components/atomic/Typography';
 import { ErrorBoundary } from 'features/error-handling';
 import { Grid2 } from 'components/atomic/Grid';
-import { muiTheme } from 'styles';
+import { useTheme } from 'styles';
 
 export function Resources({ files, ...optionals }) {
-  const theme = muiTheme;
+  const theme = useTheme();
   // console.debug('Resources files:', files);
 
   return (

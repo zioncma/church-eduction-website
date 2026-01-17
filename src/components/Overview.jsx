@@ -1,5 +1,5 @@
 import React from 'react';
-import { muiTheme } from 'styles';
+import { useTheme } from 'styles';
 import { Box, Container } from 'components/atomic/Container';
 import { Button } from '@mui/material';
 import { Typography } from '../components/atomic/Typography';
@@ -7,9 +7,7 @@ import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import { TopicGroup } from './TopicGroup';
 
 export function Overview() {
-  const theme = muiTheme;
-  // const test = theme.spacing(4);
-  // console.log('test: ', test);
+  const theme = useTheme();
 
   return (
     <Container maxWidth={false}>

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Grid, Card, CardHeader, CardContent, Grow } from '@mui/material';
+import { Card, CardHeader, CardContent, Grow } from '@mui/material';
 import { Typography } from '../components/atomic/Typography';
 import { Box } from './atomic/Container';
 import { Grid2 } from './atomic/Grid';
 import { isMobile } from 'react-device-detect';
 import { topics } from './topics';
-import { muiTheme } from '../styles';
+import { useTheme } from '../styles';
 
 
 // A topic card with customizable children for content
@@ -15,7 +15,7 @@ function CustomTopic(props) {
   const bgColorStyle = {
     backgroundColor: isOdd ? '#EEEDE7' : '#E7D2CC',
   };
-  const theme = muiTheme;
+  const theme = useTheme();
 
   return (
     <Grid2 key={'topic-grid-' + index}>

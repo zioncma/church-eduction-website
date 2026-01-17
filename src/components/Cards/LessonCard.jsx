@@ -11,7 +11,7 @@ import { Box } from 'components/atomic/Container';
 import moment from 'moment';
 
 import defaultCard from 'styles/assets/defaultCard.jpg'; //Image by <a href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Free-Photos</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=918459">Pixabay</a>
-import { makeStyles, muiTheme } from 'styles';
+import { makeStyles, useTheme } from 'styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -50,7 +50,7 @@ export function LessonCard({
   const { courseId } = optionals;
 
   const classes = useStyles();
-  const theme = muiTheme;
+  const theme = useTheme();
   // console.debug('CustomCard bg:', bg);
   const fullTitle = title + (subtitle ? ': ' + subtitle : '');
   // const { url } = useRouteMatch();

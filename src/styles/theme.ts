@@ -99,5 +99,4 @@ themeInstance.typography.h2 = {
   lineHeight: 1.567,
 };
 
-export const muiTheme = themeInstance;
 export const useTheme = useMuiTheme;

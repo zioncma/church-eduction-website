@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid2';
 import { Typography } from '../../components/atomic/Typography';
 import LinkIcon from '@mui/icons-material/Link';
-import { muiTheme } from "styles";
+import { useTheme } from "styles";
 
 LinkItem.propTypes = {
   text: PropTypes.string,
@@ -15,7 +15,7 @@ LinkItem.propTypes = {
  * Container of link buttons
  */
 export default function LinkItem({ address, text = "訪問鏈接" }) {
-  const theme = muiTheme;
+  const theme = useTheme();
   return (
     <Grid>
       <Button

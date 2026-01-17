@@ -4,12 +4,12 @@ import { Typography } from '../../../components/atomic/Typography';
 import logo from 'styles/assets/logo.png';
 import {SimpleMenu} from '../../SimpleMenu';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { muiTheme } from 'styles';
+import { useTheme } from 'styles';
 
 const navTitleFont = "'Exo', sans-serif";
 
 export default function Nav(props) {
-  const theme = muiTheme;
+  const theme = useTheme();
   const xsDown = useMediaQuery((theme) => theme.breakpoints.down('xs'));
   const smUp = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
