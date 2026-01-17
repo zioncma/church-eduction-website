@@ -6,10 +6,6 @@ import { Typography } from '../../components/atomic/Typography';
 import LinkIcon from '@mui/icons-material/Link';
 import { muiTheme } from "styles";
 
-LinkItem.defaultProps = {
-  text: "訪問鏈接",
-};
-
 LinkItem.propTypes = {
   text: PropTypes.string,
   address: PropTypes.string.isRequired,
@@ -18,8 +14,7 @@ LinkItem.propTypes = {
 /**
  * Container of link buttons
  */
-export default function LinkItem(props) {
-  const { address, text } = props;
+export default function LinkItem({ address, text = "訪問鏈接" }) {
   const theme = muiTheme;
   return (
     <Grid>

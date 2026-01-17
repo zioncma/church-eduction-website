@@ -1,5 +1,4 @@
-import { createTheme as createMuiTheme, Theme } from '@mui/material/styles';
-import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { createTheme as createMuiTheme, Theme, useTheme as useMuiTheme, ThemeProvider as MuiThemeProvider} from '@mui/material/styles';
 export { makeStyles } from '@mui/styles';
 export { styled } from '@mui/material/styles';
 
@@ -101,3 +100,4 @@ themeInstance.typography.h2 = {
 };
 
 export const muiTheme = themeInstance;
+export const useTheme = useMuiTheme;
