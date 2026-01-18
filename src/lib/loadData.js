@@ -13,8 +13,7 @@ export async function loadItemData(url, id) {
     const courses = await readCourses();
     items = courses.terms.reduce( (acc, currentObj) => acc.concat(currentObj.term.courses), items);
   } else if (url.includes("growth")) {
-    const growths = await readGrowths();
-    items = growths;
+    items = [];
   }
 
   const item = items.find(({ itemId }) => itemId === id);

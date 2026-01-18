@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { readCourses, coursesUrl, readNews, newsUrl, loadItemData, growthsUrl, readGrowths } from './loadData';
+import { readCourses, coursesUrl, readNews, newsUrl, loadItemData} from './loadData';
 
 export function useCoursesData() {
   const { data, error } = useSWR(coursesUrl, readCourses);
@@ -12,8 +12,8 @@ export function useNewsList() {
 }
 
 export function useGrowthList() {
-   const { data, error } = useSWR(growthsUrl, readGrowths);
-    return { growthData: data, error, isLoading: !error && !data };  
+  //  const { data, error } = useSWR(growthsUrl, readGrowths);
+    return { growthData: {}, error: null, isLoading: false };  
 }
 
 export function useItemData(url, id) {
