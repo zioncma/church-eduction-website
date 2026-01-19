@@ -1,47 +1,5 @@
-import { supabase, getAuthenticatedClient } from "./supabaseClient";
-
-/** TypeScript interfaces representing our data models */
-export interface News {
-  id?: number;
-  content: string;
-  date: string;
-  form_link?: string;
-  title?: string;
-}
-
-export interface Course {
-  id?: number;
-  term: number; // references term.id
-  title: string;
-  description?: string;
-}
-
-export interface Term {
-  id?: number;
-  name: string;
-  end_year: number;
-  end_month: number;
-  start_year: number;
-  start_month: number;
-  courseCount?: number;
-}
-
-export interface Lesson {
-  id?: number;
-  course_id: number; // references course.id
-  order_index?: number;
-  title: string;
-  subtitle?: string;
-  content?: string;
-}
-
-export interface FileDocument {
-  id?: number;
-  lesson_id: number; // references lesson.id
-  link: string;
-  title: string;
-  file_type: string;
-}
+import { getAuthenticatedClient, getSupabaseClient } from "./supabaseClient";
+import { Course, FileDocument, Lesson, News, Term } from "./types";
 
 /** ------------------------------------------
  *  News Controllers
@@ -65,7 +23,7 @@ export const getNewsByTerm = async (termId: number | undefined) => {
 
   const endDate = new Date(term.end_year, term.end_month, 0);
 
-  const { data, error } = await supabase
+  const { data, error } = await getSupabaseClient()
     .from("news")
     .select("*")
     .gte("date", startDate.toISOString())
@@ -78,13 +36,13 @@ export const getNewsByTerm = async (termId: number | undefined) => {
 };
 
 export const getAllNews = async () => {
-  const { data, error } = await supabase.from("news").select("*");
+  const { data, error } = await getSupabaseClient().from("news").select("*");
   if (error) throw error;
   return data;
 };
 
 export const getNewsById = async (id: number) => {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabaseClient()
     .from("news")
     .select("*")
     .eq("id", id)
@@ -95,7 +53,7 @@ export const getNewsById = async (id: number) => {
 
 /** Helper functions to generate next ID */
 const getNextId = async (tableName: string) => {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabaseClient()
     .from(tableName)
     .select("id")
     .order("id", { ascending: false })
@@ -141,14 +99,17 @@ export const deleteNews = async (id: number, accessToken?: string | null) => {
 /** ------------------------------------------
  *  Course Controllers
  *  ------------------------------------------*/
+/**
+ * @returns all courses
+ */
 export const getAllCourses = async () => {
-  const { data, error } = await supabase.from("course").select("*");
+  const { data, error } = await getSupabaseClient().from("course").select("*");
   if (error) throw error;
   return data;
 };
 
 export const getCourseById = async (id: number) => {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabaseClient()
     .from("course")
     .select("*")
     .eq("id", id)
@@ -197,7 +158,7 @@ export const deleteCourse = async (id: number, accessToken?: string | null) => {
  *  Term Controllers
  *  ------------------------------------------*/
 export const getAllTerms = async () => {
-  const { data: terms, error: termsError } = await supabase
+  const { data: terms, error: termsError } = await getSupabaseClient()
     .from("term")
     .select("*");
   if (termsError) throw termsError;
@@ -208,7 +169,7 @@ export const getAllTerms = async () => {
 
   const termsWithCourseCount = await Promise.all(
     terms.map(async (term) => {
-      const { data: courses, error: coursesError } = await supabase
+      const { data: courses, error: coursesError } = await getSupabaseClient()
         .from("course")
         .select("id")
         .eq("term", term.id);
@@ -226,7 +187,7 @@ export const getAllTerms = async () => {
 };
 
 export const getTermById = async (id: number) => {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabaseClient()
     .from("term")
     .select("*")
     .eq("id", id)
@@ -272,7 +233,7 @@ export const deleteTerm = async (id: number, accessToken?: string | null) => {
  *  Lesson Controllers
  *  ------------------------------------------*/
 export const getLessonsByCourse = async (courseId: number) => {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabaseClient()
     .from("lesson")
     .select("*")
     .eq("course_id", courseId)
@@ -282,7 +243,7 @@ export const getLessonsByCourse = async (courseId: number) => {
 };
 
 export const getLessonById = async (id: number) => {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabaseClient()
     .from("lesson")
     .select("*, file_document(*)")
     .eq("id", id)
@@ -331,7 +292,7 @@ export const deleteLesson = async (id: number, accessToken?: string | null) => {
  *  File Controllers
  *  ------------------------------------------*/
 export const getFilesByLesson = async (lessonId: number) => {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabaseClient()
     .from("file_document")
     .select("*")
     .eq("lesson_id", lessonId);
@@ -340,7 +301,7 @@ export const getFilesByLesson = async (lessonId: number) => {
 };
 
 export const getFileById = async (id: number) => {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabaseClient()
     .from("file_document")
     .select("*")
     .eq("id", id)
@@ -390,7 +351,7 @@ export const deleteFile = async (id: number, accessToken?: string | null) => {
 
 export const getCoursesByTerm = async (termId: number) => {
   console.log("Fetching courses for term ID:", termId);
-  const { data, error } = await supabase
+  const { data, error } = await getSupabaseClient()
     .from("course")
     .select("*")
     .eq("term", termId);

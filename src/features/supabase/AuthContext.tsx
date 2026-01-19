@@ -7,8 +7,8 @@ import {
   useState,
   ReactNode,
 } from "react";
-import { createBrowserClient } from "@supabase/ssr";
 import { User, AuthError, Session } from "@supabase/supabase-js";
+import { getSupabaseBrowserClient } from "./auth";
 
 interface AuthContextType {
   user: User | null;
@@ -31,16 +31,11 @@ const AuthContext = createContext<AuthContextType>({
 
 export const useAuth = () => useContext(AuthContext);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({ children, ...optionals }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [supabase] = useState(() =>
-    createBrowserClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_KEY!
-    )
-  );
+  const supabase = getSupabaseBrowserClient();
 
   useEffect(() => {
     // Check active sessions and sets the user

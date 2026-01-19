@@ -15,19 +15,6 @@ const CONTACT_EMAIL = 'ce@zioncma.ca';
  * 信徒成長路
  */
 export default function GrowthPage({ pageTitle, ...optionals }) {
-  const { growthData, isLoading, error } = useGrowthList();
-
-  if (error) {
-    console.error(error);
-    return (
-      <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>
-    );
-  }
-
-  if (isLoading) {
-    return <LinearProgress color={'secondary'} />;
-  }
-
   const bg = growthbg.src;
 
   return (
