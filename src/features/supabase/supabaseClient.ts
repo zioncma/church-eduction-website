@@ -1,7 +1,7 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || "";
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || '';
 
 export function createSupabaseClient() {
   return createClient(supabaseUrl, supabaseKey);
@@ -20,8 +20,8 @@ export const supabase = createSupabaseClient();
 
 /**
  * This function will be used to get an authenticated client in client components
- * @param accessToken 
- * @returns 
+ * @param accessToken
+ * @returns
  */
 export const getAuthenticatedClient = (accessToken: string | undefined) => {
   if (!accessToken) return supabase;
@@ -34,3 +34,12 @@ export const getAuthenticatedClient = (accessToken: string | undefined) => {
     },
   });
 };
+
+export async function signinClient(email?: string, password?: string) {
+  const client = getSupabaseClient();
+  const { data, error } = await client.auth.signInWithPassword({
+    email: email || process.env.SUPABASE_TESTING_USER || '<EMAIL>',
+    password: password || process.env.SUPABASE_TESTING_PASSWORD || '<PASSWORD>',
+  });
+  return { client, data, error };
+}

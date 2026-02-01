@@ -1,7 +1,6 @@
-
 /** TypeScript interfaces representing our data models */
 export interface News {
-  id?: number;
+  id?: string;
   content: string;
   date: string;
   form_link?: string;
@@ -9,26 +8,28 @@ export interface News {
 }
 
 export interface Course {
-  id?: number;
-  term: number; // references term.id
+  id?: string;
+  termId: string; // references term.id
   title: string;
   description?: string;
-  uuid?: string; // new field for unique identifier
 }
 
-export interface Term {
-  id?: number;
+export type TermAddingDTO = {
   name: string;
   end_year: number;
   end_month: number;
   start_year: number;
   start_month: number;
-  courseCount?: number;
 }
 
+export type Term = {
+  id?: string;
+  courseCount?: number;
+} & TermAddingDTO;
+
 export interface Lesson {
-  id?: number;
-  course_id: number; // references course.id
+  id?: string;
+  course_id: string; // references course.id
   order_index?: number;
   title: string;
   subtitle?: string;
@@ -36,8 +37,8 @@ export interface Lesson {
 }
 
 export interface FileDocument {
-  id?: number;
-  lesson_id: number; // references lesson.id
+  id?: string;
+  lesson_id: string; // references lesson.id
   link: string;
   title: string;
   file_type: string;

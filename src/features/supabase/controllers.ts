@@ -1,5 +1,6 @@
+import { SupabaseClient } from "@supabase/supabase-js";
 import { getAuthenticatedClient, getSupabaseClient } from "./supabaseClient";
-import { Course, FileDocument, Lesson, News, Term } from "./types";
+import { Course, FileDocument, Lesson, News, Term, TermAddingDTO } from "./types";
 
 /** ------------------------------------------
  *  News Controllers
@@ -102,7 +103,7 @@ export const deleteNews = async (id: number, accessToken?: string | null) => {
 /**
  * @returns all courses
  */
-export const getAllCourses = async () => {
+export const getAllCourses = async (): Promise<Course[]> => {
   const { data, error } = await getSupabaseClient().from("course").select("*");
   if (error) throw error;
   return data;
@@ -134,7 +135,7 @@ export const addCourse = async (
 };
 
 export const updateCourse = async (
-  id: number,
+  id: string,
   course: Partial<Course>,
   accessToken?: string | null
 ) => {
@@ -147,7 +148,7 @@ export const updateCourse = async (
   return data;
 };
 
-export const deleteCourse = async (id: number, accessToken?: string | null) => {
+export const deleteCourse = async (id: string, accessToken?: string | null) => {
   const client = getAuthenticatedClient(accessToken || undefined);
   const { data, error } = await client.from("course").delete().eq("id", id);
   if (error) throw error;
@@ -157,7 +158,7 @@ export const deleteCourse = async (id: number, accessToken?: string | null) => {
 /** ------------------------------------------
  *  Term Controllers
  *  ------------------------------------------*/
-export const getAllTerms = async () => {
+export const getAllTerms = async (): Promise<Term[]> => {
   const { data: terms, error: termsError } = await getSupabaseClient()
     .from("term")
     .select("*");
@@ -172,7 +173,7 @@ export const getAllTerms = async () => {
       const { data: courses, error: coursesError } = await getSupabaseClient()
         .from("course")
         .select("id")
-        .eq("term", term.id);
+        .eq("term_id", term.id);
 
       if (coursesError) throw coursesError;
 
@@ -198,14 +199,11 @@ export const getTermById = async (id: number) => {
 
 /** Term Controllers */
 export const addTerm = async (
-  term: Partial<Term>,
-  accessToken?: string | null
+  client: SupabaseClient,
+  term: TermAddingDTO,
 ) => {
-  const client = getAuthenticatedClient(accessToken || undefined);
-  const nextId = await getNextId("term");
   const { data, error } = await client.from("term").insert({
     ...term,
-    id: nextId,
   });
   if (error) throw error;
   return data;
@@ -241,6 +239,15 @@ export const getLessonsByCourse = async (courseId: number) => {
   if (error) throw error;
   return data;
 };
+
+export async function getAllLessons(): Promise<Lesson[]> {
+  const { data, error } = await getSupabaseClient()
+    .from("lesson")
+    .select("*")
+    .order("order_index", { ascending: true });
+  if (error) throw error;
+  return data;
+}
 
 export const getLessonById = async (id: number) => {
   const { data, error } = await getSupabaseClient()
@@ -287,6 +294,14 @@ export const deleteLesson = async (id: number, accessToken?: string | null) => {
   if (error) throw error;
   return data;
 };
+
+export async function getAllFIles(): Promise<FileDocument[]> {
+  const { data, error } = await getSupabaseClient()
+    .from("file_document")
+    .select("*");
+  if (error) throw error;
+  return data;
+}
 
 /** ------------------------------------------
  *  File Controllers
@@ -364,3 +379,18 @@ export const getCoursesByTerm = async (termId: number) => {
   console.log("Courses found:", data);
   return data;
 };
+
+/**
+ * Add UUID to term by id
+ * @param authedClient 
+ * @param id 
+ */
+export async function updateTermUUID(
+  authedClient: SupabaseClient,
+  id: number,
+) {
+  const { data: updatedTerm, error: updateError } = await authedClient
+    .from('term')
+    .update({ uuid: crypto.randomUUID() })
+    .eq('id', id);
+}
