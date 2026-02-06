@@ -13,7 +13,6 @@ export function NavTabs({ labels, routes, value }) {
 
   //find which tab should be the active tab
   const currentTab = routes?.find((tabValue) => value === tabValue) || '/news';
-
   const a11yProps = (index) => {
     return {
       id: `simple-tab-${index}`,
@@ -21,28 +20,37 @@ export function NavTabs({ labels, routes, value }) {
     };
   };
 
+  const handleChange = (event, newValue) => {
+    router.push(newValue);
+  };
+
+  if (!isFilledArray(routes)) {
+    return null;
+  }
+
+  // TODO: Tab component has Uncaught ReferenceError: char is not defined error in console, need to be fixed in the future
+  // It seems to be a bug from MUI library
+  // Only happens in development mode, production build seems fine
   return (
     <Tabs
       value={currentTab}
       variant='scrollable'
-      scrollButtons='on'
+      scrollButtons={true}
       aria-label='scrollable auto tabs'
       textColor='secondary'
       indicatorColor='secondary'
+      onChange={handleChange}
     >
       {isFilledArray(routes)
         ? routes.map((route, index) => (
             <Tab
               label={labels[index]}
               value={route}
-              onClick={() => {
-                router.push(route);
-              }}
               {...a11yProps(index)}
               className={`text-lg`}
               key={'tab-' + index}
               sx={{
-                fontSize: theme.typography.subtitle1,
+                fontSize: theme.typography.subtitle1?.fontSize,
                 fontWeight: theme.typography.fontWeightBold,
                 minWidth: theme.spacing(18),
               }}
@@ -52,3 +60,4 @@ export function NavTabs({ labels, routes, value }) {
     </Tabs>
   );
 }
+

@@ -7,6 +7,7 @@ declare module '@mui/styles' {
   interface DefaultTheme extends Theme {}
 }
 
+
 declare module '@mui/material/styles' {
   interface Palette {
     logo: Palette['primary'];
@@ -22,7 +23,6 @@ declare module '@mui/material/styles' {
     h2Lg: React.CSSProperties;
   }
 
-  // allow configuration using `createTheme()`
   interface TypographyVariantsOptions {
     h2Lg?: React.CSSProperties;
   }
@@ -38,17 +38,10 @@ declare module '@mui/material/Typography' {
 export const createTheme = createMuiTheme;
 export const ThemeProvider = MuiThemeProvider;
 
-/**
- * Palette definition
- * // dark: will be calculated from palette.primary.main,
- * // dark: will be calculated from palette.secondary.main,
- *     // secondary: "#808080",
- */
 const palette = {
   primary: {
     light: '#353535',
     main: '#282828',
-    
     contrastText: '#FEFEFE',
   },
   secondary: {
@@ -64,11 +57,6 @@ const palette = {
   buttonBg: '#e0e0e0',
 };
 
-/**
- * // Map the new variant to render a <h2> by default
-  //Colors
- * 
- */
 export const themeInstance = createMuiTheme({
   palette,
   typography: {
@@ -90,7 +78,6 @@ export const themeInstance = createMuiTheme({
   },
 });
 
-// typography
 themeInstance.typography.h1 = {
   fontSize: '1.9rem',
   [themeInstance.breakpoints.up('md')]: {
