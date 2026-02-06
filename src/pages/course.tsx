@@ -4,7 +4,6 @@ import Description from '../components/Intro/Description';
 import LinearProgress from '@mui/material/LinearProgress';
 import { ErrorBoundary } from '../features/error-handling';
 import { useAllCourses, useTerms } from '../domain';
-import CommonTemplate from '../components/template/CommonTemplate';
 import MainGridContainer from '../components/MainGridContainer';
 import CardGrids from '../components/Cards/CardGrids';
 
@@ -29,7 +28,7 @@ function useEducationPageData() {
  * Page for CE courses
  */
 export function EducationPage({ pageTitle, ...optionals }) {
-  const { courses, error, isLoading, terms, } = useEducationPageData();
+  const { courses, error, isLoading } = useEducationPageData();
 
   if (error) {
     return <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>;
@@ -40,7 +39,6 @@ export function EducationPage({ pageTitle, ...optionals }) {
   }
 
   return (
-    <CommonTemplate>
       <ErrorBoundary>
           <Intro bg={"https://cdn.pixabay.com/photo/2017/03/23/09/08/bible-2167778_960_720.jpg"} >
             <PageHeaderTitle text={pageTitle} />
@@ -50,7 +48,6 @@ export function EducationPage({ pageTitle, ...optionals }) {
             <CardGrids cardList={courses} />
           </MainGridContainer>
       </ErrorBoundary>
-    </CommonTemplate>
   );
 }
 

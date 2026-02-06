@@ -15,16 +15,13 @@ export function getSupabaseClient() {
   return supabaseClient;
 }
 
-// Create a client that can be used in server components
-export const supabase = createSupabaseClient();
-
 /**
  * This function will be used to get an authenticated client in client components
  * @param accessToken
  * @returns
  */
 export const getAuthenticatedClient = (accessToken: string | undefined) => {
-  if (!accessToken) return supabase;
+  if (!accessToken) return getSupabaseClient();
 
   return createClient(supabaseUrl, supabaseKey, {
     global: {

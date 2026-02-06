@@ -15,7 +15,7 @@ import Link from 'next/link';
  */
 export function SimpleMenu(props) {
   // const [anchorEl, setAnchorEl] = useState(null);
-  const {routes, pageTitles} = props;
+  const {routes, pageTitles} = props || {};
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const anchorRef = React.useRef(null);
 

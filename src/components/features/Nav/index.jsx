@@ -2,25 +2,22 @@ import { AppBar, Toolbar } from '../../../components/atomic/AppBar';
 import { Box } from '../../../components/atomic/Container';
 import { Typography } from '../../../components/atomic/Typography';
 import logo from 'styles/assets/logo.png';
-import {SimpleMenu} from '../../SimpleMenu';
+import { SimpleMenu } from '../../SimpleMenu';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from 'styles';
 
 const navTitleFont = "'Exo', sans-serif";
 
-export default function Nav(props) {
+export function NavContainer(props) {
   const theme = useTheme();
-  const xsDown = useMediaQuery((theme) => theme.breakpoints.down('xs'));
-  const smUp = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+  const xsDown = useMediaQuery((th) => th.breakpoints.down('xs'));
+  const smUp = useMediaQuery((th) => th.breakpoints.up('sm'));
 
   return (
     <nav>
       <AppBar position='static'>
         <Toolbar disableGutters>
-          <a
-            href='http://www.zioncma.ca/c'
-            className={`no-underline`}
-          >
+          <a href='http://www.zioncma.ca/c' className={`no-underline`}>
             <Box
               minWidth={295}
               sx={{
@@ -40,7 +37,7 @@ export default function Nav(props) {
                 <img
                   src={logo.src}
                   alt='宣道會錫安堂LOGO'
-                  className="max-w-full"
+                  className='max-w-full'
                 />
               </Box>
               <Typography
@@ -68,7 +65,7 @@ export default function Nav(props) {
           </a>
 
           <Box style={{ flex: 1 }} />
-          {xsDown ? null : props.children }
+          {xsDown ? null : props.children}
           {smUp ? null : (
             <SimpleMenu routes={props.routes} pageTitles={props.pageTitles} />
           )}

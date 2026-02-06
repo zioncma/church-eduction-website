@@ -10,7 +10,7 @@ import { Course, FileDocument, Lesson, News, Term, TermAddingDTO } from "./types
  * Get news items filtered by a term.
  * (Ensure your news table has a term field if needed)
  */
-export const getNewsByTerm = async (termId: number | undefined) => {
+export const getNewsByTerm = async (termId: string | undefined) => {
   if (termId === undefined || termId === null) {
     throw new Error("Term ID is required");
   }
@@ -36,7 +36,7 @@ export const getNewsByTerm = async (termId: number | undefined) => {
   return data;
 };
 
-export const getAllNews = async () => {
+export const getAllNews = async (): Promise<News[]> => {
   const { data, error } = await getSupabaseClient().from("news").select("*");
   if (error) throw error;
   return data;
@@ -187,7 +187,7 @@ export const getAllTerms = async (): Promise<Term[]> => {
   return termsWithCourseCount;
 };
 
-export const getTermById = async (id: number) => {
+export const getTermById = async (id: string): Promise<Term | null> => {
   const { data, error } = await getSupabaseClient()
     .from("term")
     .select("*")

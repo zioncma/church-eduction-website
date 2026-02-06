@@ -38,29 +38,38 @@ declare module '@mui/material/Typography' {
 export const createTheme = createMuiTheme;
 export const ThemeProvider = MuiThemeProvider;
 
+/**
+ * Palette definition
+ * // dark: will be calculated from palette.primary.main,
+ * // dark: will be calculated from palette.secondary.main,
+ *     // secondary: "#808080",
+ */
 const palette = {
   primary: {
     light: '#353535',
     main: '#282828',
-    // dark: will be calculated from palette.primary.main,
+    
     contrastText: '#FEFEFE',
   },
   secondary: {
     main: '#8395a7',
-    // dark: will be calculated from palette.secondary.main,
+    
     contrastText: '#ffcc00',
   },
   text: {
     primary: '#373737',
     secondary: '#fcfcfc',
-    // secondary: "#808080",
   },
   logo: '#DACA37',
   buttonBg: '#e0e0e0',
 };
 
-export const themeInstance = createMuiTheme({
+/**
+ * // Map the new variant to render a <h2> by default
   //Colors
+ * 
+ */
+export const themeInstance = createMuiTheme({
   palette,
   typography: {
     h2Lg: {
@@ -73,7 +82,7 @@ export const themeInstance = createMuiTheme({
     MuiTypography: {
       defaultProps: {
         variantMapping: {
-          // Map the new variant to render a <h2> by default
+          
           h2Lg: 'h2',
         },
       },

@@ -69,7 +69,6 @@ export function LessonCard({
           minHeight: '100%',
           display: 'flex',
           flexDirection: 'column',
-          // gridTemplateRows: "auto 1fr auto"
         }}
       >
         <Box
@@ -130,8 +129,6 @@ export function LessonCard({
               sx={{
                 marginLeft: theme.spacing(1),
               }}
-              // to={lessonUrl}
-              // onClick={handleClick}
             >
               Learn More
             </Button>

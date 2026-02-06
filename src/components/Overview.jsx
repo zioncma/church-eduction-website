@@ -16,8 +16,6 @@ export function Overview() {
         sx={{
           backgroundColor: 'bisque',
           paddingLeft: theme.spacing(2),
-          // fontSize: theme.spacing(4),
-          // fontWeight: 'bold',
         }}
       >
         課程簡介

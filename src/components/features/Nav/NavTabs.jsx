@@ -38,7 +38,6 @@ export function NavTabs({ labels, routes, value }) {
               onClick={() => {
                 router.push(route);
               }}
-              // herf={route}
               {...a11yProps(index)}
               className={`text-lg`}
               key={'tab-' + index}

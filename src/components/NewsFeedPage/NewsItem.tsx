@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Paper from '@mui/material/Paper';
 import { Typography } from '../atomic/Typography';
 import { Box } from '../atomic/Container';
@@ -12,14 +11,11 @@ import Video from "../Video/Video";
 import { Title } from "./Title";
 import { hasValidChar } from "../../utils";
 
-NewsItem.propTypes = {
-  title: PropTypes.string,
-  descrt: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  links: PropTypes.array,
-};
+// NewsItem.propTypes = {
+//   title: PropTypes.string,
+// };
 
-export default function NewsItem(props) {
+export function NewsItem(props) {
   // console.debug("NewsItem props", props);
   const { title, content, form_link: signupForm, video, images } = props;
   const theme = useTheme();
@@ -42,7 +38,8 @@ export default function NewsItem(props) {
           display: "inline",
           marginBottom: theme.spacing(2),
           fontWeight: "bold",
-        }} />
+        }} 
+        />
       ) : (
         <AnnouncementIcon
           style={{ color: green[300], verticalAlign: "text-bottom" }}
@@ -65,7 +62,6 @@ export default function NewsItem(props) {
       <div>
         <Typography
           color={"primary"}
-          // className={title ? "" : classes.startText}
           gutterBottom
           key={"sentence-"}
           sx={title ? { whiteSpace: "pre-line" } : {

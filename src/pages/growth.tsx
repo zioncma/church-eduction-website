@@ -4,10 +4,8 @@ import PageHeaderTitle from '../components/Intro/Title';
 import Description from '../components/Intro/Description';
 import { Link } from '../components/atomic/Link';
 import LinearProgress from '@mui/material/LinearProgress';
-import { useGrowthList } from '../features/npoint/hooks';
 import MainGridContainer from '../components/MainGridContainer';
 import { Overview } from '../components/Overview';
-import CommonTemplate from '../components/template/CommonTemplate';
 
 const CONTACT_EMAIL = 'ce@zioncma.ca';
 
@@ -18,7 +16,7 @@ export default function GrowthPage({ pageTitle, ...optionals }) {
   const bg = growthbg.src;
 
   return (
-    <CommonTemplate>
+    <>
       <Intro bg={bg}>
         <PageHeaderTitle text={pageTitle} />
         <Description>
@@ -31,6 +29,6 @@ export default function GrowthPage({ pageTitle, ...optionals }) {
       <MainGridContainer>
         <Overview />
       </MainGridContainer>
-    </CommonTemplate>
+    </>
   );
 }

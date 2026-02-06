@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Intro } from "components/Intro";
 import { Box } from '../components/atomic/Container';
 import { Link } from '../components/atomic/Link';
@@ -6,13 +6,12 @@ import Filter from "components/NewsFeedPage/Filter";
 import MainGridContainer from "components/MainGridContainer";
 import PageHeaderTitle from "components/Intro/Title";
 import Description from "components/Intro/Description";
-import NewsItem from "../components/NewsFeedPage/NewsItem";
+import { NewsItem } from "../components/NewsFeedPage/NewsItem";
 import { ErrorBoundary } from '../features/error-handling';
 import { useNews, useTerms } from "../domain";
 import { CenteredContainer } from "../components/atomic/CenteredContainer";
 import CircularProgress from "@mui/material/CircularProgress";
 import { isFilledArray } from "../utils";
-import CommonTemplate from "../components/template/CommonTemplate";
 
 export function renderNews(items) {
   if (!items || items.length === 0) {
@@ -37,7 +36,7 @@ export function NewsFeedPage() {
   console.debug("terms", terms);
 
   const [selectedTermName, setSelectedTermName] = useState(undefined);
-  const [selectedTermId, setSelectedTermId] = useState<number | undefined>(undefined);
+  const [selectedTermId, setSelectedTermId] = useState<string | undefined>(undefined);
   const { newsData, newsError, isLoading } = useNews(selectedTermId);
 
   // useEffect(() => {
@@ -98,7 +97,5 @@ export function NewsFeedPage() {
 
 export default function NewsPage() {
   return (
-  <CommonTemplate>
-    <NewsFeedPage />
-  </CommonTemplate>);
+    <NewsFeedPage />);
 }

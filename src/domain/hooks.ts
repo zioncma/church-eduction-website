@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { useCourseById, useLessonById } from './courses';
 import { sortByStartDate } from '.';
 
-export function useNews(termId: number | undefined) {
+export function useNews(termId: string | undefined) {
   console.debug("useNews: ", termId);
   if (termId === undefined) {
     const allNews = useSWR('news', getAllNews);

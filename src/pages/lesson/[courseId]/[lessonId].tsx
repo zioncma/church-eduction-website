@@ -17,7 +17,6 @@ import { ErrorBoundary } from 'features/error-handling';
 import { CenteredContainer } from 'components/atomic/CenteredContainer';
 import { useItemPageData } from '../../../domain';
 import { useEffect, useState } from 'react';
-import CommonTemplate from 'components/template/CommonTemplate';
 import { usePathname, useParams } from 'next/navigation';
 
 type LessonItem = {
@@ -122,9 +121,7 @@ export function ItemPage() {
   }
 
   return (
-    <CommonTemplate>
       <LoadedContent shareUrl={shareUrl} item={lessonItem} />
-    </CommonTemplate>
   );
 }
 
