@@ -3,6 +3,7 @@ import {
   getAllCourses,
   getLessonsByCourse,
   getLessonById,
+  getFilesByLesson,
 } from '../features/supabase';
 import useSWR from 'swr';
 import _ from 'lodash';
@@ -74,6 +75,26 @@ export function useLessonById(lessonId: string | undefined) {
 
   return {
     lesson: result.data,
+    error: result.error,
+    isLoading: !result.error && !result.data,
+  };
+}
+
+export function useFilesByLesson(lessonId: string | undefined) {
+  if (!lessonId) {
+    return {
+      files: undefined,
+      error: new Error('Missing lesson ID'),
+      isLoading: false,
+    };
+  }
+
+  const result = useSWR(lessonId ? `files:${lessonId}` : null, () =>
+    getFilesByLesson(lessonId)
+  );
+
+  return {
+    files: result.data,
     error: result.error,
     isLoading: !result.error && !result.data,
   };

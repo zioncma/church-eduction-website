@@ -170,16 +170,16 @@ export const getAllTerms = async (): Promise<Term[]> => {
 
   const termsWithCourseCount = await Promise.all(
     terms.map(async (term) => {
-      const { data: courses, error: coursesError } = await getSupabaseClient()
+      const { count, error: coursesError } = await getSupabaseClient()
         .from("course")
-        .select("id")
+        .select('*', { count: 'exact', head: true })
         .eq("term_id", term.id);
 
       if (coursesError) throw coursesError;
 
       return {
         ...term,
-        courseCount: courses?.length || 0,
+        courseCount: count || 0,
       };
     })
   );

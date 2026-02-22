@@ -98,7 +98,7 @@ export function ItemPage() {
 
 
   // const lessonQuery = router.query.lesson;
-  const { lesson, course, error, isLoading } = useItemPageData(id, courseId);
+  const { lesson, course, files: fetchedFiles, error, isLoading } = useItemPageData(id, courseId);
 
   if (error) {
     return <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>;
@@ -114,9 +114,9 @@ export function ItemPage() {
   const lessonItem: LessonItem = {
     ...lesson,
     description: lesson?.content || course?.description,
-    video: lesson?.file_document?.filter(item => item.file_type === 'video')?.map(item => item.link),
-    files: lesson?.file_document?.filter(item => item.file_type === 'document'),
-    subtitle: lesson.title,
+    video: fetchedFiles?.filter(item => item.file_type === 'video')?.map(item => item.link) || [],
+    files: fetchedFiles?.filter(item => item.file_type === 'document') || [],
+    subtitle: lesson?.title,
     title: course?.title,
   }
 
