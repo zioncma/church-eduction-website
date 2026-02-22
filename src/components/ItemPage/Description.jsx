@@ -1,7 +1,7 @@
 import React from 'react'
-import { Typography } from '@material-ui/core';
+import { Typography } from 'components/atomic/Typography';
 
-export default function Description(props) {
+export function Description(props) {
     return (
         <Typography variant="subtitle1" paragraph>{props.text}</Typography>
     )

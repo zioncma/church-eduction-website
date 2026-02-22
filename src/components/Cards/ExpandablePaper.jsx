@@ -1,13 +1,13 @@
 import React from 'react';
 import {
   Grid,
-  Typography,
   Accordion,
   AccordionSummary,
   AccordionDetails,
   Divider
-} from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+} from '@mui/material';
+import { Typography } from '../../components/atomic/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styled from 'styled-components';
 
 const CourseDescription = styled(Typography)`

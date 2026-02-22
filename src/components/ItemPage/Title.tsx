@@ -1,6 +1,5 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
-
+import { Typography } from '../atomic/Typography';
 
 export default function Title({ text, ...optionals }: { text: string, [x: string]: any }) {
   return (

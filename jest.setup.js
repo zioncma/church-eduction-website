@@ -1,0 +1,1 @@
+require('dotenv').config({ path: '.env.local' }); // Use .env or .env.local

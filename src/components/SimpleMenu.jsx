@@ -1,11 +1,21 @@
 import React, { useState } from "react";
-import { IconButton, MenuItem, Popper, Grow, Paper, ClickAwayListener, MenuList, Box } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from "react-router-dom";
+import { Box } from "../components/atomic/Container";
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
+import Popper from '@mui/material/Popper';
+import Grow from "@mui/material/Grow";
+import Paper from '@mui/material/Paper';
+import { ClickAwayListener } from '@mui/base';
+import Link from 'next/link';
 
-export default function SimpleMenu(props) {
+/**
+ * 
+ */
+export function SimpleMenu(props) {
   // const [anchorEl, setAnchorEl] = useState(null);
-  const {routes, pageTitles} = props;
+  const {routes, pageTitles} = props || {};
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const anchorRef = React.useRef(null);
 
@@ -29,7 +39,7 @@ export default function SimpleMenu(props) {
   }
 
   return (
-    <Box>
+    <Box className={"simple-menu"} >
       <IconButton
         edge="start"
         className={""}
@@ -66,7 +76,7 @@ export default function SimpleMenu(props) {
                   id="menu-list-grow"
                   onKeyDown={handleListKeyDown}
                 >
-                  {routes.map( (route, index) => (<MenuItem onClick={handleClose} component={Link} to={route} key={"menu-item-" + index}>{pageTitles[index]}</MenuItem>) )}
+                  {routes.map( (route, index) => (<MenuItem onClick={handleClose} component={Link} href={route} key={"menu-item-" + index}>{pageTitles[index]}</MenuItem>) )}
                 </MenuList>
               </ClickAwayListener>
             </Paper>

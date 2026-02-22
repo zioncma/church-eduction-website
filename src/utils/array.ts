@@ -12,32 +12,6 @@ export function isFilledArray(obj: any) {
 }
 
 /**
- *
- * @param prop the property name
- */
-export function merge2ArraysOfObject(
-  arr1: Array<any>,
-  arr2: Array<any>,
-  prop: string
-): any[] {
-  // no need to merge if one of the arrays has no elements
-  if (!isFilledArray(arr1) || !isFilledArray(arr2)) {
-    return null;
-  }
-
-  const result = arr1.map((item) => {
-    const index = arr2.findIndex((item2) => item2[prop] === item[prop]);
-    if (index >= 0) {
-      return { ...item, ...arr2[index] };
-    } else {
-      return item;
-    }
-  });
-
-  return result;
-}
-
-/**
  * 
  */
 export function getAverage(arr: number[]): number {
@@ -46,20 +20,23 @@ export function getAverage(arr: number[]): number {
   return ave;
 }
 
-export function getAverageByProp(arr: any[], prop: string): number {
-  if (!isFilledArray(arr)) {
-    return null;
-  }
-
-  const sum = arr?.reduce((acc, item) => acc + item[prop], 0) || 0;
-  const length = arr?.length;
-  const ave = sum / length;
-  return ave;
-}
-
 export function getArray(args: any) {
   if (Array.isArray(args) || !args) {
     return args;
   }
   return [args];
+}
+
+export const findDuplicates = (arr: any[]) => {
+  let sorted_arr = arr.slice().sort(); // You can define the comparing function here. 
+  // JS by default uses a crappy string compare.
+  // (we use slice to clone the array so the
+  // original array won't be modified)
+  let results: any[] = [];
+  for (let i = 0; i < sorted_arr.length - 1; i++) {
+    if (sorted_arr[i + 1] == sorted_arr[i]) {
+      results.push(sorted_arr[i]);
+    }
+  }
+  return results;
 }

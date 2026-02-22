@@ -1,10 +1,17 @@
 import React from 'react';
-import { Typography } from "@material-ui/core";
+import { Typography } from '../../components/atomic/Typography';
 
-export default function Title(props) {
-    return (
-        <>
-            <Typography variant={"h1"}>{props.text}</Typography>
-        </>
-    )
+export default function PageHeaderTitle({text, ...optionals}) {
+  return (
+    <>
+      <Typography
+        variant={'h1'}
+        sx={{
+          fontWeight: 'bold',
+        }}
+      >
+        {text}
+      </Typography>
+    </>
+  );
 }

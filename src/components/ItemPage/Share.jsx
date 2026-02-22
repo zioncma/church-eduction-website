@@ -4,23 +4,20 @@ import {
   FacebookShareButton,
   TwitterShareButton,
   WhatsappShareButton,
-} from "react-share";
-import {
   EmailIcon,
   FacebookIcon,
   TwitterIcon,
   WhatsappIcon,
-} from "react-share";
-//https://www.npmjs.com/package/react-share
+} from "react-share"; //https://www.npmjs.com/package/react-share
 
 export default function Share(props) {
   const text = props.text;
   const iconSize = 26;
 
   return (
-    <div width="auto">
-      <EmailShareButton subject={text} url={props.url}>
-        <EmailIcon size={iconSize} round={true} />
+    <div width="auto" className="share-container">
+      <EmailShareButton subject={text} url={props.url} >
+        <EmailIcon size={iconSize} round={true}/>
       </EmailShareButton>
       <FacebookShareButton quote={text} url={props.url}>
         <FacebookIcon size={iconSize} round={true} />

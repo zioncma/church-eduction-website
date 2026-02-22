@@ -121,12 +121,19 @@ dist
 
 # production
 /build
+/out
 
 
 # End of https://www.toptal.com/developers/gitignore/api/node
 
 .DS_Store
-temp.json
 **/.DS_Store
+*/**/.DS_Store
+temp.json
 .yarn/cache/
 .yarn/unplugged/
+
+.next
+next-env.d.ts
+
+npm_cache

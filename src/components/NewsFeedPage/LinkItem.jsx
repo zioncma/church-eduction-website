@@ -1,28 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Button, Typography } from "@material-ui/core";
-import LinkIcon from "@material-ui/icons/Link";
-
-LinkItem.defaultProps = {
-  text: "訪問鏈接",
-};
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid2';
+import { Typography } from '../../components/atomic/Typography';
+import LinkIcon from '@mui/icons-material/Link';
+import { useTheme } from "styles";
 
 LinkItem.propTypes = {
   text: PropTypes.string,
   address: PropTypes.string.isRequired,
 };
 
-export default function LinkItem(props) {
-  const { address, text } = props;
+/**
+ * Container of link buttons
+ */
+export default function LinkItem({ address, text = "訪問鏈接" }) {
+  const theme = useTheme();
   return (
-    <Grid item>
+    <Grid>
       <Button
         variant="contained"
         href={address}
         size="large"
         startIcon={<LinkIcon />}
         style={{whiteSpace: 'nowrap', padding: '0.8rem 1rem'}}
-        // color="primary"
+        sx={{
+          backgroundColor: theme.palette.buttonBg,
+          color: theme.palette.primary.main,
+        }}
       >
         <Typography variant={'subtitle1'} style={{fontWeight: '500'}}>{text}</Typography>
       </Button>

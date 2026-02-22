@@ -1,0 +1,1 @@
+export const firestoreUrlSample = "https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel?database=projects%2Fce-website-test%2Fdatabases%2F(default)&gsessionid=GfxpqxAngp2LNtUTQ2A28lyoHtKNUYki2d9mAVy0cnk&VER=8&RID=rpc&SID=Rjq3Nv2SS-UTa2REHFUZxA&CI=0&AID=0&TYPE=xmlhttp&zx=fljdfp5pd84c&t=1"

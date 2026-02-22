@@ -1,20 +1,23 @@
-import React from "react";
-import { Container, Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-const useStyles = makeStyles((theme) => ({
-  m: {
-    marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(2)
-  },
-}));
+import React from 'react';
+import { Container } from '../components/atomic/Container';
+import { Grid2 } from '../components/atomic/Grid';
+import { useTheme } from '../styles';
 
 export default function MainGridContainer(props) {
-  const classes = useStyles();
+  const theme = useTheme();
   return (
-    <Container className={classes.m}>
-      <Grid container spacing={3}>
+    <Container
+      sx={{
+        marginTop: theme.spacing(4),
+        marginBottom: theme.spacing(2),
+        maxWidth: 1280,
+      }}
+      className='main-grid-container'
+      maxWidth={false}
+    >
+      <Grid2 container spacing={3}>
         {props.children}
-      </Grid>
+      </Grid2>
     </Container>
   );
 }

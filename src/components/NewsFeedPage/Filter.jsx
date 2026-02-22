@@ -1,43 +1,37 @@
-import React from "react";
-import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
+import React from 'react';
+import { useTheme } from '../../styles';
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 /**
- *
+ * Filter by term
  */
 export default function Filter(props) {
-  const classes = useStyles();
-  const { itemSet, updateTerm, currentTerm } = props;
+  const { itemSet, updateTerm, currentTerm, ...rest } = props;
+  const theme = useTheme();
+
+  if (!itemSet) {
+    return null;
+  }
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="simple-select-label" color={"primary"}>
+      <FormControl sx={{minWidth: 120, margin: theme.spacing(1)}} variant="standard">
+        <InputLabel id='simple-select-label' color={'primary'}>
           Term
         </InputLabel>
         <Select
-          labelId="simple-select-label"
-          id="simple-select"
-          defaultValue=""
+          labelId='simple-select-label'
+          id='simple-select'
+          defaultValue=''
           onChange={(e) => updateTerm(e.target.value)}
           value={currentTerm}
         >
           {[...itemSet].map((term, index) => (
-            <MenuItem key={"term-" + index} value={term}>
-              {term}
+            <MenuItem key={'term-' + index} value={term.name}>
+              {term.name}
             </MenuItem>
           ))}
-          <MenuItem key={"none"} defaultvalue={currentTerm}></MenuItem>
+          <MenuItem key={'none'} defaultvalue={currentTerm}></MenuItem>
         </Select>
       </FormControl>
     </div>
