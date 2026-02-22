@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
-import createEmotionCache from 'utils/createEmotionCache';
+import createEmotionCache from '../utils/createEmotionCache';
 import '../styles/globals.css';
 import { CommonTemplate } from '../components/template/CommonTemplate';
 
