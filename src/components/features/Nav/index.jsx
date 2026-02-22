@@ -10,7 +10,8 @@ const navTitleFont = "'Exo', sans-serif";
 
 export function NavContainer(props) {
   const theme = useTheme();
-  const xsDown = useMediaQuery((th) => th.breakpoints.down('xs'));
+  // MUI v6 down('xs') means max-width: 0. We need down('sm') for mobile (< 600px).
+  const xsDown = useMediaQuery((th) => th.breakpoints.down('sm'));
   const smUp = useMediaQuery((th) => th.breakpoints.up('sm'));
 
   return (
