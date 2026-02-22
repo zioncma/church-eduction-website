@@ -17,9 +17,9 @@ export function useAllCourses() {
   // return useSWR("allCourses", getAllCourses);
 }
 
-export function useCourseById(courseId: number | undefined) {
+export function useCourseById(courseId: string | undefined) {
   const result = useSWR(courseId ? `course:${courseId}` : null, () =>
-    getCourseById(courseId || -1)
+    getCourseById(courseId || "")
   );
 
   if (!courseId) {
@@ -39,7 +39,7 @@ export function useCourseById(courseId: number | undefined) {
 
 
 export const LESSONS_KEY = 'lessons';
-export function useLessonsByCourse(courseId: number | undefined) {
+export function useLessonsByCourse(courseId: string | undefined) {
   if (!courseId) {
     return {
       lessons: undefined,
@@ -59,9 +59,9 @@ export function useLessonsByCourse(courseId: number | undefined) {
   };
 }
 
-export function useLessonById(lessonId: number | undefined) {
+export function useLessonById(lessonId: string | undefined) {
   const result = useSWR(lessonId ? `lesson:${lessonId}` : null, () =>
-    getLessonById(lessonId || -1)
+    getLessonById(lessonId || "")
   );
 
   if (!lessonId) {

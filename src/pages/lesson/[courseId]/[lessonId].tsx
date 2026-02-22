@@ -98,7 +98,7 @@ export function ItemPage() {
 
 
   // const lessonQuery = router.query.lesson;
-  const { lesson, course, error, isLoading } = useItemPageData(parseInt(id), parseInt(courseId));
+  const { lesson, course, error, isLoading } = useItemPageData(id, courseId);
 
   if (error) {
     return <div>{`Error! ${error?.message} Please refresh or contact administrators`}</div>;
@@ -121,7 +121,7 @@ export function ItemPage() {
   }
 
   return (
-      <LoadedContent shareUrl={shareUrl} item={lessonItem} />
+    <LoadedContent shareUrl={shareUrl} item={lessonItem} />
   );
 }
 

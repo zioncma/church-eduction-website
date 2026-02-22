@@ -37,7 +37,7 @@ export function useAllCourses() {
 }
 
 
-export function useItemPageData(lessonId: number | undefined, courseId: number | undefined) {
+export function useItemPageData(lessonId: string | undefined, courseId: string | undefined) {
   const {lesson, error: lessonError, isLoading: isLoadingLesson} = useLessonById(lessonId);
   const {course, error: courseError, isLoading: isLoadingCourse} = useCourseById(courseId);
 

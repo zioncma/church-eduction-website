@@ -42,7 +42,7 @@ export const getAllNews = async (): Promise<News[]> => {
   return data;
 };
 
-export const getNewsById = async (id: number) => {
+export const getNewsById = async (id: string) => {
   const { data, error } = await getSupabaseClient()
     .from("news")
     .select("*")
@@ -80,7 +80,7 @@ export const addNews = async (
 };
 
 export const updateNews = async (
-  id: number,
+  id: string,
   news: Partial<News>,
   accessToken?: string | null
 ) => {
@@ -90,7 +90,7 @@ export const updateNews = async (
   return data;
 };
 
-export const deleteNews = async (id: number, accessToken?: string | null) => {
+export const deleteNews = async (id: string, accessToken?: string | null) => {
   const client = getAuthenticatedClient(accessToken || undefined);
   const { data, error } = await client.from("news").delete().eq("id", id);
   if (error) throw error;
@@ -109,7 +109,7 @@ export const getAllCourses = async (): Promise<Course[]> => {
   return data;
 };
 
-export const getCourseById = async (id: number) => {
+export const getCourseById = async (id: string) => {
   const { data, error } = await getSupabaseClient()
     .from("course")
     .select("*")
@@ -210,7 +210,7 @@ export const addTerm = async (
 };
 
 export const updateTerm = async (
-  id: number,
+  id: string,
   term: Partial<Term>,
   accessToken?: string | null
 ) => {
@@ -220,7 +220,7 @@ export const updateTerm = async (
   return data;
 };
 
-export const deleteTerm = async (id: number, accessToken?: string | null) => {
+export const deleteTerm = async (id: string, accessToken?: string | null) => {
   const client = getAuthenticatedClient(accessToken || undefined);
   const { data, error } = await client.from("term").delete().eq("id", id);
   if (error) throw error;
@@ -230,7 +230,7 @@ export const deleteTerm = async (id: number, accessToken?: string | null) => {
 /** ------------------------------------------
  *  Lesson Controllers
  *  ------------------------------------------*/
-export const getLessonsByCourse = async (courseId: number) => {
+export const getLessonsByCourse = async (courseId: string) => {
   const { data, error } = await getSupabaseClient()
     .from("lesson")
     .select("*")
@@ -249,7 +249,7 @@ export async function getAllLessons(): Promise<Lesson[]> {
   return data;
 }
 
-export const getLessonById = async (id: number) => {
+export const getLessonById = async (id: string) => {
   const { data, error } = await getSupabaseClient()
     .from("lesson")
     .select("*, file_document(*)")
@@ -275,7 +275,7 @@ export const addLesson = async (
 };
 
 export const updateLesson = async (
-  id: number,
+  id: string,
   lesson: Partial<Lesson>,
   accessToken?: string | null
 ) => {
@@ -288,7 +288,7 @@ export const updateLesson = async (
   return data;
 };
 
-export const deleteLesson = async (id: number, accessToken?: string | null) => {
+export const deleteLesson = async (id: string, accessToken?: string | null) => {
   const client = getAuthenticatedClient(accessToken || undefined);
   const { data, error } = await client.from("lesson").delete().eq("id", id);
   if (error) throw error;
@@ -306,7 +306,7 @@ export async function getAllFIles(): Promise<FileDocument[]> {
 /** ------------------------------------------
  *  File Controllers
  *  ------------------------------------------*/
-export const getFilesByLesson = async (lessonId: number) => {
+export const getFilesByLesson = async (lessonId: string) => {
   const { data, error } = await getSupabaseClient()
     .from("file_document")
     .select("*")
@@ -315,7 +315,7 @@ export const getFilesByLesson = async (lessonId: number) => {
   return data;
 };
 
-export const getFileById = async (id: number) => {
+export const getFileById = async (id: string) => {
   const { data, error } = await getSupabaseClient()
     .from("file_document")
     .select("*")
@@ -341,7 +341,7 @@ export const addFile = async (
 };
 
 export const updateFile = async (
-  id: number,
+  id: string,
   file: Partial<FileDocument>,
   accessToken?: string | null
 ) => {
@@ -354,7 +354,7 @@ export const updateFile = async (
   return data;
 };
 
-export const deleteFile = async (id: number, accessToken?: string | null) => {
+export const deleteFile = async (id: string, accessToken?: string | null) => {
   const client = getAuthenticatedClient(accessToken || undefined);
   const { data, error } = await client
     .from("file_document")
@@ -364,7 +364,7 @@ export const deleteFile = async (id: number, accessToken?: string | null) => {
   return data;
 };
 
-export const getCoursesByTerm = async (termId: number) => {
+export const getCoursesByTerm = async (termId: string) => {
   console.log("Fetching courses for term ID:", termId);
   const { data, error } = await getSupabaseClient()
     .from("course")
@@ -387,7 +387,7 @@ export const getCoursesByTerm = async (termId: number) => {
  */
 export async function updateTermUUID(
   authedClient: SupabaseClient,
-  id: number,
+  id: string,
 ) {
   const { data: updatedTerm, error: updateError } = await authedClient
     .from('term')
