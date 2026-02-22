@@ -17,7 +17,7 @@ import { ErrorBoundary } from 'features/error-handling';
 import { CenteredContainer } from 'components/atomic/CenteredContainer';
 import { useItemPageData } from '../../../domain';
 import { useEffect, useState } from 'react';
-import { usePathname, useParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 type LessonItem = {
   title: string;
@@ -83,7 +83,8 @@ function LoadedContent({ item, shareUrl, ...optionals }: { item: LessonItem, sha
  * Lesson page for displaying a single lesson
  */
 export function ItemPage() {
-  const { lessonId: idParam, courseId: courseIdParam } = useParams() || { id: "0", courseId: "0" };
+  const router = useRouter();
+  const { lessonId: idParam, courseId: courseIdParam } = router.query;
 
   // Ensure id and courseId are strings, not arrays
   const id = Array.isArray(idParam) ? idParam[0] : idParam;
@@ -97,7 +98,6 @@ export function ItemPage() {
   }, [])
 
 
-  // const lessonQuery = router.query.lesson;
   const { lesson, course, files: fetchedFiles, error, isLoading } = useItemPageData(id, courseId);
 
   if (error) {

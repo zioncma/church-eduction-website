@@ -41,6 +41,10 @@ export function useCourseById(courseId: string | undefined) {
 
 export const LESSONS_KEY = 'lessons';
 export function useLessonsByCourse(courseId: string | undefined) {
+  const result = useSWR(courseId ? `${LESSONS_KEY}:${courseId}` : null, () =>
+    getLessonsByCourse(courseId || "")
+  );
+
   if (!courseId) {
     return {
       lessons: undefined,
@@ -48,10 +52,6 @@ export function useLessonsByCourse(courseId: string | undefined) {
       isLoading: false,
     };
   }
-
-  const result = useSWR(courseId ? `${LESSONS_KEY}:${courseId}` : null, () =>
-    getLessonsByCourse(courseId)
-  );
 
   return {
     lessons: result.data,
@@ -81,6 +81,10 @@ export function useLessonById(lessonId: string | undefined) {
 }
 
 export function useFilesByLesson(lessonId: string | undefined) {
+  const result = useSWR(lessonId ? `files:${lessonId}` : null, () =>
+    getFilesByLesson(lessonId || "")
+  );
+
   if (!lessonId) {
     return {
       files: undefined,
@@ -88,10 +92,6 @@ export function useFilesByLesson(lessonId: string | undefined) {
       isLoading: false,
     };
   }
-
-  const result = useSWR(lessonId ? `files:${lessonId}` : null, () =>
-    getFilesByLesson(lessonId)
-  );
 
   return {
     files: result.data,
