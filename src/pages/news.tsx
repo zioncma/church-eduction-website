@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Intro } from "components/Intro";
 import { Box } from '../components/atomic/Container';
 import { Link } from '../components/atomic/Link';
@@ -37,16 +37,42 @@ export function NewsFeedPage() {
 
   const [selectedTermName, setSelectedTermName] = useState(undefined);
   const [selectedTermId, setSelectedTermId] = useState<string | undefined>(undefined);
-  const { newsData, newsError, isLoading } = useNews(selectedTermId);
+  const { newsData: allNews, newsError, isLoading } = useNews(undefined);
 
-  // useEffect(() => {
-  //   // async function fetchData() {
-  //   //   const termsData = await fetchTerms2();
-  //   //   setTerms(termsData.map((t) => t.name));
-  //   //   setSelectedTerm(termsData[0]?.name);
-  //   // }
-  //   // fetchData();
-  // }, []);
+  const availableTerms = useMemo(() => {
+    if (!terms || !allNews) return [];
+    return terms.filter((term) => {
+      const start = new Date(term.start_year, term.start_month - 1, 1).getTime();
+      const end = new Date(term.end_year, term.end_month, 0).getTime();
+      // Date in JS from Supabase might be ISO string
+      return allNews.some((news) => {
+        const newsDate = new Date(news.date).getTime();
+        return newsDate >= start && newsDate <= end;
+      });
+    });
+  }, [terms, allNews]);
+
+  useEffect(() => {
+    // Default to the most recent available term
+    if (availableTerms.length > 0 && selectedTermName === undefined) {
+      setSelectedTermName(availableTerms[0].name);
+      setSelectedTermId(availableTerms[0].id);
+    }
+  }, [availableTerms, selectedTermName]);
+
+  const displayNews = useMemo(() => {
+    if (!allNews || !selectedTermId) return [];
+    const term = availableTerms.find(t => t.id === selectedTermId);
+    if (!term) return [];
+
+    const start = new Date(term.start_year, term.start_month - 1, 1).getTime();
+    const end = new Date(term.end_year, term.end_month, 0).getTime();
+
+    return allNews.filter(news => {
+      const newsDate = new Date(news.date).getTime();
+      return newsDate >= start && newsDate <= end;
+    });
+  }, [allNews, selectedTermId, availableTerms]);
 
   if (termError) {
     return (
@@ -80,16 +106,16 @@ export function NewsFeedPage() {
       <MainGridContainer>
         <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
           <Filter
-            itemSet={terms}
+            itemSet={availableTerms}
             updateTerm={(value) => {
               setSelectedTermName(value)
-              const term = terms?.find((t) => t.name === value);
+              const term = availableTerms?.find((t) => t.name === value);
               setSelectedTermId(term?.id);
             }}
             currentTerm={selectedTermName}
           />
         </Box>
-        {isFilledArray(newsData) ? renderNews(newsData) : null}
+        {isFilledArray(displayNews) ? renderNews(displayNews) : null}
       </MainGridContainer>
     </ErrorBoundary>
   );
