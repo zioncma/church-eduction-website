@@ -37,40 +37,47 @@ export function NewsFeedPage() {
 
   const [selectedTermName, setSelectedTermName] = useState(undefined);
   const [selectedTermId, setSelectedTermId] = useState<string | undefined>(undefined);
+  const [hasInitialized, setHasInitialized] = useState(false);
   const { newsData: allNews, newsError, isLoading } = useNews(undefined);
 
   const availableTerms = useMemo(() => {
     if (!terms || !allNews) return [];
     return terms.filter((term) => {
-      const start = new Date(term.start_year, term.start_month - 1, 1).getTime();
-      const end = new Date(term.end_year, term.end_month, 0).getTime();
-      // Date in JS from Supabase might be ISO string
+      // Use UTC dates to match Supabase ISO 8601 strings accurately without local timezone shift
+      const start = new Date(Date.UTC(term.start_year, term.start_month - 1, 1)).getTime();
+      const end = new Date(Date.UTC(term.end_year, term.end_month, 1)).getTime();
+
       return allNews.some((news) => {
         const newsDate = new Date(news.date).getTime();
-        return newsDate >= start && newsDate <= end;
+        return newsDate >= start && newsDate < end;
       });
     });
   }, [terms, allNews]);
 
   useEffect(() => {
-    // Default to the most recent available term
-    if (availableTerms.length > 0 && selectedTermName === undefined) {
-      setSelectedTermName(availableTerms[0].name);
-      setSelectedTermId(availableTerms[0].id);
+    // Default to the most recent available term only once on load
+    if (!hasInitialized && terms && allNews) {
+      if (availableTerms.length > 0) {
+        setSelectedTermName(availableTerms[0].name);
+        setSelectedTermId(availableTerms[0].id);
+      }
+      setHasInitialized(true);
     }
-  }, [availableTerms, selectedTermName]);
+  }, [availableTerms, hasInitialized, terms, allNews]);
 
   const displayNews = useMemo(() => {
-    if (!allNews || !selectedTermId) return [];
+    if (!allNews) return [];
+    if (!selectedTermId) return allNews; // Show all news if "All" is selected
+
     const term = availableTerms.find(t => t.id === selectedTermId);
     if (!term) return [];
 
-    const start = new Date(term.start_year, term.start_month - 1, 1).getTime();
-    const end = new Date(term.end_year, term.end_month, 0).getTime();
+    const start = new Date(Date.UTC(term.start_year, term.start_month - 1, 1)).getTime();
+    const end = new Date(Date.UTC(term.end_year, term.end_month, 1)).getTime();
 
     return allNews.filter(news => {
       const newsDate = new Date(news.date).getTime();
-      return newsDate >= start && newsDate <= end;
+      return newsDate >= start && newsDate < end;
     });
   }, [allNews, selectedTermId, availableTerms]);
 
@@ -85,7 +92,7 @@ export function NewsFeedPage() {
     );
   }
 
-  if (isLoading) {
+  if (isLoading && !hasInitialized) {
     return <CenteredContainer><CircularProgress color={'secondary'} /></CenteredContainer>;
   }
 
@@ -115,7 +122,9 @@ export function NewsFeedPage() {
             currentTerm={selectedTermName}
           />
         </Box>
-        {isFilledArray(displayNews) ? renderNews(displayNews) : null}
+        {isLoading
+          ? <CenteredContainer><CircularProgress color={'secondary'} /></CenteredContainer>
+          : isFilledArray(displayNews) ? renderNews(displayNews) : null}
       </MainGridContainer>
     </ErrorBoundary>
   );

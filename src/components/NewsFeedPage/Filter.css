@@ -1,0 +1,44 @@
+.filter-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 120px;
+  margin: 8px;
+}
+
+.filter-label {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: inherit;
+  pointer-events: none;
+  transform-origin: top left;
+}
+
+.filter-select {
+  font-family: inherit;
+  font-size: 1rem;
+  color: inherit;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+  background: transparent;
+  padding: 4px 24px 5px 0;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='rgba(0,0,0,0.54)' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+}
+
+.filter-select:focus {
+  border-bottom: 2px solid;
+}
+
+.filter-select:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.87);
+}

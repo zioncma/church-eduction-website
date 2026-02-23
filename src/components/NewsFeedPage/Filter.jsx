@@ -22,16 +22,15 @@ export default function Filter(props) {
         <Select
           labelId='simple-select-label'
           id='simple-select'
-          defaultValue=''
           onChange={(e) => updateTerm(e.target.value)}
-          value={currentTerm}
+          value={currentTerm || ''}
         >
           {[...itemSet].map((term, index) => (
             <MenuItem key={'term-' + index} value={term.name}>
               {term.name}
             </MenuItem>
           ))}
-          <MenuItem key={'none'} defaultvalue={currentTerm}></MenuItem>
+          <MenuItem key={'none'} value=""><em>全部 (All)</em></MenuItem>
         </Select>
       </FormControl>
     </div>

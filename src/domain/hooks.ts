@@ -8,8 +8,11 @@ export function useNews(termId: string | undefined) {
   console.debug("useNews: ", termId);
   if (termId === undefined) {
     const allNews = useSWR('news', getAllNews);
+    const sorted = allNews.data
+      ? [...allNews.data].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      : undefined;
     return {
-      newsData: sortByStartDate(allNews.data), 
+      newsData: sorted, 
       newsError: allNews.error, 
       isLoading: !allNews.error && !allNews.data,
     };
@@ -18,9 +21,12 @@ export function useNews(termId: string | undefined) {
   const result = useSWR(termId ? `news:${termId}` : null, () =>
     getNewsByTerm(termId)
   );
+  const sorted = result.data
+    ? [...result.data].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    : undefined;
 
   return {
-    newsData: sortByStartDate(result.data), 
+    newsData: sorted, 
     newsError: result.error, 
     isLoading: !result.error && !result.data,
   };
