@@ -14,6 +14,7 @@ export default function MyDocument(props: DocumentProps & { emotionStyleTags: Re
   return (
     <Html lang="en">
       <Head>
+        <title>Zion Alliance Church | Education</title>
         <meta name="emotion-insertion-point" content="" />
         {props.emotionStyleTags}
       </Head>
