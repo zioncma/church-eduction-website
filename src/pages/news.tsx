@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { Intro } from "components/Intro";
 import { Box } from '../components/atomic/Container';
 import { Link } from '../components/atomic/Link';
@@ -35,9 +35,9 @@ export function NewsFeedPage() {
   const { terms, error: termError } = useTerms();
   console.debug("terms", terms);
 
-  const [selectedTermName, setSelectedTermName] = useState(undefined);
+  const [selectedTermName, setSelectedTermName] = useState<string | undefined>(undefined);
   const [selectedTermId, setSelectedTermId] = useState<string | undefined>(undefined);
-  const [hasInitialized, setHasInitialized] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const { newsData: allNews, newsError, isLoading } = useNews(undefined);
 
   const availableTerms = useMemo(() => {
@@ -54,32 +54,34 @@ export function NewsFeedPage() {
     });
   }, [terms, allNews]);
 
-  useEffect(() => {
-    // Default to the most recent available term only once on load
-    if (!hasInitialized && terms && allNews) {
-      if (availableTerms.length > 0) {
-        setSelectedTermName(availableTerms[0].name);
-        setSelectedTermId(availableTerms[0].id);
-      }
-      setHasInitialized(true);
+  // Determine the effective term to display:
+  // 1. If user explicitly selected "All", show everything
+  // 2. If user selected a specific term, use that
+  // 3. Otherwise (initial load), default to the latest term
+  const effectiveTerm = useMemo(() => {
+    if (showAll) return null; // null means show all
+    if (selectedTermId) {
+      return availableTerms.find(t => t.id === selectedTermId) || terms?.[0];
     }
-  }, [availableTerms, hasInitialized, terms, allNews]);
+    // Default: pick the latest available term, or fall back to first term overall
+    return availableTerms[0] || terms?.[0];
+  }, [showAll, selectedTermId, availableTerms, terms]);
+
+  // Also compute the effective name for the dropdown display
+  const effectiveTermName = showAll ? "" : (selectedTermName ?? effectiveTerm?.name);
 
   const displayNews = useMemo(() => {
     if (!allNews) return [];
-    if (!selectedTermId) return allNews; // Show all news if "All" is selected
+    if (!effectiveTerm) return allNews; // showAll case
 
-    const term = availableTerms.find(t => t.id === selectedTermId);
-    if (!term) return [];
-
-    const start = new Date(Date.UTC(term.start_year, term.start_month - 1, 1)).getTime();
-    const end = new Date(Date.UTC(term.end_year, term.end_month, 1)).getTime();
+    const start = new Date(Date.UTC(effectiveTerm.start_year, effectiveTerm.start_month - 1, 1)).getTime();
+    const end = new Date(Date.UTC(effectiveTerm.end_year, effectiveTerm.end_month, 1)).getTime();
 
     return allNews.filter(news => {
       const newsDate = new Date(news.date).getTime();
       return newsDate >= start && newsDate < end;
     });
-  }, [allNews, selectedTermId, availableTerms]);
+  }, [allNews, effectiveTerm]);
 
   if (termError) {
     return (
@@ -92,7 +94,7 @@ export function NewsFeedPage() {
     );
   }
 
-  if (isLoading && !hasInitialized) {
+  if (isLoading) {
     return <CenteredContainer><CircularProgress color={'secondary'} /></CenteredContainer>;
   }
 
@@ -115,11 +117,12 @@ export function NewsFeedPage() {
           <Filter
             itemSet={availableTerms}
             updateTerm={(value) => {
-              setSelectedTermName(value)
+              setSelectedTermName(value || undefined)
               const term = availableTerms?.find((t) => t.name === value);
               setSelectedTermId(term?.id);
+              setShowAll(!value); // Show all news only when "All" is explicitly selected
             }}
-            currentTerm={selectedTermName}
+            currentTerm={effectiveTermName}
           />
         </Box>
         {isLoading
