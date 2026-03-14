@@ -8,7 +8,7 @@ import PageHeaderTitle from "components/Intro/Title";
 import Description from "components/Intro/Description";
 import { NewsItem } from "../components/NewsFeedPage/NewsItem";
 import { ErrorBoundary } from '../features/error-handling';
-import { useNews, useTerms } from "../domain";
+import { useNews, useTerms, getTermDateRange } from "../domain";
 import { CenteredContainer } from "../components/atomic/CenteredContainer";
 import CircularProgress from "@mui/material/CircularProgress";
 import { isFilledArray } from "../utils";
@@ -43,9 +43,7 @@ export function NewsFeedPage() {
   const availableTerms = useMemo(() => {
     if (!terms || !allNews) return [];
     return terms.filter((term) => {
-      // Use UTC dates to match Supabase ISO 8601 strings accurately without local timezone shift
-      const start = new Date(Date.UTC(term.start_year, term.start_month - 1, 1)).getTime();
-      const end = new Date(Date.UTC(term.end_year, term.end_month, 1)).getTime();
+      const { start, end } = getTermDateRange(term);
 
       return allNews.some((news) => {
         const newsDate = new Date(news.date).getTime();
@@ -74,8 +72,7 @@ export function NewsFeedPage() {
     if (!allNews) return [];
     if (!effectiveTerm) return allNews; // showAll case
 
-    const start = new Date(Date.UTC(effectiveTerm.start_year, effectiveTerm.start_month - 1, 1)).getTime();
-    const end = new Date(Date.UTC(effectiveTerm.end_year, effectiveTerm.end_month, 1)).getTime();
+    const { start, end } = getTermDateRange(effectiveTerm);
 
     return allNews.filter(news => {
       const newsDate = new Date(news.date).getTime();
