@@ -8,7 +8,7 @@ import PageHeaderTitle from "components/Intro/Title";
 import Description from "components/Intro/Description";
 import { NewsItem } from "../components/NewsFeedPage/NewsItem";
 import { ErrorBoundary } from '../features/error-handling';
-import { useNews, useTerms } from "../domain";
+import { useNews, useTerms, getTermDateRange } from "../domain";
 import { CenteredContainer } from "../components/atomic/CenteredContainer";
 import CircularProgress from "@mui/material/CircularProgress";
 import { isFilledArray } from "../utils";
@@ -42,12 +42,10 @@ export function NewsFeedPage() {
   const availableTerms = useMemo(() => {
     if (!terms || !allNews) return [];
     return terms.filter((term) => {
-      const start = new Date(term.start_year, term.start_month - 1, 1).getTime();
-      const end = new Date(term.end_year, term.end_month, 0).getTime();
-      // Date in JS from Supabase might be ISO string
+      const { start, end } = getTermDateRange(term);
       return allNews.some((news) => {
         const newsDate = new Date(news.date).getTime();
-        return newsDate >= start && newsDate <= end;
+        return newsDate >= start && newsDate < end;
       });
     });
   }, [terms, allNews]);
@@ -65,12 +63,11 @@ export function NewsFeedPage() {
     const term = availableTerms.find(t => t.id === selectedTermId);
     if (!term) return [];
 
-    const start = new Date(term.start_year, term.start_month - 1, 1).getTime();
-    const end = new Date(term.end_year, term.end_month, 0).getTime();
+    const { start, end } = getTermDateRange(term);
 
     return allNews.filter(news => {
       const newsDate = new Date(news.date).getTime();
-      return newsDate >= start && newsDate <= end;
+      return newsDate >= start && newsDate < end;
     });
   }, [allNews, selectedTermId, availableTerms]);
 
