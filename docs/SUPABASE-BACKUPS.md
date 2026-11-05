@@ -21,14 +21,16 @@ Supabase Free Plan does not include scheduled project backups. Make manual expor
 
 ## Create a database backup
 
-Run from the directory containing the linked Supabase project configuration. This produces a schema dump and a separate data dump, both timestamped:
+From the repository root after linking the project, run the included script. It creates the backup directory if needed, writes files with restrictive permissions, and checks that both dumps are non-empty:
 
 ```sh
-BACKUP_DIR=/common/backups
-STAMP=$(date +%Y%m%d-%H%M%S)
-mkdir -p "$BACKUP_DIR"
-supabase db dump --linked --file "$BACKUP_DIR/supabase-schema-$STAMP.sql" && \
-  supabase db dump --linked --data-only --use-copy --file "$BACKUP_DIR/supabase-data-$STAMP.sql"
+./scripts/backup-supabase.sh
+```
+
+To use a different destination, set `BACKUP_DIR` when invoking the script (the default is `/common/backups`):
+
+```sh
+BACKUP_DIR=/path/to/private/backups ./scripts/backup-supabase.sh
 ```
 
 The default dump is schema-only; `--data-only` is needed to export table rows. The CLI excludes Supabase-managed schemas (including `auth` and `storage`) and extension schemas. This export is not a complete project snapshot, so read the [Supabase backup guide](https://supabase.com/docs/guides/platform/backup-restore) before relying on it for recovery.
@@ -42,6 +44,23 @@ Database exports do not contain the actual files uploaded to Supabase Storage. D
 ```
 
 Keep a record of bucket names and any project configuration needed to recreate them. Storage metadata in the database is not a substitute for the file contents.
+
+## Restore a database backup
+
+Restore into a separate, disposable/test Supabase project or an otherwise empty database. Do not restore over production. Confirm the target project and files before starting: the schema dump must be restored before the matching data dump, using the same timestamp in both filenames.
+
+Install `psql` (provided by PostgreSQL client tools) and obtain the target database connection string from the Supabase Dashboard. Keep the connection string private; do not commit it or put it in a script. Set it in your shell without adding it to shell history, then run the two files in order:
+
+```sh
+read -rsp 'Target database connection string: ' RESTORE_DATABASE_URL
+printf '\n'
+export RESTORE_DATABASE_URL
+psql "$RESTORE_DATABASE_URL" -v ON_ERROR_STOP=1 -f /common/backups/supabase-schema-YYYYMMDD-HHMMSS.sql
+psql "$RESTORE_DATABASE_URL" -v ON_ERROR_STOP=1 -f /common/backups/supabase-data-YYYYMMDD-HHMMSS.sql
+unset RESTORE_DATABASE_URL
+```
+
+Replace `YYYYMMDD-HHMMSS` in both paths with the timestamp for the backup pair you want to restore. Stop if either command reports an error, and verify the restored schema and data before relying on the project. These dumps exclude Supabase-managed schemas (including `auth` and `storage`), so they do not restore users, bucket metadata, or Storage files. Recreate required project configuration and buckets, then upload the separately backed-up Storage files. Review the [Supabase backup and restore guide](https://supabase.com/docs/guides/platform/backup-restore) for project-specific recovery requirements.
 
 ## Protect and verify backups
 
